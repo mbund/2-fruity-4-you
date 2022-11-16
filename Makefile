@@ -14,11 +14,11 @@ INC_DIRS = -I$(LIB_DIR) -I.
 OBJS = $(LIB_DIR)/FEHLCD.o $(LIB_DIR)/FEHRandom.o $(LIB_DIR)/FEHSD.o $(LIB_DIR)/tigr.o
 
 ifeq ($(OS),Windows_NT)
-	LDFLAGS = -lopengl32 -lgdi32
+	LDFLAGS = -lopengl32 -lgdi32 -lwinpthread -static -static-libgcc -static-libstdc++
 	EXEC = game.exe
 else
-	UNAME = `uname -s`
-	ifeq ($(UNAME),Darwin)
+	UNAME_S := $(shell uname -s)
+	ifeq ($(UNAME_S),Darwin)
 		LDFLAGS = -framework OpenGL -framework Cocoa
 	else
 		LDFLAGS = `pkg-config --libs --cflags opengl x11 glx`
