@@ -1,0 +1,58 @@
+name: "Build project"
+on:
+  pull_request:
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get current date
+      id: date
+      run: |
+        echo "::set-output name=release-name-date::$(date +'%F-%H-%M')"
+        echo "::set-output name=tag-date::$(date +'release/%F/%H.%M')"
+        echo "::set-output name=game-date::$(date +'%F-%H-%M')"
+
+    - name: Maximize build space
+      uses: easimon/maximize-build-space@master
+      with:
+        root-reserve-mb: 512
+        swap-size-mb: 1024
+        remove-dotnet: 'true'
+        remove-android: 'true'
+        remove-haskell: 'true'
+
+    - name: Bind mount /nix
+      run: |
+        mkdir -p $GITHUB_WORKSPACE/nix
+        sudo mkdir -p /nix
+        sudo mount --bind $GITHUB_WORKSPACE/nix /nix
+
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        path: '2-fruity-4-you'
+
+    - name: Install nix
+      uses: cachix/install-nix-action@v16
+
+    - name: Build project
+      id: build-project
+      run: |
+        nix build ./2-fruity-4-you
+        cp result/bin/2-fruity-4-you 2-fruity-4-you-${{ steps.date.outputs.game-date }}
+        echo "::set-output name=hash::$(sha512sum result/bin/2-fruity-4-you | cut -d " " -f 1)"
+
+    - name: Release game
+      uses: softprops/action-gh-release@v1
+      with:
+        name: Game ${{ steps.date.outputs.release-name-date }}
+        tag_name: ${{ steps.date.outputs.tag-date }}
+        body: |
+          2 fruity 4 you release
+
+          SHA-512 checksum: `${{ steps.build-project.outputs.hash }}`
+
+        token: ${{ secrets.GITHUB_TOKEN }}
+        files: |
+          2-fruity-4-you-*

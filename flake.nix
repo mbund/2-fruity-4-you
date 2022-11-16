@@ -1,5 +1,5 @@
 {
-  description = "simulator template";
+  description = "2 fruity 4 you game";
 
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
@@ -17,7 +17,7 @@
           pkg-config
         ];
 
-        name = "simulator-template";
+        name = "2-fruity-4-you";
       in
       rec {
         devShells.default = pkgs.mkShell {
