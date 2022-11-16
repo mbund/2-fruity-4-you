@@ -1,4 +1,4 @@
-#include "Libraries/FEHLCD.h"
+#include "FEHLCD.h"
 
 int main() {
     LCD.WriteLine("Hello World!");
