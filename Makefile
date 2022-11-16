@@ -17,8 +17,8 @@ ifeq ($(OS),Windows_NT)
 	LDFLAGS = -lopengl32 -lgdi32
 	EXEC = game.exe
 else
-	UNAME = `uname -s`
-	ifeq ($(UNAME),Darwin)
+	UNAME_S := $(shell uname -s)
+	ifeq ($(UNAME_S),Darwin)
 		LDFLAGS = -framework OpenGL -framework Cocoa
 	else
 		LDFLAGS = `pkg-config --libs --cflags opengl x11 glx`

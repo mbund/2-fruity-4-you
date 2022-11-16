@@ -4,55 +4,50 @@ on:
   push:
 jobs:
   build:
-    runs-on: ubuntu-latest
+    name: "Publish binaries"
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      matrix:
+        config:
+          - os: ubuntu-latest
+            artifact_name: game.out
+          - os: macos-latest
+            artifact_name: game.out
+          - os: windows-latest
+            artifact_name: game.exe
     steps:
-    - name: Get current date
-      id: date
-      run: |
-        echo "::set-output name=release-name-date::$(date +'%F-%H-%M')"
-        echo "::set-output name=tag-date::$(date +'release/%F/%H.%M')"
-        echo "::set-output name=game-date::$(date +'%F-%H-%M')"
-
-    - name: Maximize build space
-      uses: easimon/maximize-build-space@master
-      with:
-        root-reserve-mb: 512
-        swap-size-mb: 1024
-        remove-dotnet: 'true'
-        remove-android: 'true'
-        remove-haskell: 'true'
-
-    - name: Bind mount /nix
-      run: |
-        mkdir -p $GITHUB_WORKSPACE/nix
-        sudo mkdir -p /nix
-        sudo mount --bind $GITHUB_WORKSPACE/nix /nix
-
     - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        path: '2-fruity-4-you'
+      uses: actions/checkout@v3
 
-    - name: Install nix
-      uses: cachix/install-nix-action@v16
+    - name: Install dependencies (ubuntu)
+      if: matrix.config.os == 'ubuntu-latest'
+      id: install-deps
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y pkg-config mesa-common-dev libopengl-dev
 
     - name: Build project
       id: build-project
       run: |
-        nix build ./2-fruity-4-you
-        cp result/bin/2-fruity-4-you 2-fruity-4-you-${{ steps.date.outputs.game-date }}
-        echo "::set-output name=hash::$(sha512sum result/bin/2-fruity-4-you | cut -d " " -f 1)"
-
-    - name: Release game
-      uses: softprops/action-gh-release@v1
+        make
+    
+    - name: Release project
+      id: release
+      uses: svenstaro/upload-release-action@v2
       with:
-        name: Game ${{ steps.date.outputs.release-name-date }}
-        tag_name: ${{ steps.date.outputs.tag-date }}
-        body: |
-          2 fruity 4 you release
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: target/release/${{ matrix.artifact_name }}
+        asset_name: ${{ matrix.asset_name }}
+        tag: ${{ github.ref }}
 
-          SHA-512 checksum: `${{ steps.build-project.outputs.hash }}`
+    # - name: Release game
+    #   uses: softprops/action-gh-release@v1
+    #   with:
+    #     name: Game
+    #     tag_name: release
+    #     body: |
+    #       2 fruity 4 you game binaries
 
-        token: ${{ secrets.GITHUB_TOKEN }}
-        files: |
-          2-fruity-4-you-*
+    #     token: ${{ secrets.GITHUB_TOKEN }}
+    #     files: |
+    #       2-fruity-4-you-*
