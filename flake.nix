@@ -22,6 +22,9 @@
       rec {
         devShells.default = pkgs.mkShell {
           inherit buildInputs nativeBuildInputs;
+          packages = with pkgs; [
+            doxygen
+          ];
         };
 
         packages.default = pkgs.stdenv.mkDerivation rec {

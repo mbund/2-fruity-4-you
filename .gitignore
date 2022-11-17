@@ -4,5 +4,9 @@
 *.out
 *.exe
 
+# Docs
+/html
+/latex
+
 # Nix
 result
