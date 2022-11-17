@@ -7,7 +7,7 @@ CPPFLAGS = -MMD -MP -Os -DOBJC_OLD_DISPATCH_PROTOTYPES -g
 
 IGNORED_WARNINGS = -Wall
 
-LIB_DIR = Libraries
+LIB_DIR = feh-proteus
 
 INC_DIRS = -I$(LIB_DIR) -I.
 
