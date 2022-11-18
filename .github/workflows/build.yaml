@@ -11,13 +11,13 @@ jobs:
         config:
           - os: ubuntu-latest
             artifact_name: game.out
-            asset_name: 2-fruity-4-you-linux-amd64
+            asset_name: linux-amd64
           - os: macos-latest
             artifact_name: game.out
-            asset_name: 2-fruity-4-you-macos-amd64
+            asset_name: macos-amd64
           - os: windows-latest
             artifact_name: game.exe
-            asset_name: 2-fruity-4-you-windows-amd64.exe
+            asset_name: windows-amd64.exe
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -47,6 +47,6 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ${{ matrix.config.artifact_name }}
-        asset_name: ${{ matrix.config.asset_name }}
-        tag: edge
+        asset_name: 2-fruity-4-you-${{ github.branch }}-${{ steps.short-sha.outputs.sha }}-${{ matrix.config.asset_name }}
+        tag: ${{ github.ref }}-${{ steps.short-sha.outputs.sha }}
         overwrite: true
