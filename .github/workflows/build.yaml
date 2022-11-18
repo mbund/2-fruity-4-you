@@ -34,6 +34,7 @@ jobs:
       run: |
         make
 
+      # use with ${{ steps.short-sha.outputs.sha }}
     - name: Get short SHA
       uses: benjlevesque/short-sha@v2.1
       id: short-sha
@@ -46,6 +47,6 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ${{ matrix.config.artifact_name }}
-        asset_name: ${{ steps.short-sha.outputs.sha }}-${{ matrix.config.asset_name }}
-        tag: ${{ steps.short-sha.outputs.sha }}
+        asset_name: ${{ matrix.config.asset_name }}
+        tag: edge
         overwrite: true
