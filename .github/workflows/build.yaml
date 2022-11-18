@@ -47,6 +47,6 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ${{ matrix.config.artifact_name }}
-        asset_name: ${{ matrix.config.asset_name }}
-        tag: edge
+        asset_name: ${{ steps.short-sha.outputs.sha }}-${{ matrix.config.asset_name }}
+        tag: ${{ github.ref }}-${{ steps.short-sha.outputs.sha }}
         overwrite: true
