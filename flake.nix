@@ -2,11 +2,14 @@
   description = "2 fruity 4 you game";
 
   inputs.flake-utils.url = "github:numtide/flake-utils";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  inputs.nixpkgs-doxygen.url = "github:NixOS/nixpkgs/cef50cde2bd337c795159e8b26c7c246206b6740";
 
-  outputs = { self, flake-utils, nixpkgs }:
+  outputs = { self, flake-utils, nixpkgs, nixpkgs-doxygen }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
+        pkgs-doxygen = import nixpkgs-doxygen { inherit system; };
 
         buildInputs = with pkgs; [
           xorg.libX11
@@ -23,7 +26,7 @@
         devShells.default = pkgs.mkShell {
           inherit buildInputs nativeBuildInputs;
           packages = with pkgs; [
-            doxygen
+            pkgs-doxygen.doxygen # doxygen 1.9.4
           ];
         };
 
