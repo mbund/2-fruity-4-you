@@ -32,9 +32,13 @@ $(BUILD_DIR)/%.cpp.o: %.cpp
 	mkdir -p $(dir $@)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
+docs:
+	doxygen
+
 .PHONY: clean
 clean:
-	rm -r $(BUILD_DIR)
-	rm $(EXEC)
+	-rm -r $(BUILD_DIR)
+	-rm $(EXEC)
+	-rm -r html latex
 
 -include $(DEPS)
