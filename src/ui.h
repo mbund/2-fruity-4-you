@@ -1,3 +1,6 @@
+/// @file ui.h
+/// User interface utilities
+
 #include <cstdint>
 #include <functional>
 #include <string>

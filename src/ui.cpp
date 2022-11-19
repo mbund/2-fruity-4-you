@@ -1,3 +1,6 @@
+/// @file ui.cpp
+/// Implementation for the UI
+
 #include "ui.h"
 #include <FEHLCD.h>
 #include <iostream>
