@@ -1,5 +1,5 @@
 #include "FEHLCD.h"
-#include "FEHUtility.cpp"
+#include "FEHUtility.h"
 #include "tigr.h"
 #include <iostream>
 

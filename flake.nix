@@ -17,7 +17,7 @@
           pkg-config
         ];
 
-        name = "2-fruity-4-you";
+        name = "game";
       in
       rec {
         devShells.default = pkgs.mkShell {

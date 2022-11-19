@@ -1,17 +1,12 @@
-CC = g++
-LD = $(CC)
-
-TARGET = game
-
-CPPFLAGS = -MMD -MP -Os -DOBJC_OLD_DISPATCH_PROTOTYPES -g
-
-IGNORED_WARNINGS = -Wall
-
-LIB_DIR = feh-proteus
-
-INC_DIRS = -I$(LIB_DIR) -I.
-
-OBJS = $(LIB_DIR)/FEHLCD.o $(LIB_DIR)/FEHRandom.o $(LIB_DIR)/FEHSD.o $(LIB_DIR)/tigr.o
+CC = gcc
+CXX = g++ -std=c++11
+BUILD_DIR := build
+SRCS := $(wildcard src/*.cpp vendor/feh-proteus/*.cpp vendor/feh-proteus/*.c)
+OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
+DEPS := $(OBJS:.o=.d)
+INC_DIRS := vendor/feh-proteus
+INC_FLAGS := $(addprefix -I,$(INC_DIRS))
+CPPFLAGS := $(INC_FLAGS) -MMD -MP -Os -DOBJC_OLD_DISPATCH_PROTOTYPES -g -Wall
 
 ifeq ($(OS),Windows_NT)
 	LDFLAGS = -lopengl32 -lgdi32 -lwinpthread -static -static-libgcc -static-libstdc++
@@ -21,32 +16,25 @@ else
 	ifeq ($(UNAME_S),Darwin)
 		LDFLAGS = -framework OpenGL -framework Cocoa
 	else
-		LDFLAGS = `pkg-config --libs --cflags opengl x11 glx`
+		LDFLAGS = $(shell pkg-config --libs --cflags opengl x11 glx)
 	endif
 	EXEC = game.out
 endif
 
-main: main.o $(OBJS)
-	$(CC) $(CPPFLAGS) $(INC_DIRS) $(OBJS) main.o -o $(EXEC) $(LDFLAGS) $(IGNORED_WARNINGS)
+$(EXEC): $(OBJS)
+	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
 
-main.o: main.cpp
-	$(CC) $(IGNORED_WARNINGS) $(INC_DIRS) -c main.cpp
+$(BUILD_DIR)/%.c.o: %.c
+	mkdir -p $(dir $@)
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
-FEHLCD.o: $(LIB_DIR)/FEHLCD.cpp $(LIB_DIR)/FEHLCD.h $(LIB_DIR)/FEHUtility.o
-	$(CC) $(IGNORED_WARNINGS) $(INC_DIRS) -c $(LIB_DIR)/FEHLCD.cpp
+$(BUILD_DIR)/%.cpp.o: %.cpp
+	mkdir -p $(dir $@)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
-FEHUtility.o: $(LIB_DIR)/FEHUtility.cpp $(LIB_DIR)/FEHUtility.h
-	$(CC) $(IGNORED_WARNINGS) $(INC_DIRS) -c $(LIB_DIR)/FEHUtility.cpp
-
-FEHRandom.o: $(LIB_DIR)/FEHRandom.cpp $(LIB_DIR)/FEHRandom.h
-	$(CC) $(IGNORED_WARNINGS) $(INC_DIRS) -c $(LIB_DIR)/FEHRandom.cpp
-
-FEHSD.o: $(LIB_DIR)/FEHSD.cpp $(LIB_DIR)/FEHSD.h
-	$(CC) $(IGNORED_WARNINGS) $(INC_DIRS) -c $(LIB_DIR)/FEHSD.cpp
-
-tigr.o: $(LIB_DIR)/tigr.c $(LIB_DIR)/tigr.h
-	$(CC) $(IGNORED_WARNINGS) $(INC_DIRS) -c $(LIB_DIR)/tigr.c
-
+.PHONY: clean
 clean:
-	rm $(LIB_DIR)/*.o $(LIB_DIR)/*.d
-	rm *.o $(EXEC)
+	rm -r $(BUILD_DIR)
+	rm $(EXEC)
+
+-include $(DEPS)
