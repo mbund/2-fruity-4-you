@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uibutton_0',['UIButton',['../classUIButton.html',1,'']]]
+  ['credits_0',['Credits',['../classCredits.html',1,'']]]
 ];
