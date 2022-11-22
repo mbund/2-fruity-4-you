@@ -5,8 +5,8 @@
 
 #include <memory>
 
+#include "knife.h"
 #include "main.h"
-#include "Knife.h"
 
 /// Game scene
 class Game : public Scene {

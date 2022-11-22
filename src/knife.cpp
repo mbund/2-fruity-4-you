@@ -1,0 +1,105 @@
+/// @file knife.cpp
+/// Knife implementation
+
+#include <cmath>
+
+#include <FEHLCD.h>
+
+#include "knife.h"
+#include "main.h"
+
+Knife::Knife() {}
+
+/// Bresenham's line drawing algorithm which works for all points a and b
+void Knife::draw_line(Point a, Point b) {
+    int x, y;
+    int xe, ye;
+
+    int dx = b.x - a.x;
+    int dy = b.y - a.y;
+
+    int dx1 = std::abs(dx);
+    int dy1 = std::abs(dy);
+
+    int px = 2 * dy1 - dx1;
+    int py = 2 * dx1 - dy1;
+
+    if (dy1 <= dx1) {
+        if (dx >= 0) {
+            x = a.x;
+            y = a.y;
+            xe = b.x;
+        } else {
+            x = b.x;
+            y = b.y;
+            xe = a.x;
+        }
+
+        LCD.DrawPixel(x, y);
+
+        for (; x < xe; x++) {
+            if (px < 0) {
+                px = px + 2 * dy1;
+            } else {
+                if ((dx < 0 && dy < 0) || (dx > 0 && dy > 0))
+                    y++;
+                else
+                    y--;
+                px += 2 * (dy1 - dx1);
+            }
+
+            LCD.DrawPixel(x, y);
+        }
+    } else {
+        if (dy >= 0) {
+            x = a.x;
+            y = a.y;
+            ye = b.y;
+        } else {
+            x = b.x;
+            y = b.y;
+            ye = a.y;
+        }
+
+        LCD.DrawPixel(x, y);
+
+        for (; y < ye; y++) {
+            if (py <= 0) {
+                py = py + 2 * dx1;
+            } else {
+                if ((dx < 0 && dy < 0) || (dx > 0 && dy > 0))
+                    x++;
+                else
+                    x--;
+                py += 2 * (dx1 - dy1);
+            }
+
+            LCD.DrawPixel(x, y);
+        }
+    }
+}
+
+void Knife::update() {
+    if (touchPressed) {
+        LCD.SetFontColor(RED);
+        LCD.FillCircle(touchX, touchY, 2);
+
+        if (head < tail + TAIL_LEN) {
+            points[head % TAIL_LEN] = {touchX, touchY};
+
+            for (size_t i = tail + 1; i < head; i++) {
+                Point p1 = points[i % TAIL_LEN];
+                Point p2 = points[(i + 1) % TAIL_LEN];
+
+                draw_line(p1, p2);
+            }
+
+            head++;
+        } else {
+            tail++;
+        }
+
+    } else {
+        tail = head;
+    }
+}
