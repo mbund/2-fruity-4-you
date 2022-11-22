@@ -6,6 +6,7 @@
 #include <memory>
 
 #include "main.h"
+#include "Knife.h"
 
 /// Game scene
 class Game : public Scene {
@@ -26,6 +27,7 @@ class Game : public Scene {
    private:
     float bomb_probability;
     float multiplier;
+    Knife mKnife;
 
     float x;
 };
