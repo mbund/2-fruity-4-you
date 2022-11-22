@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['main_0',['main',['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main.cpp']]],
-  ['main_2ecpp_1',['main.cpp',['../main_8cpp.html',1,'']]],
-  ['main_2eh_2',['main.h',['../main_8h.html',1,'']]],
-  ['menu_3',['Menu',['../classMenu.html',1,'Menu'],['../classMenu.html#ad466dd83355124a6ed958430450bfe94',1,'Menu::Menu()']]],
-  ['menu_4',['menu',['../menu_8h.html#a0fc7fa7ee1223f672fd4f00631ff0f19',1,'menu.h']]],
-  ['menu_2ecpp_5',['menu.cpp',['../menu_8cpp.html',1,'']]],
-  ['menu_2eh_6',['menu.h',['../menu_8h.html',1,'']]]
+  ['lcd_5fheight_0',['LCD_HEIGHT',['../ui_8h.html#a53a8b2a971de4b88047192655a48b651',1,'ui.h']]],
+  ['lcd_5fwidth_1',['LCD_WIDTH',['../ui_8h.html#a19693eac3018d3e7800fde141921b812',1,'ui.h']]],
+  ['leaderboard_2',['Leaderboard',['../classLeaderboard.html',1,'']]],
+  ['leaderboard_3',['leaderboard',['../classMenu.html#ade29c9adf0ff928d85fba769a3ca5e34',1,'Menu']]],
+  ['leaderboard_4',['Leaderboard',['../classLeaderboard.html#ab094b18c57ab9b8ef9d06a94d9b11f02',1,'Leaderboard']]]
 ];
