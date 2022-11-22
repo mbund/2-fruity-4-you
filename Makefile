@@ -1,10 +1,10 @@
 CC = gcc
-CXX = g++ -std=c++11
+CXX = g++ -std=c++17
 BUILD_DIR := build
-SRCS := $(wildcard src/*.cpp vendor/feh-proteus/*.cpp vendor/feh-proteus/*.c)
+SRCS := $(wildcard src/*.cpp vendor/simulator-libraries/*.cpp vendor/simulator-libraries/*.c)
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
-INC_DIRS := vendor/feh-proteus
+INC_DIRS := vendor/simulator-libraries
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 CPPFLAGS := $(INC_FLAGS) -MMD -MP -Os -DOBJC_OLD_DISPATCH_PROTOTYPES -g -Wall
 
