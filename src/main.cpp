@@ -2,23 +2,29 @@
 /// Contains the entrypoint for the program
 
 #include <FEHLCD.h>
+
 #include <cstdint>
 #include <iostream>
+
+#include "FEHUtility.h"
+#include "game.h"
+#include "main.h"
 #include "menu.h"
+#include "ui.h"
 
 /// Main function which is the entrypoint for the entire program
 int main() {
-    Menu menu;
-    
-    while (1) {
-        LCD.Update();
+    current_scene = menu;
+
+    while (true) {
+        float t_start = TimeNow();
+        touchPressed = LCD.Touch(&touchX, &touchY);
         LCD.Clear();
 
-        // border for debugging
-        // LCD.DrawRectangle(0, 0, LCD_WIDTH, LCD_HEIGHT);
-
-        menu.update();
+        current_scene->update(TimeNow() - t_start);
     }
 
     return 0;
 }
+
+void Scene::update(float dt) {}

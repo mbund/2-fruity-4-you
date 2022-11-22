@@ -1,46 +1,78 @@
+#pragma once
+
+/// @file menu.h
+/// Components for the menu and the menu scene
+
+#include <memory>
 #include <string>
 #include <vector>
 
+#include "main.h"
 #include "ui.h"
 
-class Credits {
+/// Credits scene
+class Credits : public Scene {
    public:
+    /// Default constructor
     Credits();
-    void show();
-    void update();
+
+    /// Update and render the scene
+    /// @param dt delta time, the time elapsed since the start of the frame
+    virtual void update(float dt);
 
    private:
-    UIButton close_button;
-    UIBox box;
-    bool is_showing;
+    std::unique_ptr<UIButton> close_button;
+    std::unique_ptr<UIBox> box;
 };
 
+/// UI component for displaying and interacting with the leaderboard
 class Leaderboard {
    public:
-    Leaderboard();
-    void update();
-
+    /// An entry of the leaderboard
     struct Entry {
         std::string name;
         uint64_t points;
     };
 
-   private:
-    std::vector<Entry> entries;
-    UIBox box;
-};
+    /// Default constructor
+    Leaderboard();
 
-class Menu {
-   public:
-    Menu();
+    /// Update and render the component
     void update();
 
+    /// Adds an entry into its sorted place in the leaderboard
+    /// @param entry entry to add
+    void addEntry(Entry entry);
+
    private:
-    Credits credits;
-    UIButton show_credits_button;
-    UIButton quit_button;
-    UIButton play_easy;
-    UIButton play_medium;
-    UIButton play_hard;
-    Leaderboard leaderboard;
+    std::vector<Entry> entries;
+    std::unique_ptr<UIBox> box;
 };
+
+/// Menu scene
+class Menu : public Scene {
+   public:
+    /// Default constructor
+    Menu();
+
+    /// Update and render the scene
+    /// @param dt delta time, the time elapsed since the start of the frame
+    void update(float dt);
+
+    /// Internal leaderboard of the menu, used by others to add entries to the
+    /// leaderboard
+    Leaderboard leaderboard;
+
+   private:
+    std::unique_ptr<UIButton> show_credits_button;
+    std::unique_ptr<UIButton> quit_button;
+    std::unique_ptr<UIButton> play_easy;
+    std::unique_ptr<UIButton> play_medium;
+    std::unique_ptr<UIButton> play_hard;
+};
+
+/// Global variable to hold the state of the menu
+inline auto menu = std::make_shared<Menu>();
+
+/// Global variable to hold the state of the credits
+inline auto credits = std::make_shared<Credits>();
