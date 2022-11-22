@@ -70,10 +70,15 @@ $(function() {
   <div class="headertitle"><div class="title">UIPosition Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Representation of a position in the UI.  
+ <a href="classUIPosition.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ui_8h_source.html">ui.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a595bceb6c41439c6b49f8ccba85e1f88"><td class="memItemLeft" align="right" valign="top"><a id="a595bceb6c41439c6b49f8ccba85e1f88" name="a595bceb6c41439c6b49f8ccba85e1f88"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>Anchor</b> { <br />
+<tr class="memitem:a595bceb6c41439c6b49f8ccba85e1f88"><td class="memItemLeft" align="right" valign="top"><a id="a595bceb6c41439c6b49f8ccba85e1f88" name="a595bceb6c41439c6b49f8ccba85e1f88"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUIPosition.html#a595bceb6c41439c6b49f8ccba85e1f88">Anchor</a> { <br />
 &#160;&#160;<b>TopLeft</b>
 , <b>TopRight</b>
 , <b>BottomLeft</b>
@@ -82,13 +87,13 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>Center</b>
 <br />
  }</td></tr>
+<tr class="memdesc:a595bceb6c41439c6b49f8ccba85e1f88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Anchor positions of a UI component. <br /></td></tr>
 <tr class="separator:a595bceb6c41439c6b49f8ccba85e1f88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aeccc2a2c4ffa0998d6b1a8b77efdaa64"><td class="memItemLeft" align="right" valign="top"><a id="aeccc2a2c4ffa0998d6b1a8b77efdaa64" name="aeccc2a2c4ffa0998d6b1a8b77efdaa64"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>UIPosition</b> (uint64_t absolute_x, uint64_t absolute_y, Anchor anchor=Anchor::TopLeft)</td></tr>
-<tr class="separator:aeccc2a2c4ffa0998d6b1a8b77efdaa64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5eec65bc0d31e133bbe4a3467e6e4f7b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUIPosition.html#a5eec65bc0d31e133bbe4a3467e6e4f7b">UIPosition</a> (uint64_t absolute_x, uint64_t absolute_y, <a class="el" href="classUIPosition.html#a595bceb6c41439c6b49f8ccba85e1f88">Anchor</a> screen_anchor=Anchor::TopLeft)</td></tr>
+<tr class="separator:a5eec65bc0d31e133bbe4a3467e6e4f7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
@@ -99,6 +104,51 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>UIButton</b></td></t
 class&#160;</td><td class="memItemRight" valign="bottom"><b>UIBox</b></td></tr>
 <tr class="separator:ad1d9b4aa582ff357195a7f3648cc2b21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >Representation of a position in the UI. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a5eec65bc0d31e133bbe4a3467e6e4f7b" name="a5eec65bc0d31e133bbe4a3467e6e4f7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5eec65bc0d31e133bbe4a3467e6e4f7b">&#9670;&nbsp;</a></span>UIPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UIPosition::UIPosition </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>absolute_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>absolute_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classUIPosition.html#a595bceb6c41439c6b49f8ccba85e1f88">Anchor</a>&#160;</td>
+          <td class="paramname"><em>screen_anchor</em> = <code>Anchor::TopLeft</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Create a <a class="el" href="classUIPosition.html" title="Representation of a position in the UI.">UIPosition</a> from pixel coordinates and a screen anchor position to offset away from </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">absolute_x</td><td>x coordinate in pixels </td></tr>
+    <tr><td class="paramname">absolute_y</td><td>y coordinate in pixel </td></tr>
+    <tr><td class="paramname">screen_anchor</td><td>anchor to offset absolute_x and absolute_y away from the screen </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="ui_8h_source.html">ui.h</a></li>
 <li>src/<a class="el" href="ui_8cpp.html">ui.cpp</a></li>

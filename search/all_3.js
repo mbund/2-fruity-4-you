@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['leaderboard_0',['Leaderboard',['../classLeaderboard.html',1,'']]]
+  ['documentation_0',['Documentation',['../index.html',1,'']]]
 ];
