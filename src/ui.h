@@ -7,6 +7,7 @@
 #include <functional>
 #include <memory>
 #include <string>
+
 #include "FEHLCD.h"
 
 /// Width in pixels of a single character in the default font

@@ -9,9 +9,9 @@
 #include <string>
 
 #include "game.h"
-#include "main.h"
 #include "menu.h"
 #include "ui.h"
+#include "util.h"
 
 Credits::Credits() {
     close_button = std::make_unique<UIButton>(

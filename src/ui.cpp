@@ -6,8 +6,8 @@
 
 #include <FEHLCD.h>
 
-#include "main.h"
 #include "ui.h"
+#include "util.h"
 
 UIButton::UIButton(std::string text, UIPosition pos)
     : text(text),

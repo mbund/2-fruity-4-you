@@ -4,9 +4,11 @@
 /// Main gameplay
 
 #include <memory>
+#include <vector>
 
 #include "knife.h"
-#include "main.h"
+#include "throwable.h"
+#include "util.h"
 
 /// Game scene
 class Game : public Scene {
@@ -24,10 +26,13 @@ class Game : public Scene {
     /// @param multiplier score multiplier (rewarding higher difficulties)
     void start(float bomb_probability, float multiplier);
 
+    std::vector<Apple> apples;
+
    private:
     float bomb_probability;
     float multiplier;
-    Knife mKnife;
+    double time_started;
+    Knife knife;
 
     float x;
 };

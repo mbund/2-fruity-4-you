@@ -7,8 +7,8 @@
 #include <string>
 #include <vector>
 
-#include "main.h"
 #include "ui.h"
+#include "util.h"
 
 /// Credits scene
 class Credits : public Scene {

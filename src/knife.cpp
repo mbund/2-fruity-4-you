@@ -5,8 +5,8 @@
 
 #include <FEHLCD.h>
 
+#include "game.h"
 #include "knife.h"
-#include "main.h"
 
 Knife::Knife() {}
 
@@ -81,7 +81,7 @@ void Knife::draw_line(Point a, Point b) {
 
 void Knife::update() {
     if (touchPressed) {
-        LCD.SetFontColor(RED);
+        LCD.SetFontColor(GREEN);
         LCD.FillCircle(touchX, touchY, 2);
 
         if (head < tail + TAIL_LEN) {
@@ -93,6 +93,16 @@ void Knife::update() {
 
                 draw_line(p1, p2);
             }
+
+            auto p1 = points[(head - 0) % TAIL_LEN];
+            auto p2 = points[(head - 1) % TAIL_LEN];
+            // game->apples[0].collision({(float)p1.x, (float)p1.y},
+            //                           {(float)p2.x, (float)p2.y});
+            std::for_each(game->apples.begin(), game->apples.end(),
+                          [p1, p2](Apple& a) {
+                              a.collision({(float)p1.x, (float)p1.y},
+                                          {(float)p2.x, (float)p2.y});
+                          });
 
             head++;
         } else {

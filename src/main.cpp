@@ -2,15 +2,15 @@
 /// Contains the entrypoint for the program
 
 #include <FEHLCD.h>
+#include <FEHUtility.h>
 
 #include <cstdint>
 #include <iostream>
 
-#include "FEHUtility.h"
 #include "game.h"
-#include "main.h"
 #include "menu.h"
 #include "ui.h"
+#include "util.h"
 
 /// Main function which is the entrypoint for the entire program
 int main() {
@@ -26,5 +26,3 @@ int main() {
 
     return 0;
 }
-
-void Scene::update(float dt) {}

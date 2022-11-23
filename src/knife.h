@@ -5,6 +5,8 @@
 
 #include <cstdint>
 
+#include "util.h"
+
 /// Length of the tail
 #define TAIL_LEN 5
 
