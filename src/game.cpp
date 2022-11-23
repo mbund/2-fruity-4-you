@@ -22,8 +22,8 @@ void Game::start(float bomb_probability, float multiplier) {
 
 void Game::update(float dt) {
     if (rand_range(0.0f, 1.0f) < 0.01f) {
-        auto a = Apple({(float)LCD_WIDTH / 2, LCD_HEIGHT - 50}, 8);
-        a.add_force({rand_range(-2, 2), rand_range(-10, -4)});
+        auto a = Apple({(float)LCD_WIDTH / 2, LCD_HEIGHT + 20}, 8);
+        a.add_force({rand_range(-4, 4), rand_range(-12, -8)});
         apples.push_back(a);
     }
 
