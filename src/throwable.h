@@ -42,6 +42,7 @@ class Apple {
     std::shared_ptr<Image> image;
 };
 
+/// Throwable bomb
 class Bomb {
    public:
     /// Default constructor

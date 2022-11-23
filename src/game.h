@@ -10,7 +10,7 @@
 #include "throwable.h"
 #include "util.h"
 
-/// Game scene
+/// Main Scene for playing the game
 class Game : public Scene {
    public:
     /// Default constructor

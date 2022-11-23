@@ -3,13 +3,12 @@
 /// @file image.h
 /// Image rendering and loading
 
-#include <map>
 #include <memory>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
-/// Image drawing
+/// Render an image (.png, .jpeg, etc.)
 class Image {
    public:
     /// Default constructor
@@ -27,7 +26,7 @@ class Image {
     std::unique_ptr<std::vector<std::vector<uint32_t>>> colors;
 };
 
-/// More optimized image storage and loader
+/// Optimized Image storage and loading
 class ImageRepository {
    public:
     /// Load an image from the path

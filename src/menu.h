@@ -10,7 +10,7 @@
 #include "ui.h"
 #include "util.h"
 
-/// Credits scene
+/// Main menu Scene which shows the credits
 class Credits : public Scene {
    public:
     /// Default constructor
@@ -28,7 +28,7 @@ class Credits : public Scene {
 /// UI component for displaying and interacting with the leaderboard
 class Leaderboard {
    public:
-    /// An entry of the leaderboard
+    /// An entry of the Leaderboard
     struct Entry {
         std::string name;
         uint64_t points;
@@ -40,7 +40,7 @@ class Leaderboard {
     /// Update and render the component
     void update();
 
-    /// Adds an entry into its sorted place in the leaderboard
+    /// Adds an entry into its sorted place in the Leaderboard
     /// @param entry entry to add
     void addEntry(Entry entry);
 
