@@ -1,8 +1,19 @@
-#include "util.h"
+/// @file util.cpp
+/// Implementation of miscellaneous utilities
+
 #include <cmath>
-#include <ios>
+
+#include "FEHLCD.h"
+
+#include "ui.h"
+#include "util.h"
 
 void Scene::update(float dt) {}
+
+void draw_pixel_in_bounds(int x, int y) {
+    if (x >= 0 && x < LCD_WIDTH && y >= 0 && y < LCD_HEIGHT)
+        LCD.DrawPixel(x, y);
+}
 
 Vector2& Vector2::operator+=(const Vector2& b) {
     x += b.x;
@@ -114,4 +125,8 @@ float Vector2::distance(const Vector2& a, const Vector2& b) {
 
 float Vector2::distance(const Vector2& b) const {
     return distance(*this, b);
+}
+
+float Vector2::magnitude() const {
+    return std::sqrt(x * x + y * y);
 }

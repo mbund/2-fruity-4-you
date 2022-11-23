@@ -1,10 +1,16 @@
+/// @file throwable.cpp
+/// Implementation of objects with physics
+
+#define _USE_MATH_DEFINES
 #include <algorithm>
 #include <cmath>
 #include <iostream>
 #include <limits>
 
 #include "FEHLCD.h"
+#include "FEHUtility.h"
 
+#include "image.h"
 #include "throwable.h"
 #include "ui.h"
 #include "util.h"
@@ -70,14 +76,11 @@ bool collide_line_circle(Vector2 l1, Vector2 l2, Vector2 c, float r) {
     return distance <= r;
 }
 
-Apple::Apple(Vector2 pos, float mass) : position(pos), mass(mass) {}
-
-void DrawPixel(int x, int y) {
-    if (x >= 0 && x < LCD_WIDTH && y >= 0 && y < LCD_HEIGHT)
-        LCD.DrawPixel(x, y);
+Apple::Apple(Vector2 pos, float mass) : position(pos), mass(mass) {
+    image = ImageRepository::load_image("assets/apple.png");
 }
 
-void drawcircle(int x0, int y0, int r) {
+void draw_circle(int x0, int y0, int r) {
     // This alogorithm is from wikipedia
     // It's called the "midpoint circle algorithm"
     // or the "Bresenham's circle algorithm"
@@ -89,10 +92,10 @@ void drawcircle(int x0, int y0, int r) {
     int x = 0;
     int y = r;
 
-    DrawPixel(x0, y0 + r);
-    DrawPixel(x0, y0 - r);
-    DrawPixel(x0 + r, y0);
-    DrawPixel(x0 - r, y0);
+    draw_pixel_in_bounds(x0, y0 + r);
+    draw_pixel_in_bounds(x0, y0 - r);
+    draw_pixel_in_bounds(x0 + r, y0);
+    draw_pixel_in_bounds(x0 - r, y0);
 
     while (x < y) {
         if (f >= 0) {
@@ -103,14 +106,14 @@ void drawcircle(int x0, int y0, int r) {
         x++;
         ddF_x += 2;
         f += ddF_x;
-        DrawPixel(x0 + x, y0 + y);
-        DrawPixel(x0 - x, y0 + y);
-        DrawPixel(x0 + x, y0 - y);
-        DrawPixel(x0 - x, y0 - y);
-        DrawPixel(x0 + y, y0 + x);
-        DrawPixel(x0 - y, y0 + x);
-        DrawPixel(x0 + y, y0 - x);
-        DrawPixel(x0 - y, y0 - x);
+        draw_pixel_in_bounds(x0 + x, y0 + y);
+        draw_pixel_in_bounds(x0 - x, y0 + y);
+        draw_pixel_in_bounds(x0 + x, y0 - y);
+        draw_pixel_in_bounds(x0 - x, y0 - y);
+        draw_pixel_in_bounds(x0 + y, y0 + x);
+        draw_pixel_in_bounds(x0 - y, y0 + x);
+        draw_pixel_in_bounds(x0 + y, y0 - x);
+        draw_pixel_in_bounds(x0 - y, y0 - x);
     }
 }
 
@@ -124,8 +127,10 @@ void Apple::update(float dt) {
     // clear the acceleration every frame
     acceleration = {0, 0};
 
+    image->render(position.x, position.y, TimeNow() * M_PI);
+
     LCD.SetFontColor(color);
-    drawcircle(position.x, position.y, mass);
+    draw_circle(position.x, position.y, mass);
 }
 
 void Apple::collision(Vector2 p1, Vector2 p2) {

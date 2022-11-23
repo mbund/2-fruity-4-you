@@ -1,12 +1,12 @@
 /// @file menu.cpp
 /// Implementation for menu components
 
-#include <FEHLCD.h>
-
 #include <algorithm>
 #include <iostream>
 #include <memory>
 #include <string>
+
+#include <FEHLCD.h>
 
 #include "game.h"
 #include "menu.h"

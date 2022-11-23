@@ -94,15 +94,15 @@ void Knife::update() {
                 draw_line(p1, p2);
             }
 
-            auto p1 = points[(head - 0) % TAIL_LEN];
-            auto p2 = points[(head - 1) % TAIL_LEN];
-            // game->apples[0].collision({(float)p1.x, (float)p1.y},
-            //                           {(float)p2.x, (float)p2.y});
-            std::for_each(game->apples.begin(), game->apples.end(),
-                          [p1, p2](Apple& a) {
-                              a.collision({(float)p1.x, (float)p1.y},
-                                          {(float)p2.x, (float)p2.y});
-                          });
+            if (head - tail > 1) {
+                auto p1 = points[(head - 0) % TAIL_LEN];
+                auto p2 = points[(head - 1) % TAIL_LEN];
+                std::for_each(game->apples.begin(), game->apples.end(),
+                              [p1, p2](Apple& a) {
+                                  a.collision({(float)p1.x, (float)p1.y},
+                                              {(float)p2.x, (float)p2.y});
+                              });
+            }
 
             head++;
         } else {

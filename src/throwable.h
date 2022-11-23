@@ -3,7 +3,12 @@
 /// @file throwable.h
 /// Throwable objects with physics
 
+#include <memory>
+#include <vector>
+
 #include "FEHLCD.h"
+
+#include "image.h"
 #include "util.h"
 
 /// Throwable apple fruit
@@ -34,6 +39,7 @@ class Apple {
     Vector2 acceleration;
     float mass;
     FEHLCD::FEHLCDColor color = FEHLCD::FEHLCDColor::Red;
+    std::shared_ptr<Image> image;
 };
 
 class Bomb {
