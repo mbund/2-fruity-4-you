@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>2 Fruity 4 You: src/throwable.h File Reference</title>
+<title>2 Fruity 4 You: src/throwable.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -67,28 +67,39 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
-  <div class="headertitle"><div class="title">throwable.h File Reference</div></div>
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">throwable.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;memory&gt;</code><br />
-<code>#include &lt;vector&gt;</code><br />
+<div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;cmath&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;limits&gt;</code><br />
 <code>#include &quot;FEHLCD.h&quot;</code><br />
+<code>#include &quot;FEHUtility.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="image_8h_source.html">image.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="throwable_8h_source.html">throwable.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ui_8h_source.html">ui.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="util_8h_source.html">util.h</a>&quot;</code><br />
-</div>
-<p><a href="throwable_8h_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApple.html">Apple</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throwable apple fruit.  <a href="classApple.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBomb.html">Bomb</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:afcd413467995628acaab52a1ea3c7e15"><td class="memItemLeft" align="right" valign="top"><a id="afcd413467995628acaab52a1ea3c7e15" name="afcd413467995628acaab52a1ea3c7e15"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>collide_point_circle</b> (<a class="el" href="structVector2.html">Vector2</a> p, <a class="el" href="structVector2.html">Vector2</a> c, float r)</td></tr>
+<tr class="separator:afcd413467995628acaab52a1ea3c7e15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a221fcb3941d4b3bb28b53fb1ecd006c1"><td class="memItemLeft" align="right" valign="top"><a id="a221fcb3941d4b3bb28b53fb1ecd006c1" name="a221fcb3941d4b3bb28b53fb1ecd006c1"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>collide_line_point</b> (<a class="el" href="structVector2.html">Vector2</a> l1, <a class="el" href="structVector2.html">Vector2</a> l2, <a class="el" href="structVector2.html">Vector2</a> p)</td></tr>
+<tr class="separator:a221fcb3941d4b3bb28b53fb1ecd006c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a509306729af6fde7b43b1be71eb8b8db"><td class="memItemLeft" align="right" valign="top"><a id="a509306729af6fde7b43b1be71eb8b8db" name="a509306729af6fde7b43b1be71eb8b8db"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>collide_line_circle</b> (<a class="el" href="structVector2.html">Vector2</a> l1, <a class="el" href="structVector2.html">Vector2</a> l2, <a class="el" href="structVector2.html">Vector2</a> c, float r)</td></tr>
+<tr class="separator:a509306729af6fde7b43b1be71eb8b8db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e599d059a07f287c3a63db86dd5dd8c"><td class="memItemLeft" align="right" valign="top"><a id="a9e599d059a07f287c3a63db86dd5dd8c" name="a9e599d059a07f287c3a63db86dd5dd8c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>draw_circle</b> (int x0, int y0, int r)</td></tr>
+<tr class="separator:a9e599d059a07f287c3a63db86dd5dd8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Throwable objects with physics </p>
+<div class="textblock"><p >Implementation of objects with physics </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
