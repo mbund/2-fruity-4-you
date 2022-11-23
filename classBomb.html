@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>2 Fruity 4 You: Scene Class Reference</title>
+<title>2 Fruity 4 You: Bomb Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,72 +64,52 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="classScene-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Scene Class Reference</div></div>
+<a href="classBomb-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Bomb Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>Base class for a scene in the game.  
- <a href="classScene.html#details">More...</a></p>
-
-<p><code>#include &lt;<a class="el" href="util_8h_source.html">util.h</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for Scene:</div>
-<div class="dyncontent">
- <div class="center">
-  <img src="classScene.png" usemap="#Scene_map" alt=""/>
-  <map id="Scene_map" name="Scene_map">
-<area href="classCredits.html" title="Credits scene." alt="Credits" shape="rect" coords="0,56,52,80"/>
-<area href="classGame.html" title="Game scene." alt="Game" shape="rect" coords="62,56,114,80"/>
-<area href="classMenu.html" title="Menu scene." alt="Menu" shape="rect" coords="124,56,176,80"/>
-  </map>
-</div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4bd876fa0a8118d169b7b31c9df7601b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScene.html#a4bd876fa0a8118d169b7b31c9df7601b">update</a> (float dt)</td></tr>
-<tr class="separator:a4bd876fa0a8118d169b7b31c9df7601b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5805401b6cfbb451cf31ebd4851740cf"><td class="memItemLeft" align="right" valign="top"><a id="a5805401b6cfbb451cf31ebd4851740cf" name="a5805401b6cfbb451cf31ebd4851740cf"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Bomb</b> ()</td></tr>
+<tr class="memdesc:a5805401b6cfbb451cf31ebd4851740cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
+<tr class="separator:a5805401b6cfbb451cf31ebd4851740cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33ca7289fa4acfc8663d5a95099d3a02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBomb.html#a33ca7289fa4acfc8663d5a95099d3a02">update</a> (float dt)</td></tr>
+<tr class="separator:a33ca7289fa4acfc8663d5a95099d3a02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b295a0e33866ddc19870c3c87bb7947"><td class="memItemLeft" align="right" valign="top"><a id="a2b295a0e33866ddc19870c3c87bb7947" name="a2b295a0e33866ddc19870c3c87bb7947"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>cut</b> ()</td></tr>
+<tr class="memdesc:a2b295a0e33866ddc19870c3c87bb7947"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut the apple in half. <br /></td></tr>
+<tr class="separator:a2b295a0e33866ddc19870c3c87bb7947"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Base class for a scene in the game. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a4bd876fa0a8118d169b7b31c9df7601b" name="a4bd876fa0a8118d169b7b31c9df7601b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4bd876fa0a8118d169b7b31c9df7601b">&#9670;&nbsp;</a></span>update()</h2>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a33ca7289fa4acfc8663d5a95099d3a02" name="a33ca7289fa4acfc8663d5a95099d3a02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33ca7289fa4acfc8663d5a95099d3a02">&#9670;&nbsp;</a></span>update()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Scene::update </td>
+          <td class="memname">void Bomb::update </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>dt</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-<p >Update and render the scene </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Update and render the bomb </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dt</td><td>delta time, the time elapsed since the start of the frame </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="classGame.html#a2648dc91da0dd1424d5b7c45510515a0">Game</a>, <a class="el" href="classCredits.html#a9bb4df810a1ab70e894ac397cf93e614">Credits</a>, and <a class="el" href="classMenu.html#a849939d460789346209a092602172d8d">Menu</a>.</p>
-
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/<a class="el" href="util_8h_source.html">util.h</a></li>
-<li>src/util.cpp</li>
+<li>src/<a class="el" href="throwable_8h_source.html">throwable.h</a></li>
+<li>src/throwable.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

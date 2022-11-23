@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['entry_0',['Entry',['../structLeaderboard_1_1Entry.html',1,'Leaderboard']]]
+  ['bomb_0',['Bomb',['../classBomb.html',1,'']]]
 ];
