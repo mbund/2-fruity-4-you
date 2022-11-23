@@ -127,7 +127,7 @@ void Apple::update(float dt) {
     // clear the acceleration every frame
     acceleration = {0, 0};
 
-    image->render(position.x, position.y, TimeNow() * M_PI);
+    image->render(position.x, position.y, TimeNow() * M_PI * velocity.x * 10);
 
     LCD.SetFontColor(color);
     draw_circle(position.x, position.y, mass);
