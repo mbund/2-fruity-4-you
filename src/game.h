@@ -33,7 +33,8 @@ class Game : public Scene {
     void start(float bomb_probability, float multiplier);
 
     std::vector<std::unique_ptr<Apple>> apples;
-    std::vector<std::unique_ptr<AppleShard>> apple_shards;
+    std::vector<std::unique_ptr<Bananas>> bananas;
+    std::vector<std::unique_ptr<FruitShard>> fruit_shards;
 
    private:
     float bomb_probability;

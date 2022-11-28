@@ -38,53 +38,72 @@ class PhysicsObject {
     float mass;
 };
 
+/// Throwable fruit
+class Fruit : public PhysicsObject {
+   public:
+    /// Default constructor
+    Fruit(std::string image_path, Vector2 pos, float mass);
+
+    /// Update and render the fruit
+    /// @param alpha physics alpha, for interpolation between previous state and
+    /// next state
+    virtual void update(double alpha);
+
+    /// Run physics calculations
+    /// @param t time since start of game
+    /// @param dt physics timestep
+    virtual void physics_update(double t, double dt);
+
+    /// Getter for if the fruit should be destroyed
+    virtual bool get_should_be_removed() const;
+
+   protected:
+    bool should_be_removed;
+    std::shared_ptr<Image> image;
+};
+
 /// Throwable apple fruit
-class Apple : public PhysicsObject {
+class Apple : public Fruit {
    public:
     /// Default constructor
     Apple(Vector2 pos, float mass);
-
-    /// Update and render the apple
-    /// @param alpha physics alpha, for interpolation between previous state and
-    /// next state
-    void update(double alpha);
 
     /// Detect collision between the apple and a line
     /// @param p1 first point on line
     /// @param p2 second point on line
     void collision(Vector2 p1, Vector2 p2);
-
-    /// Run physics calculations
-    /// @param t time since start of game
-    /// @param dt physics timestep
-    void physics_update(double t, double dt);
-
-    /// Getter for if the apple should be destroyed
-    bool get_should_be_removed();
-
-   private:
-    bool should_be_removed;
-    std::shared_ptr<Image> image;
 };
 
-/// Shard of an apple (one half after it is cut)
-class AppleShard : public PhysicsObject {
+/// Throwable bananas
+class Bananas : public Fruit {
    public:
     /// Default constructor
-    AppleShard(std::string image_path, float mass, Vector2 pos, Vector2 force);
+    Bananas(Vector2 pos, float mass);
 
-    /// Update and render the apple shard
+    /// Detect collision between the bananas and a line
+    /// @param p1 first point on line
+    /// @param p2 second point on line
+    void collision(Vector2 p1, Vector2 p2);
+};
+
+/// Shard of a fruit (one half after it is cut)
+class FruitShard : public PhysicsObject {
+   public:
+    /// Default constructor
+    FruitShard(std::string image_path, float mass, Vector2 pos, Vector2 force);
+
+    /// Update and render the fruit shard
     /// @param alpha physics alpha, for interpolation between previous state and
     /// next state
-    void update(double alpha);
+    virtual void update(double alpha);
 
     /// Run physics calculations
     /// @param t time since start of game
     /// @param dt physics timestep
-    void physics_update(double t, double dt);
+    virtual void physics_update(double t, double dt);
 
-    /// Getter for if the apple shard should be destroyed
-    bool get_should_be_removed();
+    /// Getter for if the fruit shard should be destroyed
+    virtual bool get_should_be_removed() const;
 
    private:
     bool should_be_removed;

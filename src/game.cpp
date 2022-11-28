@@ -20,12 +20,25 @@ void Game::start(float bomb_probability, float multiplier) {
     time_started = TimeNow();
 }
 
+void physics_update_foreach(double t, double dt, auto& a) {
+    std::for_each(a.begin(), a.end(),
+                  [t, dt](auto& b) { b->physics_update(t, dt); });
+}
+
+void update_foreach(double alpha, auto& a) {
+    std::for_each(a.begin(), a.end(), [alpha](auto& b) { b->update(alpha); });
+}
+
+void remove_foreach(auto& a) {
+    a.erase(std::remove_if(a.begin(), a.end(),
+                           [](auto& b) { return b->get_should_be_removed(); }),
+            a.end());
+}
+
 void Game::physics_update(double t, double dt) {
-    std::for_each(apples.begin(), apples.end(),
-                  [t, dt](auto& apple) { apple->physics_update(t, dt); });
-    std::for_each(
-        apple_shards.begin(), apple_shards.end(),
-        [t, dt](auto& apple_shard) { apple_shard->physics_update(t, dt); });
+    physics_update_foreach(t, dt, apples);
+    physics_update_foreach(t, dt, bananas);
+    physics_update_foreach(t, dt, fruit_shards);
 }
 
 void Game::update(double alpha) {
@@ -35,29 +48,24 @@ void Game::update(double alpha) {
         apple->add_force(
             {rand_range(-80000, 80000), rand_range(-360000, -260000)});
         apples.push_back(std::move(apple));
+
+        auto banana = std::make_unique<Bananas>(pos, 8);
+        banana->add_force(
+            {rand_range(-80000, 80000), rand_range(-360000, -260000)});
+        bananas.push_back(std::move(banana));
     }
 
     LCD.SetFontColor(WHITE);
     LCD.DrawRectangle(0, 0, LCD_WIDTH, LCD_HEIGHT);
 
-    apples.erase(std::remove_if(apples.begin(), apples.end(),
-                                [alpha](auto& apple) {
-                                    return apple->get_should_be_removed();
-                                }),
-                 apples.end());
+    remove_foreach(apples);
+    remove_foreach(bananas);
+    remove_foreach(fruit_shards);
 
-    apple_shards.erase(
-        std::remove_if(apple_shards.begin(), apple_shards.end(),
-                       [alpha](auto& apple_shard) {
-                           return apple_shard->get_should_be_removed();
-                       }),
-        apple_shards.end());
-
-    std::for_each(apples.begin(), apples.end(),
-                  [alpha](auto& apple) { apple->update(alpha); });
+    update_foreach(alpha, apples);
+    update_foreach(alpha, bananas);
 
     knife.update();
 
-    std::for_each(apple_shards.begin(), apple_shards.end(),
-                  [alpha](auto& apple_shard) { apple_shard->update(alpha); });
+    update_foreach(alpha, fruit_shards);
 }

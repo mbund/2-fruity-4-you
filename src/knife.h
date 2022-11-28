@@ -19,13 +19,13 @@ class Knife {
     /// Update and render the knife
     void update();
 
-   private:
     /// Primitive for a point on the screen
     struct Point {
         int x;
         int y;
     };
 
+   private:
     void draw_line(Point a, Point b);
 
     /// Ring buffer for storing the touch points to draw the knife between

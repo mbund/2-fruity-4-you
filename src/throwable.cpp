@@ -143,12 +143,12 @@ void PhysicsObject::add_force(const Vector2& force) {
     acceleration += force / mass;
 }
 
-Apple::Apple(Vector2 pos, float mass)
+Fruit::Fruit(std::string image_path, Vector2 pos, float mass)
     : PhysicsObject(pos, mass),
       should_be_removed(false),
-      image(ImageRepository::load_image("assets/apple.png")) {}
+      image(ImageRepository::load_image(image_path)) {}
 
-void Apple::update(double alpha) {
+void Fruit::update(double alpha) {
     PhysicsObject::update(alpha);
 
     if (position.y - mass > LCD_HEIGHT + 100) {
@@ -157,37 +157,60 @@ void Apple::update(double alpha) {
 
     image->render(
         position.x, position.y,
-        TimeNow() * M_PI * std::clamp(velocity.x / 10.0f, -10.0f, 10.0f));
+        TimeNow() * M_PI * std::clamp(velocity.x / 10.0f, -2.0f, 2.0f));
 }
 
-bool Apple::get_should_be_removed() {
+bool Fruit::get_should_be_removed() const {
     return should_be_removed;
 }
 
-void Apple::physics_update(double t, double dt) {
+void Fruit::physics_update(double t, double dt) {
     // apply gravity
     add_force({0, 3500.0f});
 
     PhysicsObject::physics_update(t, dt);
 }
 
+Apple::Apple(Vector2 pos, float mass) : Fruit("assets/apple.png", pos, mass) {}
+
 void Apple::collision(Vector2 p1, Vector2 p2) {
     if (!should_be_removed && collide_line_circle(p1, p2, position, mass)) {
         should_be_removed = true;
+
         Vector2 force_left = {rand_range(-100000, -40000),
                               rand_range(160000, -160000)};
-        auto shard_left = std::make_unique<AppleShard>(
+        auto shard_left = std::make_unique<FruitShard>(
             "assets/apple-left.png", mass, position, force_left);
-        game->apple_shards.push_back(std::move(shard_left));
+        game->fruit_shards.push_back(std::move(shard_left));
 
         Vector2 force_right = {-force_left.x, -force_left.y};
-        auto shard_right = std::make_unique<AppleShard>(
+        auto shard_right = std::make_unique<FruitShard>(
             "assets/apple-right.png", mass, position, force_right);
-        game->apple_shards.push_back(std::move(shard_right));
+        game->fruit_shards.push_back(std::move(shard_right));
     }
 }
 
-AppleShard::AppleShard(std::string image_path,
+Bananas::Bananas(Vector2 pos, float mass)
+    : Fruit("assets/bananas.png", pos, mass) {}
+
+void Bananas::collision(Vector2 p1, Vector2 p2) {
+    if (!should_be_removed && collide_line_circle(p1, p2, position, mass)) {
+        should_be_removed = true;
+
+        Vector2 force_left = {rand_range(-100000, -40000),
+                              rand_range(160000, -160000)};
+        auto shard_left = std::make_unique<FruitShard>(
+            "assets/bananas-left.png", mass, position, force_left);
+        game->fruit_shards.push_back(std::move(shard_left));
+
+        Vector2 force_right = {-force_left.x, -force_left.y};
+        auto shard_right = std::make_unique<FruitShard>(
+            "assets/bananas-right.png", mass, position, force_right);
+        game->fruit_shards.push_back(std::move(shard_right));
+    }
+}
+
+FruitShard::FruitShard(std::string image_path,
                        float mass,
                        Vector2 pos,
                        Vector2 force)
@@ -197,7 +220,7 @@ AppleShard::AppleShard(std::string image_path,
     add_force(force);
 }
 
-void AppleShard::update(double alpha) {
+void FruitShard::update(double alpha) {
     PhysicsObject::update(alpha);
 
     if (position.y - mass > LCD_HEIGHT + 100) {
@@ -207,11 +230,11 @@ void AppleShard::update(double alpha) {
     image->render(position.x, position.y, TimeNow() * M_PI);
 }
 
-bool AppleShard::get_should_be_removed() {
+bool FruitShard::get_should_be_removed() const {
     return should_be_removed;
 }
 
-void AppleShard::physics_update(double t, double dt) {
+void FruitShard::physics_update(double t, double dt) {
     // apply gravity
     add_force({0, 3500.0f});
 

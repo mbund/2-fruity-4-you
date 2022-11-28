@@ -79,6 +79,12 @@ void Knife::draw_line(Point a, Point b) {
     }
 }
 
+void fruit_collision(Knife::Point p1, Knife::Point p2, auto& a) {
+    std::for_each(a.begin(), a.end(), [p1, p2](auto& b) {
+        b->collision({(float)p1.x, (float)p1.y}, {(float)p2.x, (float)p2.y});
+    });
+}
+
 void Knife::update() {
     if (touchPressed) {
         LCD.SetFontColor(GREEN);
@@ -97,11 +103,8 @@ void Knife::update() {
             if (head - tail > 1) {
                 auto p1 = points[(head - 0) % TAIL_LEN];
                 auto p2 = points[(head - 1) % TAIL_LEN];
-                std::for_each(game->apples.begin(), game->apples.end(),
-                              [p1, p2](auto& a) {
-                                  a->collision({(float)p1.x, (float)p1.y},
-                                               {(float)p2.x, (float)p2.y});
-                              });
+                fruit_collision(p1, p2, game->apples);
+                fruit_collision(p1, p2, game->bananas);
             }
 
             head++;
