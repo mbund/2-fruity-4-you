@@ -19,7 +19,7 @@ class Image {
     /// @param x x coordinate to draw the image at
     /// @param y y coordinate to draw the image at
     /// @param theta angle in radians to rotate about the center of image
-    void render(int x, int y, float theta);
+    void render(int x, int y, float theta) const;
 
    private:
     int w, h, channelCount;

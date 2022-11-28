@@ -33,15 +33,21 @@ void draw_pixel_in_bounds(int x, int y);
 /// Base class for a scene in the game
 class Scene {
    public:
-    /// Update and render the scene
-    /// @param dt delta time, the time elapsed since the start of the frame
-    virtual void update(float dt);
+    /// Update and render the apple
+    /// @param alpha physics alpha, for interpolation between previous state and
+    /// next state
+    virtual void update(double alpha);
+
+    /// Run physics calculations
+    /// @param t time since start of game
+    /// @param dt physics timestep
+    virtual void physics_update(double t, double dt);
 };
 
 /// 2 dimensional mathmatical vector
 struct Vector2 {
-    float x;
-    float y;
+    float x = 0;
+    float y = 0;
 
     Vector2& operator+=(const Vector2& b);
     Vector2& operator+=(float b);

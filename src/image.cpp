@@ -2,6 +2,8 @@
 /// Implementation of image rendering and loading
 
 #include <cmath>
+#include <cstdint>
+#include <iostream>
 #include <memory>
 
 #define STB_IMAGE_IMPLEMENTATION
@@ -33,12 +35,17 @@ Image::Image(std::string filename) {
     stbi_image_free(image);
 }
 
-void Image::render(int x, int y, float theta) {
+void Image::render(int x, int y, float theta) const {
     x -= w / 2;
     y -= h / 2;
 
     for (int i = 0; i < w; i++) {
         for (int j = 0; j < h; j++) {
+            uint32_t color = colors->at(i)[j];
+            // dont draw transparent pixels
+            if (color << 24 == 0x00)
+                continue;
+
             Vector2 node = {(float)i, (float)j};
             Vector2 center = {(float)w / 2, (float)h / 2};
             Vector2 rot = {
@@ -48,7 +55,7 @@ void Image::render(int x, int y, float theta) {
                     (node.y - center.y) * cos(theta),
             };
 
-            LCD.SetFontColor(colors->at(i)[j]);
+            LCD.SetFontColor(color);
             draw_pixel_in_bounds(x + rot.x, y + rot.y);
         }
     }

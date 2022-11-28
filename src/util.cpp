@@ -8,7 +8,8 @@
 #include "ui.h"
 #include "util.h"
 
-void Scene::update(float dt) {}
+void Scene::update(double alpha) {}
+void Scene::physics_update(double t, double dt) {}
 
 void draw_pixel_in_bounds(int x, int y) {
     if (x >= 0 && x < LCD_WIDTH && y >= 0 && y < LCD_HEIGHT)
