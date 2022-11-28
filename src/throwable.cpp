@@ -1,13 +1,11 @@
 /// @file throwable.cpp
 /// Implementation of objects with physics
 
-#include <memory>
-#define _USE_MATH_DEFINES
 #include <algorithm>
-#include <cmath>
 #include <cstdint>
 #include <iostream>
 #include <limits>
+#include <memory>
 
 #include "FEHLCD.h"
 #include "FEHUtility.h"
@@ -17,6 +15,8 @@
 #include "throwable.h"
 #include "ui.h"
 #include "util.h"
+
+#define PI 3.14159265358979323846
 
 // https://www.jeffreythompson.org/collision-detection/line-circle.php
 
@@ -155,9 +155,8 @@ void Fruit::update(double alpha) {
         should_be_removed = true;
     }
 
-    image->render(
-        position.x, position.y,
-        TimeNow() * M_PI * std::clamp(velocity.x / 10.0f, -2.0f, 2.0f));
+    image->render(position.x, position.y,
+                  TimeNow() * PI * std::clamp(velocity.x / 10.0f, -2.0f, 2.0f));
 }
 
 bool Fruit::get_should_be_removed() const {
@@ -227,7 +226,7 @@ void FruitShard::update(double alpha) {
         should_be_removed = true;
     }
 
-    image->render(position.x, position.y, TimeNow() * M_PI);
+    image->render(position.x, position.y, TimeNow() * PI);
 }
 
 bool FruitShard::get_should_be_removed() const {

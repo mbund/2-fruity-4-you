@@ -1,5 +1,5 @@
 CC = gcc
-CXX = g++ -std=c++20
+CXX = g++ -std=c++17
 BUILD_DIR := build
 SRCS := $(wildcard src/*.cpp vendor/simulator-libraries/*.cpp vendor/simulator-libraries/*.c)
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)

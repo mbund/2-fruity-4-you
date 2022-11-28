@@ -1,6 +1,7 @@
 /// @file knife.cpp
 /// Knife implementation
 
+#include <algorithm>
 #include <cmath>
 
 #include <FEHLCD.h>
@@ -79,7 +80,8 @@ void Knife::draw_line(Point a, Point b) {
     }
 }
 
-void fruit_collision(Knife::Point p1, Knife::Point p2, auto& a) {
+template <typename T>
+void fruit_collision(Knife::Point p1, Knife::Point p2, T& a) {
     std::for_each(a.begin(), a.end(), [p1, p2](auto& b) {
         b->collision({(float)p1.x, (float)p1.y}, {(float)p2.x, (float)p2.y});
     });

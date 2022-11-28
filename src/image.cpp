@@ -1,6 +1,7 @@
 /// @file image.cpp
 /// Implementation of image rendering and loading
 
+#include <algorithm>
 #include <cmath>
 #include <cstdint>
 #include <iostream>
@@ -64,7 +65,7 @@ void Image::render(int x, int y, float theta) const {
 std::unordered_map<std::string, std::shared_ptr<Image>> ImageRepository::images;
 
 std::shared_ptr<Image> ImageRepository::load_image(std::string filename) {
-    if (!ImageRepository::images.contains(filename))
+    if (ImageRepository::images.count(filename) == 0)
         ImageRepository::images[filename] = std::make_shared<Image>(filename);
 
     return ImageRepository::images[filename];

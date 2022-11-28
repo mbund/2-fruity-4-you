@@ -20,16 +20,19 @@ void Game::start(float bomb_probability, float multiplier) {
     time_started = TimeNow();
 }
 
-void physics_update_foreach(double t, double dt, auto& a) {
+template <typename T>
+void physics_update_foreach(double t, double dt, T& a) {
     std::for_each(a.begin(), a.end(),
                   [t, dt](auto& b) { b->physics_update(t, dt); });
 }
 
-void update_foreach(double alpha, auto& a) {
+template <typename T>
+void update_foreach(double alpha, T& a) {
     std::for_each(a.begin(), a.end(), [alpha](auto& b) { b->update(alpha); });
 }
 
-void remove_foreach(auto& a) {
+template <typename T>
+void remove_foreach(T& a) {
     a.erase(std::remove_if(a.begin(), a.end(),
                            [](auto& b) { return b->get_should_be_removed(); }),
             a.end());
