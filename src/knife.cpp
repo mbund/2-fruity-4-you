@@ -98,9 +98,9 @@ void Knife::update() {
                 auto p1 = points[(head - 0) % TAIL_LEN];
                 auto p2 = points[(head - 1) % TAIL_LEN];
                 std::for_each(game->apples.begin(), game->apples.end(),
-                              [p1, p2](Apple& a) {
-                                  a.collision({(float)p1.x, (float)p1.y},
-                                              {(float)p2.x, (float)p2.y});
+                              [p1, p2](auto& a) {
+                                  a->collision({(float)p1.x, (float)p1.y},
+                                               {(float)p2.x, (float)p2.y});
                               });
             }
 

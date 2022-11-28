@@ -16,9 +16,15 @@ class Game : public Scene {
     /// Default constructor
     Game();
 
-    /// Update and render the scene
-    /// @param dt delta time, the time elapsed since the start of the frame
-    void update(float dt);
+    /// Update and render the apple
+    /// @param alpha physics alpha, for interpolation between previous state and
+    /// next state
+    void update(double alpha);
+
+    /// Run physics calculations
+    /// @param t time since start of game
+    /// @param dt physics timestep
+    void physics_update(double t, double dt);
 
     /// Start a new game
     /// @param bomb_probability probability [0, 1] that any given thrown object
@@ -26,7 +32,8 @@ class Game : public Scene {
     /// @param multiplier score multiplier (rewarding higher difficulties)
     void start(float bomb_probability, float multiplier);
 
-    std::vector<Apple> apples;
+    std::vector<std::unique_ptr<Apple>> apples;
+    std::vector<std::unique_ptr<AppleShard>> apple_shards;
 
    private:
     float bomb_probability;
