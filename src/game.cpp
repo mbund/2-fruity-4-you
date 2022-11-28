@@ -8,11 +8,15 @@
 #include "FEHUtility.h"
 
 #include "game.h"
+#include "menu.h"
 #include "throwable.h"
 #include "ui.h"
 #include "util.h"
 
-Game::Game() {}
+Game::Game() {
+    exit_button = std::make_unique<UIButton>("X", UIPosition(10, 10));
+    exit_button->bind_on_button_up([]() { current_scene = menu; });
+}
 
 void Game::start(float bomb_probability, float multiplier) {
     this->bomb_probability = bomb_probability;
@@ -71,4 +75,6 @@ void Game::update(double alpha) {
     knife.update();
 
     update_foreach(alpha, fruit_shards);
+
+    exit_button->update();
 }

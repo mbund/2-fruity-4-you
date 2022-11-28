@@ -8,6 +8,7 @@
 
 #include "knife.h"
 #include "throwable.h"
+#include "ui.h"
 #include "util.h"
 
 /// Main Scene for playing the game
@@ -41,6 +42,7 @@ class Game : public Scene {
     float multiplier;
     double time_started;
     Knife knife;
+    std::unique_ptr<UIButton> exit_button;
 
     float x;
 };
