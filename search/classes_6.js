@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['knife_0',['Knife',['../classKnife.html',1,'']]]
+  ['leaderboard_0',['Leaderboard',['../classLeaderboard.html',1,'']]]
 ];

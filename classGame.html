@@ -90,22 +90,74 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Game</b> ()</td></tr>
 <tr class="memdesc:ad59df6562a58a614fda24622d3715b65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
 <tr class="separator:ad59df6562a58a614fda24622d3715b65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2648dc91da0dd1424d5b7c45510515a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a2648dc91da0dd1424d5b7c45510515a0">update</a> (float dt)</td></tr>
-<tr class="separator:a2648dc91da0dd1424d5b7c45510515a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c9f1a2bca5b10d0028252e628b0430f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a7c9f1a2bca5b10d0028252e628b0430f">update</a> (double alpha)</td></tr>
+<tr class="separator:a7c9f1a2bca5b10d0028252e628b0430f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac205a23eea8ccd093549c6def8687493"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#ac205a23eea8ccd093549c6def8687493">physics_update</a> (double t, double dt)</td></tr>
+<tr class="separator:ac205a23eea8ccd093549c6def8687493"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad98010cd07d9b8051afb96edd300d484"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#ad98010cd07d9b8051afb96edd300d484">start</a> (float bomb_probability, float multiplier)</td></tr>
 <tr class="separator:ad98010cd07d9b8051afb96edd300d484"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4bd876fa0a8118d169b7b31c9df7601b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScene.html#a4bd876fa0a8118d169b7b31c9df7601b">update</a> (float dt)</td></tr>
-<tr class="separator:a4bd876fa0a8118d169b7b31c9df7601b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac411cfb37304aa963ee84bb0e0f24202"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScene.html#ac411cfb37304aa963ee84bb0e0f24202">update</a> (double alpha)</td></tr>
+<tr class="separator:ac411cfb37304aa963ee84bb0e0f24202"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee19b623e7ee6779600aa340f758e257"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScene.html#aee19b623e7ee6779600aa340f758e257">physics_update</a> (double t, double dt)</td></tr>
+<tr class="separator:aee19b623e7ee6779600aa340f758e257"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a63217e7e59afdbb42879012f34dbf0b4"><td class="memItemLeft" align="right" valign="top"><a id="a63217e7e59afdbb42879012f34dbf0b4" name="a63217e7e59afdbb42879012f34dbf0b4"></a>
-std::vector&lt; <a class="el" href="classApple.html">Apple</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>apples</b></td></tr>
-<tr class="separator:a63217e7e59afdbb42879012f34dbf0b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5609ef1799bb65e30e18950dae674aef"><td class="memItemLeft" align="right" valign="top"><a id="a5609ef1799bb65e30e18950dae674aef" name="a5609ef1799bb65e30e18950dae674aef"></a>
+std::vector&lt; std::unique_ptr&lt; <a class="el" href="classApple.html">Apple</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>apples</b></td></tr>
+<tr class="separator:a5609ef1799bb65e30e18950dae674aef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae841d6f89d1bfd22d57feeda911a8806"><td class="memItemLeft" align="right" valign="top"><a id="ae841d6f89d1bfd22d57feeda911a8806" name="ae841d6f89d1bfd22d57feeda911a8806"></a>
+std::vector&lt; std::unique_ptr&lt; <a class="el" href="classAppleShard.html">AppleShard</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>apple_shards</b></td></tr>
+<tr class="separator:ae841d6f89d1bfd22d57feeda911a8806"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Main <a class="el" href="classScene.html" title="Base class for a scene in the game.">Scene</a> for playing the game. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac205a23eea8ccd093549c6def8687493" name="ac205a23eea8ccd093549c6def8687493"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac205a23eea8ccd093549c6def8687493">&#9670;&nbsp;</a></span>physics_update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Game::physics_update </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>dt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Run physics calculations </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>time since start of game </td></tr>
+    <tr><td class="paramname">dt</td><td>physics timestep </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classScene.html#aee19b623e7ee6779600aa340f758e257">Scene</a>.</p>
+
+</div>
+</div>
 <a id="ad98010cd07d9b8051afb96edd300d484" name="ad98010cd07d9b8051afb96edd300d484"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad98010cd07d9b8051afb96edd300d484">&#9670;&nbsp;</a></span>start()</h2>
 
@@ -141,8 +193,8 @@ std::vector&lt; <a class="el" href="classApple.html">Apple</a> &gt;&#160;</td><t
 
 </div>
 </div>
-<a id="a2648dc91da0dd1424d5b7c45510515a0" name="a2648dc91da0dd1424d5b7c45510515a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2648dc91da0dd1424d5b7c45510515a0">&#9670;&nbsp;</a></span>update()</h2>
+<a id="a7c9f1a2bca5b10d0028252e628b0430f" name="a7c9f1a2bca5b10d0028252e628b0430f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c9f1a2bca5b10d0028252e628b0430f">&#9670;&nbsp;</a></span>update()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -153,8 +205,8 @@ std::vector&lt; <a class="el" href="classApple.html">Apple</a> &gt;&#160;</td><t
         <tr>
           <td class="memname">void Game::update </td>
           <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>dt</em></td><td>)</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>alpha</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -164,14 +216,14 @@ std::vector&lt; <a class="el" href="classApple.html">Apple</a> &gt;&#160;</td><t
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Update and render the scene </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Update and render the apple </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dt</td><td>delta time, the time elapsed since the start of the frame </td></tr>
+    <tr><td class="paramname">alpha</td><td>physics alpha, for interpolation between previous state and next state </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Reimplemented from <a class="el" href="classScene.html#a4bd876fa0a8118d169b7b31c9df7601b">Scene</a>.</p>
+<p>Reimplemented from <a class="el" href="classScene.html#ac411cfb37304aa963ee84bb0e0f24202">Scene</a>.</p>
 
 </div>
 </div>

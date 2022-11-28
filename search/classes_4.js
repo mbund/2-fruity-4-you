@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['game_0',['Game',['../classGame.html',1,'']]]
+  ['image_0',['Image',['../classImage.html',1,'']]],
+  ['imagerepository_1',['ImageRepository',['../classImageRepository.html',1,'']]]
 ];
