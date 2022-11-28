@@ -16,12 +16,33 @@
 int main() {
     current_scene = menu;
 
+    // https://gafferongames.com/post/fix_your_timestep
+    double t = 0.0;
+    double dt = 0.01;
+
+    double current_time = TimeNow();
+    double accumulator = 0.0;
+
     while (true) {
-        float t_start = TimeNow();
+        double new_time = TimeNow();
+        double frame_time = new_time - current_time;
+        if (frame_time > 0.25)
+            frame_time = 0.25;
+        current_time = new_time;
+
+        accumulator += frame_time;
+
+        while (accumulator >= dt) {
+            current_scene->physics_update(t, dt);
+            t += dt;
+            accumulator -= dt;
+        }
+
+        double alpha = accumulator / dt;
+
         touchPressed = LCD.Touch(&touchX, &touchY);
         LCD.Clear();
-
-        current_scene->update(TimeNow() - t_start);
+        current_scene->update(alpha);
     }
 
     return 0;

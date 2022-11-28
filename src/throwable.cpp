@@ -1,15 +1,18 @@
 /// @file throwable.cpp
 /// Implementation of objects with physics
 
+#include <memory>
 #define _USE_MATH_DEFINES
 #include <algorithm>
 #include <cmath>
+#include <cstdint>
 #include <iostream>
 #include <limits>
 
 #include "FEHLCD.h"
 #include "FEHUtility.h"
 
+#include "game.h"
 #include "image.h"
 #include "throwable.h"
 #include "ui.h"
@@ -76,10 +79,6 @@ bool collide_line_circle(Vector2 l1, Vector2 l2, Vector2 c, float r) {
     return distance <= r;
 }
 
-Apple::Apple(Vector2 pos, float mass) : position(pos), mass(mass) {
-    image = ImageRepository::load_image("assets/apple.png");
-}
-
 void draw_circle(int x0, int y0, int r) {
     // This alogorithm is from wikipedia
     // It's called the "midpoint circle algorithm"
@@ -117,38 +116,104 @@ void draw_circle(int x0, int y0, int r) {
     }
 }
 
-void Apple::update(float dt) {
-    // apply gravity
-    add_force({0, 9.81f * dt});
+PhysicsObject::PhysicsObject(Vector2 pos, float mass)
+    : prev_position(pos),
+      position(pos),
+      prev_velocity({0, 0}),
+      velocity({0, 0}),
+      mass(mass) {}
 
-    velocity += acceleration;
-    position += velocity;
+void PhysicsObject::update(double alpha) {
+    position = position * alpha + prev_position * (1.0 - alpha);
+    velocity = velocity * alpha + prev_velocity * (1.0 - alpha);
+}
+void PhysicsObject::physics_update(double t, double dt) {
+    prev_position = position;
+    prev_velocity = velocity;
+
+    velocity += acceleration * dt;
+    position += velocity * dt;
 
     // clear the acceleration every frame
     acceleration = {0, 0};
+}
 
-    image->render(position.x, position.y, TimeNow() * M_PI * velocity.x * 10);
+void PhysicsObject::add_force(const Vector2& force) {
+    // Newton's 2nd law: f = m * a or a = f / m
+    acceleration += force / mass;
+}
 
-    LCD.SetFontColor(color);
-    draw_circle(position.x, position.y, mass);
+Apple::Apple(Vector2 pos, float mass)
+    : PhysicsObject(pos, mass),
+      should_be_removed(false),
+      image(ImageRepository::load_image("assets/apple.png")) {}
+
+void Apple::update(double alpha) {
+    PhysicsObject::update(alpha);
+
+    if (position.y - mass > LCD_HEIGHT + 100) {
+        should_be_removed = true;
+    }
+
+    image->render(
+        position.x, position.y,
+        TimeNow() * M_PI * std::clamp(velocity.x / 10.0f, -10.0f, 10.0f));
+}
+
+bool Apple::get_should_be_removed() {
+    return should_be_removed;
+}
+
+void Apple::physics_update(double t, double dt) {
+    // apply gravity
+    add_force({0, 3500.0f});
+
+    PhysicsObject::physics_update(t, dt);
 }
 
 void Apple::collision(Vector2 p1, Vector2 p2) {
-    if (collide_line_circle(p1, p2, position, mass)) {
-        color = FEHLCD::FEHLCDColor::Blue;
-        add_force({rand_range(-2, 2), rand_range(-4, -2)});
+    if (!should_be_removed && collide_line_circle(p1, p2, position, mass)) {
+        should_be_removed = true;
+        Vector2 force_left = {rand_range(-100000, -40000),
+                              rand_range(160000, -160000)};
+        auto shard_left = std::make_unique<AppleShard>(
+            "assets/apple-left.png", mass, position, force_left);
+        game->apple_shards.push_back(std::move(shard_left));
+
+        Vector2 force_right = {-force_left.x, -force_left.y};
+        auto shard_right = std::make_unique<AppleShard>(
+            "assets/apple-right.png", mass, position, force_right);
+        game->apple_shards.push_back(std::move(shard_right));
     }
 }
 
-void Apple::add_force(Vector2 force) {
-    // Newton's 2nd law: f = m * a
-    // or a = f / m
-    auto f = force / mass;
-    acceleration += f;
+AppleShard::AppleShard(std::string image_path,
+                       float mass,
+                       Vector2 pos,
+                       Vector2 force)
+    : PhysicsObject(pos, mass),
+      should_be_removed(false),
+      image(ImageRepository::load_image(image_path)) {
+    add_force(force);
 }
 
-void Apple::cut() {}
+void AppleShard::update(double alpha) {
+    PhysicsObject::update(alpha);
 
-// Bomb::Bomb() {}
-void Bomb::update(float dt) {}
-void Bomb::cut() {}
+    if (position.y - mass > LCD_HEIGHT + 100) {
+        should_be_removed = true;
+    }
+
+    image->render(position.x, position.y, TimeNow() * M_PI);
+}
+
+bool AppleShard::get_should_be_removed() {
+    return should_be_removed;
+}
+
+void AppleShard::physics_update(double t, double dt) {
+    // apply gravity
+    add_force({0, 2000.0f});
+
+    PhysicsObject::physics_update(t, dt);
+}

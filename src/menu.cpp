@@ -22,7 +22,7 @@ Credits::Credits() {
     close_button->bind_on_button_up([&]() { current_scene = menu; });
 }
 
-void Credits::update(float dt) {
+void Credits::update(double alpha) {
     box->update();
     constexpr uint64_t inner_padding = 10;
     uint64_t x = box->get_x() + inner_padding, y = box->get_y() + inner_padding;
@@ -103,7 +103,7 @@ Menu::Menu() {
     });
 }
 
-void Menu::update(float dt) {
+void Menu::update(double alpha) {
     uint64_t x = 20, y = 20;
     std::string title = "2 Fruity 4 you";
     LCD.WriteAt(title.c_str(), x, y);

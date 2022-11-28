@@ -16,9 +16,10 @@ class Credits : public Scene {
     /// Default constructor
     Credits();
 
-    /// Update and render the scene
-    /// @param dt delta time, the time elapsed since the start of the frame
-    virtual void update(float dt);
+    /// Update and render the apple
+    /// @param alpha physics alpha, for interpolation between previous state and
+    /// next state
+    virtual void update(double alpha);
 
    private:
     std::unique_ptr<UIButton> close_button;
@@ -55,9 +56,10 @@ class Menu : public Scene {
     /// Default constructor
     Menu();
 
-    /// Update and render the scene
-    /// @param dt delta time, the time elapsed since the start of the frame
-    void update(float dt);
+    /// Update and render the apple
+    /// @param alpha physics alpha, for interpolation between previous state and
+    /// next state
+    void update(double alpha);
 
     /// Internal leaderboard of the menu, used by others to add entries to the
     /// leaderboard
