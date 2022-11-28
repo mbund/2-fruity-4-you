@@ -12,14 +12,11 @@
 void Scene::update(double alpha) {}
 void Scene::physics_update(double t, double dt) {}
 
-float rand_range(float lower, float upper){
+float rand_range(float lower, float upper) {
+    float range = upper - lower;
+    float randNum = (rand() % 1025) / 1024.0;
 
-    float range = upper-lower;
-    float randNum = (rand()%1025)/1024.0;
-
-    return randNum*(range)+lower;
-
-
+    return randNum * (range) + lower;
 }
 
 void draw_pixel_in_bounds(int x, int y) {
