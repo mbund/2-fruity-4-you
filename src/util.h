@@ -19,13 +19,7 @@ inline int touchY;
 
 // Get a random uniformly distributed random number in the inclusive range
 // [lower, upper]
-inline float rand_range(float lower, float upper) {
-    std::random_device rd;   // obtain a random number from hardware
-    std::mt19937 gen(rd());  // seed the generator
-    std::uniform_real_distribution<> distr(lower, upper);  // define the range
-
-    return distr(gen);
-}
+float rand_range(float lower, float upper);
 
 /// Same as LCD.DrawPixel will ignore out of bounds pixels (does not do modulus)
 void draw_pixel_in_bounds(int x, int y);
