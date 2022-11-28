@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['leaderboard_0',['Leaderboard',['../classLeaderboard.html',1,'']]]
+  ['image_0',['Image',['../classImage.html',1,'']]],
+  ['imagerepository_1',['ImageRepository',['../classImageRepository.html',1,'']]]
 ];

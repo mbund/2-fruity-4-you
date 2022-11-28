@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['physicsobject_0',['PhysicsObject',['../classPhysicsObject.html',1,'']]]
+  ['leaderboard_0',['Leaderboard',['../classLeaderboard.html',1,'']]]
 ];
