@@ -12,6 +12,7 @@
 
 #include "game.h"
 #include "image.h"
+#include "menu.h"
 #include "throwable.h"
 #include "ui.h"
 #include "util.h"
@@ -117,22 +118,21 @@ void draw_circle(int x0, int y0, int r) {
 }
 
 PhysicsObject::PhysicsObject(Vector2 pos, float mass)
-    : prev_position(pos),
-      position(pos),
-      prev_velocity({0, 0}),
-      velocity({0, 0}),
-      mass(mass) {}
+    : prev_position(pos), current_position(pos), position(pos), mass(mass) {}
 
 void PhysicsObject::update(double alpha) {
-    position = position * alpha + prev_position * (1.0 - alpha);
-    velocity = velocity * alpha + prev_velocity * (1.0 - alpha);
+    // position = current_position * alpha + prev_position * (1.0 - alpha);
+    // velocity = current_velocity * alpha + prev_velocity * (1.0 - alpha);
+    position = current_position;
+    velocity = current_velocity;
 }
-void PhysicsObject::physics_update(double t, double dt) {
-    prev_position = position;
-    prev_velocity = velocity;
 
-    velocity += acceleration * dt;
-    position += velocity * dt;
+void PhysicsObject::physics_update(double t, double dt) {
+    prev_position = current_position;
+    prev_velocity = current_velocity;
+
+    current_velocity += acceleration * dt;
+    current_position += current_velocity * dt;
 
     // clear the acceleration every frame
     acceleration = {0, 0};
@@ -156,7 +156,7 @@ void Fruit::update(double alpha) {
     }
 
     image->render(position.x, position.y,
-                  TimeNow() * PI * std::clamp(velocity.x / 10.0f, -2.0f, 2.0f));
+                  game->t * PI * std::clamp(velocity.x / 10.0f, -2.0f, 2.0f));
 }
 
 bool Fruit::get_should_be_removed() const {
@@ -186,6 +186,8 @@ void Apple::collision(Vector2 p1, Vector2 p2) {
         auto shard_right = std::make_unique<FruitShard>(
             "assets/apple-right.png", mass, position, force_right);
         game->fruit_shards.push_back(std::move(shard_right));
+
+        game->points++;
     }
 }
 
@@ -206,6 +208,17 @@ void Bananas::collision(Vector2 p1, Vector2 p2) {
         auto shard_right = std::make_unique<FruitShard>(
             "assets/bananas-right.png", mass, position, force_right);
         game->fruit_shards.push_back(std::move(shard_right));
+
+        game->points++;
+    }
+}
+
+Bomb::Bomb(Vector2 pos, float mass) : Fruit("assets/bomb.png", pos, mass) {}
+
+void Bomb::collision(Vector2 p1, Vector2 p2) {
+    if (collide_line_circle(p1, p2, position, mass)) {
+        game->paused = true;
+        game->time_paused = TimeNow();
     }
 }
 
@@ -226,7 +239,7 @@ void FruitShard::update(double alpha) {
         should_be_removed = true;
     }
 
-    image->render(position.x, position.y, TimeNow() * PI);
+    image->render(position.x, position.y, game->t * PI);
 }
 
 bool FruitShard::get_should_be_removed() const {

@@ -11,14 +11,16 @@
 #include "FEHLCD.h"
 
 /// Width in pixels of a single character in the default font
-#define FONT_GLYPH_WIDTH 12
+const uint64_t FONT_GLYPH_WIDTH = 12;
 /// Height in pixels of a single character in the default font
-#define FONT_GLYPH_HEIGHT 15
+const uint64_t FONT_GLYPH_HEIGHT = 15;
 
 /// Width in pixels of the LCD (display)
-#define LCD_WIDTH 320
+// #define LCD_WIDTH 320
+const uint64_t LCD_WIDTH = 320;
+
 /// Height in pixels of the LCD (display)
-#define LCD_HEIGHT 240
+const uint64_t LCD_HEIGHT = 240;
 
 /// Representation of a position in the UI
 class UIPosition {
@@ -102,7 +104,10 @@ class UIButton {
     /// Create a simple button
     /// @param text single line of text for the contents of the button
     /// @param pos position of the button
-    UIButton(std::string text, UIPosition pos);
+    UIButton(std::string text,
+             UIPosition pos,
+             uint64_t padding_x = 10,
+             uint64_t padding_y = 8);
 
     /// Checks for mouse events interacing with the button and will fire off the
     /// corresponding event. Also renders the button.

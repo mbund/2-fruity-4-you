@@ -40,6 +40,9 @@ void Image::render(int x, int y, float theta) const {
     x -= w / 2;
     y -= h / 2;
 
+    // TODO: rotate using better algorithm, maybe this:
+    // https://github.com/adnanlah/rotsprite-webgl/blob/master/src/utils/RotspriteAlgoJS.ts
+
     for (int i = 0; i < w; i++) {
         for (int j = 0; j < h; j++) {
             uint32_t color = colors->at(i)[j];

@@ -9,7 +9,10 @@
 #include "ui.h"
 #include "util.h"
 
-UIButton::UIButton(std::string text, UIPosition pos)
+UIButton::UIButton(std::string text,
+                   UIPosition pos,
+                   uint64_t padding_x,
+                   uint64_t padding_y)
     : text(text),
       pos(pos),
       state(ButtonState::None),
@@ -21,8 +24,8 @@ UIButton::UIButton(std::string text, UIPosition pos)
       on_button_leave([this]() {
           this->box->set_background_color(FEHLCD::FEHLCDColor::Black);
       }),
-      padding_x(10),
-      padding_y(8) {
+      padding_x(padding_x),
+      padding_y(padding_y) {
     uint64_t width = text.length() * FONT_GLYPH_WIDTH + padding_x * 2;
     uint64_t height = FONT_GLYPH_HEIGHT + padding_y * 2;
     box = std::make_unique<UIBox>(pos, width, height, pos.screen_anchor);
@@ -49,7 +52,7 @@ void UIButton::update() {
     }
 
     box->update();
-    LCD.WriteAt(text.c_str(), box->get_x() + padding_x,
+    LCD.WriteAt(text.c_str(), box->get_x() + padding_x - 1,
                 box->get_y() + padding_y);
 }
 
