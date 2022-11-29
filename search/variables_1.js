@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['game_0',['game',['../game_8h.html#aaa752ad17416980090dfa48e301a8c59',1,'game.h']]]
+  ['end_5fgame_0',['end_game',['../endgame_8h.html#a27cdeaf31054e0438593fa1bb3a94c72',1,'endgame.h']]]
 ];
