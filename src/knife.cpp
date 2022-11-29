@@ -36,6 +36,11 @@ void Knife::draw_line(Point a, Point b) {
             xe = a.x;
         }
 
+        LCD.SetFontColor(colors[current_color]);
+    current_color++;
+    if(current_color==7){
+        current_color=0;
+    }
         LCD.DrawPixel(x, y);
 
         for (; x < xe; x++) {
@@ -49,6 +54,11 @@ void Knife::draw_line(Point a, Point b) {
                 px += 2 * (dy1 - dx1);
             }
 
+            LCD.SetFontColor(colors[current_color]);
+    current_color++;
+    if(current_color==7){
+        current_color=0;
+    }
             LCD.DrawPixel(x, y);
         }
     } else {
@@ -62,6 +72,11 @@ void Knife::draw_line(Point a, Point b) {
             ye = a.y;
         }
 
+        LCD.SetFontColor(colors[current_color]);
+    current_color++;
+    if(current_color==7){
+        current_color=0;
+    }
         LCD.DrawPixel(x, y);
 
         for (; y < ye; y++) {
@@ -74,11 +89,18 @@ void Knife::draw_line(Point a, Point b) {
                     x--;
                 py += 2 * (dx1 - dy1);
             }
-
+            
+            LCD.SetFontColor(colors[current_color]);
+    current_color++;
+    if(current_color==7){
+        current_color=0;
+    }
             LCD.DrawPixel(x, y);
         }
     }
 }
+
+
 
 template <typename T>
 void collision(Knife::Point p1, Knife::Point p2, T& a) {
@@ -87,9 +109,12 @@ void collision(Knife::Point p1, Knife::Point p2, T& a) {
     });
 }
 
+
+
 void Knife::update() {
     if (touchPressed) {
-        LCD.SetFontColor(GREEN);
+        current_color=0;
+        LCD.SetFontColor(colors[current_color]);
         LCD.FillCircle(touchX, touchY, 2);
 
         if (head < tail + TAIL_LEN) {
