@@ -149,16 +149,16 @@ Fruit::Fruit(std::string image_path, Vector2 pos, float mass)
       image(image_repository->load_image(image_path)) {}
 
 void Fruit::update(double alpha) {
-
-    if(game->paused==false){
+    if (game->paused == false) {
         PhysicsObject::update(alpha);
 
         if (position.y - mass > LCD_HEIGHT + 100) {
             should_be_removed = true;
         }
 
-        image->render(position.x, position.y,
-                    game->t * PI * std::clamp(velocity.x / 10.0f, -2.0f, 2.0f));
+        image->render(
+            position.x, position.y,
+            game->t * PI * std::clamp(velocity.x / 10.0f, -2.0f, 2.0f));
     }
 }
 
@@ -220,48 +220,50 @@ Bomb::Bomb(Vector2 pos, float mass) : Fruit("assets/bomb.png", pos, mass) {}
 
 void Bomb::collision(Vector2 p1, Vector2 p2) {
     if (collide_line_circle(p1, p2, position, mass)) {
-
         LCD.SetFontColor(INDIANRED);
-        LCD.FillCircle(position.x,position.y,10);
+        LCD.FillCircle(position.x, position.y, 10);
 
-        
         game->paused = true;
-        game ->time_paused=TimeNow();
+        game->time_paused = TimeNow();
 
-        //boom boom explode
-        for(int i=3; i<100;i++){
+        // boom boom explode
+        for (int i = 3; i < 100; i++) {
             LCD.SetFontColor(RED);
-            LCD.FillCircle(position.x+rand_range(-4-i,4+i),position.y+rand_range(-4-i,4+i),rand_range(1,i));
+            LCD.FillCircle(position.x + rand_range(-4 - i, 4 + i),
+                           position.y + rand_range(-4 - i, 4 + i),
+                           rand_range(1, i));
             LCD.SetFontColor(GRAY);
-            LCD.FillCircle(position.x+rand_range(-4-i,4+i),position.y+rand_range(-4-i,4+i),rand_range(1,i));
+            LCD.FillCircle(position.x + rand_range(-4 - i, 4 + i),
+                           position.y + rand_range(-4 - i, 4 + i),
+                           rand_range(1, i));
             LCD.SetFontColor(FIREBRICK);
-            LCD.FillCircle(position.x+rand_range(-4-i,4+i),position.y+rand_range(-4-i,4+i),rand_range(1,i));
+            LCD.FillCircle(position.x + rand_range(-4 - i, 4 + i),
+                           position.y + rand_range(-4 - i, 4 + i),
+                           rand_range(1, i));
             LCD.SetFontColor(DARKGOLDENROD);
-            LCD.FillCircle(position.x+rand_range(-4-i,4+i),position.y+rand_range(-4-i,4+i),rand_range(1,i));
-            Sleep(4/100.0);
+            LCD.FillCircle(position.x + rand_range(-4 - i, 4 + i),
+                           position.y + rand_range(-4 - i, 4 + i),
+                           rand_range(1, i));
+            Sleep(4 / 100.0);
         }
 
-        //screen scroll
-        double time_paused2 =TimeNow();
+        // screen scroll
+        double time_paused2 = TimeNow();
         double percent = 0.0;
         uint64_t max = LCD_WIDTH * LCD_HEIGHT;
         uint64_t travel;
 
         LCD.SetFontColor(BLACK);
-        
-        while(percent<1.0){
-            percent=(TimeNow() - time_paused2)/2.0;
-            travel=max*percent;
+
+        while (percent < 1.0) {
+            percent = (TimeNow() - time_paused2) / 2.0;
+            travel = max * percent;
             for (size_t i = 0; i <= travel; i++) {
                 LCD.DrawPixel((int)i % LCD_WIDTH, (int)i / LCD_WIDTH);
-                printf("%d %d",i % LCD_WIDTH, i / LCD_WIDTH);
-                LCD.DrawHorizontalLine(LCD_HEIGHT*percent, 0, LCD_WIDTH);
-                
+                printf("%d %d", i % LCD_WIDTH, i / LCD_WIDTH);
+                LCD.DrawHorizontalLine(LCD_HEIGHT * percent, 0, LCD_WIDTH);
             }
-            
         }
-        
-        
     }
 }
 

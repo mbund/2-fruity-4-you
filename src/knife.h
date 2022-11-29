@@ -5,9 +5,9 @@
 
 #include <cstdint>
 
-#include "util.h"
-#include "LCDColors.h"
 #include "FEHLCD.h"
+#include "LCDColors.h"
+#include "util.h"
 
 /// Length of the tail
 #define TAIL_LEN 5
@@ -27,8 +27,6 @@ class Knife {
         int y;
     };
 
-    
-
    private:
     void draw_line(Point a, Point b);
 
@@ -41,8 +39,9 @@ class Knife {
     /// Head of the ring buffer
     uint64_t head;
 
-    ///colors
-    ///red, orange, yellow, green, blue, violet, indigo
-    unsigned int colors[7]={0xCD5C5C, 0xFFA500, 0xFFFF00, 0x008000, 0x0000FF, 0x4B0082, 0xEE82EE};
+    /// colors
+    /// red, orange, yellow, green, blue, violet, indigo
+    unsigned int colors[7] = {0xCD5C5C, 0xFFA500, 0xFFFF00, 0x008000,
+                              0x0000FF, 0x4B0082, 0xEE82EE};
     int current_color;
 };

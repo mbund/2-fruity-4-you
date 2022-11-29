@@ -98,15 +98,15 @@ void Game::update(double alpha) {
     update_foreach(alpha, bananas);
     update_foreach(alpha, bombs);
 
-    if (!paused){
+    if (!paused) {
         knife.update();
 
         update_foreach(alpha, fruit_shards);
     }
+
     // screen wipe clear the screen
     if (paused) {
         end_game->end(points);
         current_scene = end_game;
-        
     }
 }
