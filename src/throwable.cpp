@@ -217,6 +217,20 @@ Bomb::Bomb(Vector2 pos, float mass) : Fruit("assets/bomb.png", pos, mass) {}
 
 void Bomb::collision(Vector2 p1, Vector2 p2) {
     if (collide_line_circle(p1, p2, position, mass)) {
+
+        LCD.SetFontColor(INDIANRED);
+        LCD.FillCircle(position.x,position.y,10);
+
+        for(int i=3; i<100;i++){
+            LCD.SetFontColor(RED);
+            LCD.FillCircle(position.x+rand_range(-4-i,4+i),position.y+rand_range(-4-i,4+i),rand_range(1,i));
+            LCD.SetFontColor(GRAY);
+            LCD.FillCircle(position.x+rand_range(-4-i,4+i),position.y+rand_range(-4-i,4+i),rand_range(1,i));
+            LCD.SetFontColor(FIREBRICK);
+            LCD.FillCircle(position.x+rand_range(-4-i,4+i),position.y+rand_range(-4-i,4+i),rand_range(1,i));
+            Sleep(4/100.0);
+        }
+
         game->paused = true;
         game->time_paused = TimeNow();
     }
