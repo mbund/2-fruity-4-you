@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "feh-proteus-simulator-libraries": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1669664300,
+        "narHash": "sha256-4cUPc2WnbyeIepV60/9lLOG4x9h/ORfYi7v9j+T83RM=",
+        "ref": "refs/heads/main",
+        "rev": "b4a94aa27ba6b390d6ce022dbdce32fa89c7ca92",
+        "revCount": 22,
+        "type": "git",
+        "url": "https://code.osu.edu/fehelectronics/proteus_software/simulator_libraries.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://code.osu.edu/fehelectronics/proteus_software/simulator_libraries.git"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1667395993,
@@ -49,6 +65,7 @@
     },
     "root": {
       "inputs": {
+        "feh-proteus-simulator-libraries": "feh-proteus-simulator-libraries",
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs",
         "nixpkgs-doxygen": "nixpkgs-doxygen"
