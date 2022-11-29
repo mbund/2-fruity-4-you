@@ -11,3 +11,6 @@
 
 # Nix
 result
+
+# Game specific
+leaderboard.csv
