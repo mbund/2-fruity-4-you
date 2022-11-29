@@ -81,7 +81,7 @@ void Knife::draw_line(Point a, Point b) {
 }
 
 template <typename T>
-void fruit_collision(Knife::Point p1, Knife::Point p2, T& a) {
+void collision(Knife::Point p1, Knife::Point p2, T& a) {
     std::for_each(a.begin(), a.end(), [p1, p2](auto& b) {
         b->collision({(float)p1.x, (float)p1.y}, {(float)p2.x, (float)p2.y});
     });
@@ -105,8 +105,9 @@ void Knife::update() {
             if (head - tail > 1) {
                 auto p1 = points[(head - 0) % TAIL_LEN];
                 auto p2 = points[(head - 1) % TAIL_LEN];
-                fruit_collision(p1, p2, game->apples);
-                fruit_collision(p1, p2, game->bananas);
+                collision(p1, p2, game->apples);
+                collision(p1, p2, game->bananas);
+                collision(p1, p2, game->bombs);
             }
 
             head++;

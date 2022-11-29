@@ -35,7 +35,14 @@ class Game : public Scene {
 
     std::vector<std::unique_ptr<Apple>> apples;
     std::vector<std::unique_ptr<Bananas>> bananas;
+    std::vector<std::unique_ptr<Bomb>> bombs;
     std::vector<std::unique_ptr<FruitShard>> fruit_shards;
+
+    uint32_t points;
+    uint32_t combo;
+    bool paused;
+    double t;
+    double time_paused;
 
    private:
     float bomb_probability;
