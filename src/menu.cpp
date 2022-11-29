@@ -45,16 +45,14 @@ Leaderboard::Leaderboard() {
     box = std::make_unique<UIBox>(
         UIPosition(10, 10, UIPosition::Anchor::TopRight), LCD_WIDTH / 3,
         LCD_HEIGHT - 10 * 2, UIPosition::Anchor::TopRight);
-
-    addEntry({"MRK", 4});
-    addEntry({"JHN", 33});
-    addEntry({"JSN", 1337});
 }
 
-void Leaderboard::addEntry(Entry entry) {
-    entries.push_back(entry);
-    std::sort(entries.begin(), entries.end(),
-              [](Entry a, Entry b) { return a.points > b.points; });
+void Leaderboard::add_entry(Entry entry) {
+    // insert into sorted vector
+    entries.insert(
+        std::upper_bound(entries.begin(), entries.end(), entry,
+                         [](Entry a, Entry b) { return a.points > b.points; }),
+        entry);
 }
 
 void Leaderboard::update() {
@@ -64,7 +62,9 @@ void Leaderboard::update() {
     uint64_t name_x = box->get_x() + inner_padding - 1;
 
     constexpr uint64_t SPACING = FONT_GLYPH_HEIGHT + 2;
-    for (size_t i = 0; i < entries.size(); i++) {
+
+    // UI overflows with more than 12 entries
+    for (size_t i = 0; i < std::min(entries.size(), 12ul); i++) {
         uint64_t y = box->get_y() + inner_padding + SPACING * i;
         auto num = std::to_string(entries[i].points);
         uint64_t num_x = box->get_x() + box->width - inner_padding -
