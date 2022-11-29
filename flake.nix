@@ -38,7 +38,7 @@
           inherit name buildInputs nativeBuildInputs;
           src = ./.;
           patchPhase = ''
-            cp -r ${feh-proteus-simulator-libraries} vendor/simulator-libraries
+            cp -r ${feh-proteus-simulator-libraries}/. vendor/simulator-libraries
           '';
           installPhase = ''
             mkdir -p $out/bin
