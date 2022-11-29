@@ -98,25 +98,15 @@ void Game::update(double alpha) {
     update_foreach(alpha, bananas);
     update_foreach(alpha, bombs);
 
-    if (!paused)
+    if (!paused){
         knife.update();
 
-    update_foreach(alpha, fruit_shards);
-
+        update_foreach(alpha, fruit_shards);
+    }
     // screen wipe clear the screen
     if (paused) {
-        double percent = std::min((TimeNow() - time_paused) / 2.0, 1.0);
-        uint64_t max = LCD_WIDTH * LCD_HEIGHT;
-        uint64_t travel = max * percent;
-        for (size_t i = 0; i < travel; i++) {
-            LCD.SetFontColor(BLACK);
-            LCD.DrawPixel(i % LCD_WIDTH, i / LCD_WIDTH);
-        }
-
-        // after the screen wipe is complete, end the game
-        if (percent >= 1.0) {
-            end_game->end(points);
-            current_scene = end_game;
-        }
+        end_game->end(points);
+        current_scene = end_game;
+        
     }
 }
