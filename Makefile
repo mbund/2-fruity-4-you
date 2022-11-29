@@ -1,7 +1,7 @@
 CC = gcc
 CXX = g++ -std=c++17
 BUILD_DIR := build
-SRCS := $(wildcard src/*.cpp vendor/simulator-libraries/*.cpp vendor/simulator-libraries/*.c)
+SRCS := $(wildcard src/*.cpp vendor/simulator-libraries/*.cpp vendor/simulator-libraries/*.c assets/*.png)
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
 INC_DIRS := vendor/simulator-libraries vendor/stb
@@ -31,6 +31,10 @@ $(BUILD_DIR)/%.c.o: %.c
 $(BUILD_DIR)/%.cpp.o: %.cpp
 	mkdir -p $(dir $@)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/%.png.o: %.png
+	mkdir -p $(dir $@)
+	ld -r -b binary -o $@ $<
 
 docs:
 	doxygen

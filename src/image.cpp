@@ -18,6 +18,29 @@
 
 Image::Image(std::string filename) {
     stbi_uc* image = stbi_load(filename.c_str(), &w, &h, &channelCount, 4);
+
+    colors = std::make_unique<std::vector<std::vector<uint32_t>>>(
+        w, std::vector<uint32_t>(h));
+
+    for (int i = 0; i < w; i++) {
+        for (int j = 0; j < h; j++) {
+            uint32_t bytePerPixel = channelCount;
+            uint8_t* pixelOffset = image + (i + w * j) * bytePerPixel;
+            uint8_t r = pixelOffset[0];
+            uint8_t g = pixelOffset[1];
+            uint8_t b = pixelOffset[2];
+            uint8_t a = channelCount >= 4 ? pixelOffset[3] : 0xff;
+            colors->at(i)[j] = (a << 24) + (r << 16) + (g << 8) + (b << 0);
+        }
+    }
+
+    stbi_image_free(image);
+}
+
+Image::Image(const unsigned char* data, size_t data_len) {
+    stbi_uc* image =
+        stbi_load_from_memory(data, data_len, &w, &h, &channelCount, 4);
+
     colors = std::make_unique<std::vector<std::vector<uint32_t>>>(
         w, std::vector<uint32_t>(h));
 
@@ -65,11 +88,45 @@ void Image::render(int x, int y, float theta) const {
     }
 }
 
-std::unordered_map<std::string, std::shared_ptr<Image>> ImageRepository::images;
+#define ASSET(name)                              \
+    extern char _binary_assets_##name##_start[]; \
+    extern char _binary_assets_##name##_end[];   \
+    const stbi_uc* name = (stbi_uc*)_binary_assets_##name##_start;
+
+#define ASSET_SIZE(name)                    \
+    ((size_t)&_binary_assets_##name##_end - \
+     (size_t)&_binary_assets_##name##_start)
+
+ASSET(apple_png)
+ASSET(apple_left_png)
+ASSET(apple_right_png)
+ASSET(bananas_png)
+ASSET(bananas_left_png)
+ASSET(bananas_right_png)
+ASSET(bomb_png)
+
+ImageRepository::ImageRepository() {
+    images["assets/apple.png"] =
+        std::make_shared<Image>(apple_png, ASSET_SIZE(apple_png));
+    images["assets/apple-left.png"] =
+        std::make_shared<Image>(apple_left_png, ASSET_SIZE(apple_left_png));
+    images["assets/apple-right.png"] =
+        std::make_shared<Image>(apple_right_png, ASSET_SIZE(apple_right_png));
+
+    images["assets/bananas.png"] =
+        std::make_shared<Image>(bananas_png, ASSET_SIZE(bananas_png));
+    images["assets/bananas-left.png"] =
+        std::make_shared<Image>(bananas_left_png, ASSET_SIZE(bananas_left_png));
+    images["assets/bananas-right.png"] = std::make_shared<Image>(
+        bananas_right_png, ASSET_SIZE(bananas_right_png));
+
+    images["assets/bomb.png"] =
+        std::make_shared<Image>(bomb_png, ASSET_SIZE(bomb_png));
+}
 
 std::shared_ptr<Image> ImageRepository::load_image(std::string filename) {
-    if (ImageRepository::images.count(filename) == 0)
-        ImageRepository::images[filename] = std::make_shared<Image>(filename);
+    if (images.count(filename) == 0)
+        images[filename] = std::make_shared<Image>(filename);
 
-    return ImageRepository::images[filename];
+    return images[filename];
 }

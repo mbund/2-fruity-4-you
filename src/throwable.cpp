@@ -146,7 +146,7 @@ void PhysicsObject::add_force(const Vector2& force) {
 Fruit::Fruit(std::string image_path, Vector2 pos, float mass)
     : PhysicsObject(pos, mass),
       should_be_removed(false),
-      image(ImageRepository::load_image(image_path)) {}
+      image(image_repository->load_image(image_path)) {}
 
 void Fruit::update(double alpha) {
     PhysicsObject::update(alpha);
@@ -228,7 +228,7 @@ FruitShard::FruitShard(std::string image_path,
                        Vector2 force)
     : PhysicsObject(pos, mass),
       should_be_removed(false),
-      image(ImageRepository::load_image(image_path)) {
+      image(image_repository->load_image(image_path)) {
     add_force(force);
 }
 
