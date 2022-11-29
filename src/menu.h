@@ -43,7 +43,7 @@ class Leaderboard {
 
     /// Adds an entry into its sorted place in the Leaderboard
     /// @param entry entry to add
-    void addEntry(Entry entry);
+    void add_entry(Entry entry);
 
    private:
     std::vector<Entry> entries;

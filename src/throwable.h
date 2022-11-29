@@ -32,8 +32,8 @@ class PhysicsObject {
     virtual void add_force(const Vector2& force);
 
    protected:
-    Vector2 prev_position, position;
-    Vector2 prev_velocity, velocity;
+    Vector2 prev_position, current_position, position;
+    Vector2 prev_velocity, current_velocity, velocity;
     Vector2 acceleration;
     float mass;
 };
@@ -81,6 +81,18 @@ class Bananas : public Fruit {
     Bananas(Vector2 pos, float mass);
 
     /// Detect collision between the bananas and a line
+    /// @param p1 first point on line
+    /// @param p2 second point on line
+    void collision(Vector2 p1, Vector2 p2);
+};
+
+/// Throwable bomb
+class Bomb : public Fruit {
+   public:
+    /// Default constructor
+    Bomb(Vector2 pos, float mass);
+
+    /// Detect collision between the bomb and a line
     /// @param p1 first point on line
     /// @param p2 second point on line
     void collision(Vector2 p1, Vector2 p2);
