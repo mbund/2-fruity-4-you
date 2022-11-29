@@ -83,23 +83,31 @@ $(function() {
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classImage.html#a75c73ec23a01d47cd549b21a2c067f2b">render</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">float</span> theta) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">int</span> w, h, channelCount;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    std::unique_ptr&lt;std::vector&lt;std::vector&lt;uint32_t&gt;&gt;&gt; colors;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>};</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classImageRepository.html">   30</a></span><span class="keyword">class </span><a class="code hl_class" href="classImageRepository.html">ImageRepository</a> {</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">static</span> std::shared_ptr&lt;Image&gt; <a class="code hl_function" href="classImageRepository.html#a709377c62ad48ca8ebb9c77c27fda7f7">load_image</a>(std::string filename);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">static</span> std::unordered_map&lt;std::string, std::shared_ptr&lt;Image&gt;&gt; images;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>};</div>
-<div class="ttc" id="aclassImageRepository_html"><div class="ttname"><a href="classImageRepository.html">ImageRepository</a></div><div class="ttdoc">Optimized Image storage and loading.</div><div class="ttdef"><b>Definition:</b> image.h:30</div></div>
-<div class="ttc" id="aclassImageRepository_html_a709377c62ad48ca8ebb9c77c27fda7f7"><div class="ttname"><a href="classImageRepository.html#a709377c62ad48ca8ebb9c77c27fda7f7">ImageRepository::load_image</a></div><div class="ttdeci">static std::shared_ptr&lt; Image &gt; load_image(std::string filename)</div><div class="ttdef"><b>Definition:</b> image.cpp:70</div></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <a class="code hl_function" href="classImage.html#abb20937b3256735f0f7549d1b5e9c10d">Image</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* data, <span class="keywordtype">size_t</span> data_len);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">int</span> w, h, channelCount;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    std::unique_ptr&lt;std::vector&lt;std::vector&lt;uint32_t&gt;&gt;&gt; colors;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>};</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classImageRepository.html">   32</a></span><span class="keyword">class </span><a class="code hl_class" href="classImageRepository.html">ImageRepository</a> {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_function" href="classImageRepository.html#a3595b2a4eb7d5f2c7ea1d5c86cbfb28b">ImageRepository</a>();</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    std::shared_ptr&lt;Image&gt; <a class="code hl_function" href="classImageRepository.html#a709377c62ad48ca8ebb9c77c27fda7f7">load_image</a>(std::string filename);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    std::unordered_map&lt;std::string, std::shared_ptr&lt;Image&gt;&gt; images;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>};</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="image_8h.html#a77c980d4bb21d2df43235c6ecfd8d5fc">   46</a></span><span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code hl_variable" href="image_8h.html#a77c980d4bb21d2df43235c6ecfd8d5fc">image_repository</a> = std::make_shared&lt;ImageRepository&gt;();</div>
+<div class="ttc" id="aclassImageRepository_html"><div class="ttname"><a href="classImageRepository.html">ImageRepository</a></div><div class="ttdoc">Optimized Image storage and loading.</div><div class="ttdef"><b>Definition:</b> image.h:32</div></div>
+<div class="ttc" id="aclassImageRepository_html_a3595b2a4eb7d5f2c7ea1d5c86cbfb28b"><div class="ttname"><a href="classImageRepository.html#a3595b2a4eb7d5f2c7ea1d5c86cbfb28b">ImageRepository::ImageRepository</a></div><div class="ttdeci">ImageRepository()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> image.cpp:108</div></div>
+<div class="ttc" id="aclassImageRepository_html_a709377c62ad48ca8ebb9c77c27fda7f7"><div class="ttname"><a href="classImageRepository.html#a709377c62ad48ca8ebb9c77c27fda7f7">ImageRepository::load_image</a></div><div class="ttdeci">std::shared_ptr&lt; Image &gt; load_image(std::string filename)</div><div class="ttdef"><b>Definition:</b> image.cpp:127</div></div>
 <div class="ttc" id="aclassImage_html"><div class="ttname"><a href="classImage.html">Image</a></div><div class="ttdoc">Render an image (.png, .jpeg, etc.)</div><div class="ttdef"><b>Definition:</b> image.h:12</div></div>
-<div class="ttc" id="aclassImage_html_a75c73ec23a01d47cd549b21a2c067f2b"><div class="ttname"><a href="classImage.html#a75c73ec23a01d47cd549b21a2c067f2b">Image::render</a></div><div class="ttdeci">void render(int x, int y, float theta) const</div><div class="ttdef"><b>Definition:</b> image.cpp:39</div></div>
+<div class="ttc" id="aclassImage_html_a75c73ec23a01d47cd549b21a2c067f2b"><div class="ttname"><a href="classImage.html#a75c73ec23a01d47cd549b21a2c067f2b">Image::render</a></div><div class="ttdeci">void render(int x, int y, float theta) const</div><div class="ttdef"><b>Definition:</b> image.cpp:62</div></div>
 <div class="ttc" id="aclassImage_html_abb20937b3256735f0f7549d1b5e9c10d"><div class="ttname"><a href="classImage.html#abb20937b3256735f0f7549d1b5e9c10d">Image::Image</a></div><div class="ttdeci">Image(std::string filename)</div><div class="ttdef"><b>Definition:</b> image.cpp:19</div></div>
+<div class="ttc" id="aimage_8h_html_a77c980d4bb21d2df43235c6ecfd8d5fc"><div class="ttname"><a href="image_8h.html#a77c980d4bb21d2df43235c6ecfd8d5fc">image_repository</a></div><div class="ttdeci">auto image_repository</div><div class="ttdoc">Global variable to hold the image repository.</div><div class="ttdef"><b>Definition:</b> image.h:46</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

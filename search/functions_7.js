@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['image_0',['Image',['../classImage.html#abb20937b3256735f0f7549d1b5e9c10d',1,'Image']]]
+  ['image_0',['Image',['../classImage.html#abb20937b3256735f0f7549d1b5e9c10d',1,'Image']]],
+  ['imagerepository_1',['ImageRepository',['../classImageRepository.html#a3595b2a4eb7d5f2c7ea1d5c86cbfb28b',1,'ImageRepository']]]
 ];
