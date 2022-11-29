@@ -2,9 +2,12 @@
 /// Implementation for menu components
 
 #include <algorithm>
+#include <fstream>
 #include <iostream>
 #include <memory>
+#include <sstream>
 #include <string>
+#include <vector>
 
 #include <FEHLCD.h>
 
@@ -45,6 +48,14 @@ Leaderboard::Leaderboard() {
     box = std::make_unique<UIBox>(
         UIPosition(10, 10, UIPosition::Anchor::TopRight), LCD_WIDTH / 3,
         LCD_HEIGHT - 10 * 2, UIPosition::Anchor::TopRight);
+
+    // read in leaderboard from file
+    std::ifstream leaderboard_csv("leaderboard.csv");
+    std::string name, points;
+    while (getline(leaderboard_csv, name, ',')) {
+        getline(leaderboard_csv, points);
+        add_entry({.name = name, .points = std::stoull(points)});
+    }
 }
 
 void Leaderboard::add_entry(Entry entry) {
@@ -53,6 +64,13 @@ void Leaderboard::add_entry(Entry entry) {
         std::upper_bound(entries.begin(), entries.end(), entry,
                          [](Entry a, Entry b) { return a.points > b.points; }),
         entry);
+
+    // write leaderboard to file
+    std::ofstream leaderboard_csv("leaderboard.csv");
+    std::for_each(
+        entries.begin(), entries.end(), [&leaderboard_csv](Entry& entry) {
+            leaderboard_csv << entry.name << "," << entry.points << "\n";
+        });
 }
 
 void Leaderboard::update() {
