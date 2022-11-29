@@ -88,40 +88,31 @@ void Image::render(int x, int y, float theta) const {
     }
 }
 
-#define ASSET(name)                              \
-    extern char _binary_assets_##name##_start[]; \
-    extern char _binary_assets_##name##_end[];   \
-    const stbi_uc* name = (stbi_uc*)_binary_assets_##name##_start;
-
-#define ASSET_SIZE(name)                    \
-    ((size_t)&_binary_assets_##name##_end - \
-     (size_t)&_binary_assets_##name##_start)
-
-ASSET(apple_png)
-ASSET(apple_left_png)
-ASSET(apple_right_png)
-ASSET(bananas_png)
-ASSET(bananas_left_png)
-ASSET(bananas_right_png)
-ASSET(bomb_png)
+#include "build/assets/apple-left.png.h"
+#include "build/assets/apple-right.png.h"
+#include "build/assets/apple.png.h"
+#include "build/assets/bananas-left.png.h"
+#include "build/assets/bananas-right.png.h"
+#include "build/assets/bananas.png.h"
+#include "build/assets/bomb.png.h"
 
 ImageRepository::ImageRepository() {
     images["assets/apple.png"] =
-        std::make_shared<Image>(apple_png, ASSET_SIZE(apple_png));
-    images["assets/apple-left.png"] =
-        std::make_shared<Image>(apple_left_png, ASSET_SIZE(apple_left_png));
-    images["assets/apple-right.png"] =
-        std::make_shared<Image>(apple_right_png, ASSET_SIZE(apple_right_png));
+        std::make_shared<Image>(assets_apple_png, assets_apple_png_len);
+    images["assets/apple-left.png"] = std::make_shared<Image>(
+        assets_apple_left_png, assets_apple_left_png_len);
+    images["assets/apple-right.png"] = std::make_shared<Image>(
+        assets_apple_right_png, assets_apple_right_png_len);
 
     images["assets/bananas.png"] =
-        std::make_shared<Image>(bananas_png, ASSET_SIZE(bananas_png));
-    images["assets/bananas-left.png"] =
-        std::make_shared<Image>(bananas_left_png, ASSET_SIZE(bananas_left_png));
+        std::make_shared<Image>(assets_bananas_png, assets_bananas_png_len);
+    images["assets/bananas-left.png"] = std::make_shared<Image>(
+        assets_bananas_left_png, assets_bananas_left_png_len);
     images["assets/bananas-right.png"] = std::make_shared<Image>(
-        bananas_right_png, ASSET_SIZE(bananas_right_png));
+        assets_bananas_right_png, assets_bananas_right_png_len);
 
     images["assets/bomb.png"] =
-        std::make_shared<Image>(bomb_png, ASSET_SIZE(bomb_png));
+        std::make_shared<Image>(assets_bomb_png, assets_bomb_png_len);
 }
 
 std::shared_ptr<Image> ImageRepository::load_image(std::string filename) {

@@ -1,10 +1,12 @@
 CC = gcc
 CXX = g++ -std=c++17
 BUILD_DIR := build
-SRCS := $(wildcard src/*.cpp vendor/simulator-libraries/*.cpp vendor/simulator-libraries/*.c assets/*.png)
+SRCS := $(wildcard src/*.cpp vendor/simulator-libraries/*.cpp vendor/simulator-libraries/*.c)
+ASSETS := $(wildcard assets/*.png)
+ASSETS_H := $(patsubst %.png,$(BUILD_DIR)/%.png.h,$(ASSETS))
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
-INC_DIRS := vendor/simulator-libraries vendor/stb
+INC_DIRS := vendor/simulator-libraries vendor/stb .
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 CPPFLAGS := $(INC_FLAGS) -MMD -MP -Os -DOBJC_OLD_DISPATCH_PROTOTYPES -g -Wall
 
@@ -24,17 +26,17 @@ endif
 $(EXEC): $(OBJS)
 	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
 
-$(BUILD_DIR)/%.c.o: %.c
+$(BUILD_DIR)/%.c.o: %.c $(ASSETS_H)
 	mkdir -p $(dir $@)
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
-$(BUILD_DIR)/%.cpp.o: %.cpp
+$(BUILD_DIR)/%.cpp.o: %.cpp $(ASSETS_H)
 	mkdir -p $(dir $@)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
-$(BUILD_DIR)/%.png.o: %.png
+$(BUILD_DIR)/assets/%.png.h: assets/%.png
 	mkdir -p $(dir $@)
-	ld -r -b binary -o $@ $<
+	xxd -i $< > $@
 
 docs:
 	doxygen
