@@ -9,15 +9,22 @@
     flake = false;
   };
 
-  outputs = { self, flake-utils, nixpkgs, nixpkgs-doxygen, feh-proteus-simulator-libraries }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = import nixpkgs { inherit system; };
-        pkgs-doxygen = import nixpkgs-doxygen { inherit system; };
+  outputs = {
+    self,
+    flake-utils,
+    nixpkgs,
+    nixpkgs-doxygen,
+    feh-proteus-simulator-libraries,
+  }:
+    flake-utils.lib.eachDefaultSystem (
+      system: let
+        pkgs = import nixpkgs {inherit system;};
+        pkgs-doxygen = import nixpkgs-doxygen {inherit system;};
 
         buildInputs = with pkgs; [
           xorg.libX11
           libGL
+          unixtools.xxd
         ];
 
         nativeBuildInputs = with pkgs; [
@@ -25,8 +32,7 @@
         ];
 
         name = "game";
-      in
-      rec {
+      in rec {
         devShells.default = pkgs.mkShell {
           inherit buildInputs nativeBuildInputs;
           packages = with pkgs; [
