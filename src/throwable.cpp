@@ -53,12 +53,17 @@ bool collide_line_circle(Vector2 l1,
                          Vector2 c,
                          float r,
                          Vector2& ret) {
-    // // is either end INSIDE the circle?
-    // // if so, return true immediately
-    // bool inside_1 = collide_point_circle(l1, c, r);
-    // bool inside_2 = collide_point_circle(l2, c, r);
-    // if (inside_1 || inside_2)
-    //     return true;
+    // is either end INSIDE the circle?
+    // if so, return true immediately
+    ret = l1 - c;
+    bool inside_1 = collide_point_circle(l1, c, r);
+    if (inside_1)
+        return true;
+
+    ret = l2 - c;
+    bool inside_2 = collide_point_circle(l2, c, r);
+    if (inside_2)
+        return true;
 
     // get the length of the line
     float line_length = Vector2::distance(l1, l2);
