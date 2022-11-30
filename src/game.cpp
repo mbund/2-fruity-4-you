@@ -16,6 +16,8 @@
 #include "ui.h"
 #include "util.h"
 
+#define COMBO_DUR 2.0
+
 Game::Game() {
     exit_button = std::make_unique<UIButton>(
         "X", UIPosition(10, 10, UIPosition::TopRight));
@@ -78,12 +80,16 @@ void Game::update(double alpha) {
         LCD.WriteAt(0, 10, 10);
         LCD.WriteAt(time_left, 10+FONT_GLYPH_WIDTH, 10);
     }
-    if(TimeNow()-comboTime>=2.0){
+    if(TimeNow()-comboTime>COMBO_DUR){
         combo=0;
     }
 
-    LCD.SetFontColor(ORANGERED);
-    LCD.WriteAt((int)(game->combo), LCD_WIDTH-10-FONT_GLYPH_WIDTH*(int)(game->combo/10+1), 10);
+    if(game->combo !=0 ){
+        LCD.SetFontColor(ORANGERED);
+        LCD.WriteAt((int)(game->combo), LCD_WIDTH-10-FONT_GLYPH_WIDTH*(int)(game->combo/10+1), 10);
+        LCD.DrawHorizontalLine(10+FONT_GLYPH_HEIGHT+4,LCD_WIDTH-10, LCD_WIDTH-10+FONT_GLYPH_WIDTH*2/COMBO_DUR*(TimeNow()-comboTime-COMBO_DUR));
+    }
+
 
     int randSpawn = rand_range(0, 120 + 1.5*bomb_probability);
     float randX = rand_range(20, LCD_WIDTH - 20);

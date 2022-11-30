@@ -316,8 +316,9 @@ void Bomb::collision(Vector2 p1, Vector2 p2) {
 
         LCD.SetFontColor(BLACK);
 
-        for (uint64_t i = 0; i < LCD_HEIGHT; i++) {
+        for (uint64_t i = 0; i < LCD_HEIGHT; i+=2) {
             LCD.DrawHorizontalLine(i, 0, LCD_WIDTH);
+            LCD.DrawHorizontalLine(i+1, 0, LCD_WIDTH);
             LCD.Update();
         }
     }
