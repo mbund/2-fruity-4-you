@@ -89,14 +89,16 @@ Inheritance diagram for Fruit:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a33dc46377ba391de894d6246a3c41fc6"><td class="memItemLeft" align="right" valign="top"><a id="a33dc46377ba391de894d6246a3c41fc6" name="a33dc46377ba391de894d6246a3c41fc6"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Fruit</b> (std::string image_path, <a class="el" href="structVector2.html">Vector2</a> pos, float mass)</td></tr>
-<tr class="memdesc:a33dc46377ba391de894d6246a3c41fc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
-<tr class="separator:a33dc46377ba391de894d6246a3c41fc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1ead6279d1e45eae529b7d9127a20bf"><td class="memItemLeft" align="right" valign="top"><a id="ad1ead6279d1e45eae529b7d9127a20bf" name="ad1ead6279d1e45eae529b7d9127a20bf"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Fruit</b> (std::string image_name, float radius, <a class="el" href="structVector2.html">Vector2</a> pos, float mass)</td></tr>
+<tr class="memdesc:ad1ead6279d1e45eae529b7d9127a20bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
+<tr class="separator:ad1ead6279d1e45eae529b7d9127a20bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07cda66fcec88c67396eeea8a40b44b4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFruit.html#a07cda66fcec88c67396eeea8a40b44b4">update</a> (double alpha)</td></tr>
 <tr class="separator:a07cda66fcec88c67396eeea8a40b44b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace26c032af3018f912dbaf4f497e9301"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFruit.html#ace26c032af3018f912dbaf4f497e9301">physics_update</a> (double t, double dt)</td></tr>
 <tr class="separator:ace26c032af3018f912dbaf4f497e9301"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1899486a44449edb02a1e4f8a900bdad"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFruit.html#a1899486a44449edb02a1e4f8a900bdad">collision</a> (<a class="el" href="structVector2.html">Vector2</a> p1, <a class="el" href="structVector2.html">Vector2</a> p2)</td></tr>
+<tr class="separator:a1899486a44449edb02a1e4f8a900bdad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23c209f4df362eb309ce8a599d7f23e1"><td class="memItemLeft" align="right" valign="top"><a id="a23c209f4df362eb309ce8a599d7f23e1" name="a23c209f4df362eb309ce8a599d7f23e1"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>get_should_be_removed</b> () const</td></tr>
 <tr class="memdesc:a23c209f4df362eb309ce8a599d7f23e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter for if the fruit should be destroyed. <br /></td></tr>
@@ -118,6 +120,12 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:ad87d2a7c2719795ecc81715785ac9a9a"><td class="memItemLeft" align="right" valign="top"><a id="ad87d2a7c2719795ecc81715785ac9a9a" name="ad87d2a7c2719795ecc81715785ac9a9a"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>should_be_removed</b></td></tr>
 <tr class="separator:ad87d2a7c2719795ecc81715785ac9a9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afee7c2a2f743452e040cfa1da52de969"><td class="memItemLeft" align="right" valign="top"><a id="afee7c2a2f743452e040cfa1da52de969" name="afee7c2a2f743452e040cfa1da52de969"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>radius</b></td></tr>
+<tr class="separator:afee7c2a2f743452e040cfa1da52de969"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12f6389bd94f3a537515e2a6ca4b62c8"><td class="memItemLeft" align="right" valign="top"><a id="a12f6389bd94f3a537515e2a6ca4b62c8" name="a12f6389bd94f3a537515e2a6ca4b62c8"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>image_name</b></td></tr>
+<tr class="separator:a12f6389bd94f3a537515e2a6ca4b62c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add51be76bafac308f959b13c31da23dd"><td class="memItemLeft" align="right" valign="top"><a id="add51be76bafac308f959b13c31da23dd" name="add51be76bafac308f959b13c31da23dd"></a>
 std::shared_ptr&lt; <a class="el" href="classImage.html">Image</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>image</b></td></tr>
 <tr class="separator:add51be76bafac308f959b13c31da23dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,6 +158,51 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>mass</b></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Throwable fruit. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a1899486a44449edb02a1e4f8a900bdad" name="a1899486a44449edb02a1e4f8a900bdad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1899486a44449edb02a1e4f8a900bdad">&#9670;&nbsp;</a></span>collision()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Fruit::collision </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVector2.html">Vector2</a>&#160;</td>
+          <td class="paramname"><em>p1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVector2.html">Vector2</a>&#160;</td>
+          <td class="paramname"><em>p2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Detect collision between the apple and a line </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p1</td><td>first point on line </td></tr>
+    <tr><td class="paramname">p2</td><td>second point on line </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="classBomb.html#af91300addd1df15ca0e1137279b9ba28">Bomb</a>.</p>
+
+</div>
+</div>
 <a id="ace26c032af3018f912dbaf4f497e9301" name="ace26c032af3018f912dbaf4f497e9301"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ace26c032af3018f912dbaf4f497e9301">&#9670;&nbsp;</a></span>physics_update()</h2>
 
@@ -226,6 +279,8 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>mass</b></td></tr>
 </dl>
 
 <p>Reimplemented from <a class="el" href="classPhysicsObject.html#a1a73bdbbe60f0413f4f5f67255836936">PhysicsObject</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classBomb.html#af2d2cef10c5b376a4b7962e69911dac3">Bomb</a>.</p>
 
 </div>
 </div>
