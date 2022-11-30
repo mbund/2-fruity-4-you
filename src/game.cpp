@@ -71,22 +71,29 @@ void Game::update(double alpha) {
     LCD.SetFontColor(WHITE);
     LCD.WriteAt(num.c_str(), 10, LCD_HEIGHT - FONT_GLYPH_HEIGHT - 10);
 
-    if (rand_range(0.0f, 1.0f) < 0.025f) {
-        Vector2 pos = {(float)LCD_WIDTH / 2, LCD_HEIGHT + 20};
-        auto apple = std::make_unique<Apple>(pos);
-        apple->add_force(
-            {rand_range(-80000, 80000), rand_range(-360000, -260000)});
-        apples.push_back(std::move(apple));
+    int randSpawn = rand_range(0, 80 + bomb_probability);
+    float randX = rand_range(20, LCD_WIDTH - 20);
 
-        auto banana = std::make_unique<Bananas>(pos);
-        banana->add_force(
-            {rand_range(-80000, 80000), rand_range(-360000, -260000)});
-        bananas.push_back(std::move(banana));
+    float randForce = rand_range(-50, 80000);
 
+    if (randX > LCD_WIDTH / 2)
+        randForce *= -1.0;
+
+    Vector2 pos = {randX, LCD_HEIGHT + 20};
+    Vector2 first_force = {randForce, rand_range(-360000, -260000)};
+
+    if (randSpawn > 80 - 2) {
         auto bomb = std::make_unique<Bomb>(pos);
-        bomb->add_force(
-            {rand_range(-80000, 80000), rand_range(-360000, -260000)});
+        bomb->add_force(first_force);
         bombs.push_back(std::move(bomb));
+    } else if (randSpawn == 0) {
+        auto apple = std::make_unique<Apple>(pos);
+        apple->add_force(first_force);
+        apples.push_back(std::move(apple));
+    } else if (randSpawn == 1) {
+        auto banana = std::make_unique<Bananas>(pos);
+        banana->add_force(first_force);
+        bananas.push_back(std::move(banana));
     }
 
     remove_if_foreach(apples);
