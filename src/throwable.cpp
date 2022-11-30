@@ -228,6 +228,10 @@ void Bomb::collision(Vector2 p1, Vector2 p2) {
 
         // boom boom explode
         for (int i = 3; i < 100; i++) {
+            LCD.SetFontColor(DARKGOLDENROD);
+            LCD.FillCircle(position.x + rand_range(-4 - i, 4 + i),
+                           position.y + rand_range(-4 - i, 4 + i),
+                           rand_range(1, i));
             LCD.SetFontColor(RED);
             LCD.FillCircle(position.x + rand_range(-4 - i, 4 + i),
                            position.y + rand_range(-4 - i, 4 + i),
@@ -240,30 +244,10 @@ void Bomb::collision(Vector2 p1, Vector2 p2) {
             LCD.FillCircle(position.x + rand_range(-4 - i, 4 + i),
                            position.y + rand_range(-4 - i, 4 + i),
                            rand_range(1, i));
-            LCD.SetFontColor(DARKGOLDENROD);
-            LCD.FillCircle(position.x + rand_range(-4 - i, 4 + i),
-                           position.y + rand_range(-4 - i, 4 + i),
-                           rand_range(1, i));
-            Sleep(4 / 100.0);
+
+            Sleep(2.0 / 100.0);
         }
-
-        // screen scroll
-        double time_paused2 = TimeNow();
-        double percent = 0.0;
-        uint64_t max = LCD_WIDTH * LCD_HEIGHT;
-        uint64_t travel;
-
-        LCD.SetFontColor(BLACK);
-
-        while (percent < 1.0) {
-            percent = (TimeNow() - time_paused2) / 2.0;
-            travel = max * percent;
-            for (size_t i = 0; i <= travel; i++) {
-                LCD.DrawPixel((int)i % LCD_WIDTH, (int)i / LCD_WIDTH);
-                printf("%d %d", i % LCD_WIDTH, i / LCD_WIDTH);
-                LCD.DrawHorizontalLine(LCD_HEIGHT * percent, 0, LCD_WIDTH);
-            }
-        }
+        
     }
 }
 
