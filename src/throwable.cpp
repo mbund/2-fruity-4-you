@@ -263,7 +263,9 @@ void Fruit::collision(Vector2 p1, Vector2 p2) {
                                          radius, position, force_right, mass);
         game->fruit_shards.push_back(std::move(shard_right));
 
-        game->points++;
+        game->points+=game->multiplier+game->combo;
+        game->combo++;
+        game->comboTime=TimeNow();
     }
 }
 

@@ -40,13 +40,15 @@ class Game : public Scene {
 
     uint32_t points;
     uint32_t combo;
+    uint32_t comboTime;
     bool paused;
     double t;
     double time_paused;
+    float multiplier;
 
    private:
     float bomb_probability;
-    float multiplier;
+    
     double time_started;
     Knife knife;
     std::unique_ptr<UIButton> exit_button;

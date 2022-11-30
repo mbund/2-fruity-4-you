@@ -72,15 +72,20 @@ void Game::update(double alpha) {
     LCD.WriteAt(num.c_str(), 10, LCD_HEIGHT - FONT_GLYPH_HEIGHT - 10);
     
     int time_left= (int)(30-(TimeNow()-time_started))+1;
-    
     if(time_left>=10)
         LCD.WriteAt(time_left, 10, 10);
     else{
         LCD.WriteAt(0, 10, 10);
         LCD.WriteAt(time_left, 10+FONT_GLYPH_WIDTH, 10);
     }
+    if(TimeNow()-comboTime>=2.0){
+        combo=0;
+    }
 
-    int randSpawn = rand_range(0, 80 + bomb_probability);
+    LCD.SetFontColor(ORANGERED);
+    LCD.WriteAt((int)(game->combo), LCD_WIDTH-10-FONT_GLYPH_WIDTH*(int)(game->combo/10+1), 10);
+
+    int randSpawn = rand_range(0, 120 + 1.5*bomb_probability);
     float randX = rand_range(20, LCD_WIDTH - 20);
     float randForce = rand_range(-50, 80000);
     paused =(30<=TimeNow()-time_started);
@@ -91,7 +96,7 @@ void Game::update(double alpha) {
     Vector2 pos = {randX, LCD_HEIGHT + 20};
     Vector2 first_force = {randForce, rand_range(-360000, -260000)};
 
-    if (randSpawn > 80 - 1) {
+    if (randSpawn > 120 - 2) {
         auto bomb = std::make_unique<Bomb>(pos);
         bomb->add_force(first_force);
         bombs.push_back(std::move(bomb));
@@ -100,6 +105,14 @@ void Game::update(double alpha) {
         apple->add_force(first_force);
         apples.push_back(std::move(apple));
     } else if (randSpawn == 1) {
+        auto banana = std::make_unique<Bananas>(pos);
+        banana->add_force(first_force);
+        bananas.push_back(std::move(banana));
+    } else if(randSpawn==2){
+        auto apple = std::make_unique<Apple>(pos);
+        apple->add_force(first_force);
+        apples.push_back(std::move(apple));
+    } else if(randSpawn ==3){
         auto banana = std::make_unique<Bananas>(pos);
         banana->add_force(first_force);
         bananas.push_back(std::move(banana));
