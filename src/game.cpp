@@ -16,7 +16,7 @@
 #include "ui.h"
 #include "util.h"
 
-#define PROB_CONSTANT 60
+
 
 Game::Game() {
     exit_button = std::make_unique<UIButton>(
@@ -74,28 +74,34 @@ void Game::update(double alpha) {
     LCD.WriteAt(num.c_str(), 10, LCD_HEIGHT - FONT_GLYPH_HEIGHT - 10);
 
 
-    int  randSpawn = rand_range(0,PROB_CONSTANT+bomb_probability);
-    int randForce =rand_range(-80000, 80000);
-    Vector2 force = {randForce, rand_range(-360000, -260000)};
-    Vector2 pos = {-1*LCD_WIDTH*randForce/80000,LCD_HEIGHT-20};
+    int  randSpawn = rand_range(0,80+bomb_probability);
+    float randX= rand_range(20,LCD_WIDTH-20);
+    
+    float randForce=rand_range(-50,80000);
+    
+    if(randX>LCD_WIDTH/2)
+        randForce*=-1.0;
+    
+    Vector2 pos = {randX, LCD_HEIGHT + 20};
+    Vector2 first_force ={randForce, rand_range(-360000, -260000)};
 
 
-    if(randSpawn>=PROB_CONSTANT){
+    if(randSpawn>80-2){
         auto bomb = std::make_unique<Bomb>(pos, 8);
             bomb->add_force(
-                force);
+                first_force);
             bombs.push_back(std::move(bomb));
     }
     else if(randSpawn==0){
         auto apple = std::make_unique<Apple>(pos, 8);
         apple->add_force(
-            force);
+            first_force);
         apples.push_back(std::move(apple));
     }
     else if(randSpawn==1){
         auto banana = std::make_unique<Bananas>(pos, 8);
         banana->add_force(
-            force);
+            first_force);
         bananas.push_back(std::move(banana));
     }
 
