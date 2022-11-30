@@ -84,8 +84,11 @@ void Game::update(double alpha) {
         combo=0;
     }
 
+    int color1=ORANGERED;
+    int color2=0x2145A8+game->combo*0x060000;
+
     if(game->combo !=0 ){
-        LCD.SetFontColor(ORANGERED);
+        LCD.SetFontColor(std::min(color1, color2));
         LCD.WriteAt((int)(game->combo), LCD_WIDTH-10-FONT_GLYPH_WIDTH*(int)(game->combo/10+1), 10);
         LCD.DrawHorizontalLine(10+FONT_GLYPH_HEIGHT+4,LCD_WIDTH-10, LCD_WIDTH-10+FONT_GLYPH_WIDTH*2/COMBO_DUR*(TimeNow()-comboTime-COMBO_DUR));
     }
