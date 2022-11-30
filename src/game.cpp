@@ -70,11 +70,20 @@ void Game::update(double alpha) {
     auto num = std::to_string(points);
     LCD.SetFontColor(WHITE);
     LCD.WriteAt(num.c_str(), 10, LCD_HEIGHT - FONT_GLYPH_HEIGHT - 10);
+    
+    int time_left= (int)(30-(TimeNow()-time_started))+1;
+    
+    if(time_left>=10)
+        LCD.WriteAt(time_left, 10, 10);
+    else{
+        LCD.WriteAt(0, 10, 10);
+        LCD.WriteAt(time_left, 10+FONT_GLYPH_WIDTH, 10);
+    }
 
     int randSpawn = rand_range(0, 80 + bomb_probability);
     float randX = rand_range(20, LCD_WIDTH - 20);
-
     float randForce = rand_range(-50, 80000);
+    paused =(30<=TimeNow()-time_started);
 
     if (randX > LCD_WIDTH / 2)
         randForce *= -1.0;
@@ -82,7 +91,7 @@ void Game::update(double alpha) {
     Vector2 pos = {randX, LCD_HEIGHT + 20};
     Vector2 first_force = {randForce, rand_range(-360000, -260000)};
 
-    if (randSpawn > 80 - 2) {
+    if (randSpawn > 80 - 1) {
         auto bomb = std::make_unique<Bomb>(pos);
         bomb->add_force(first_force);
         bombs.push_back(std::move(bomb));
@@ -110,6 +119,7 @@ void Game::update(double alpha) {
 
         update_foreach(alpha, fruit_shards);
     }
+    
 
     // screen wipe clear the screen
     if (paused) {
