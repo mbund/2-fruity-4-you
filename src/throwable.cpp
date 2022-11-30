@@ -48,13 +48,17 @@ bool collide_line_point(Vector2 l1, Vector2 l2, Vector2 p) {
 }
 
 // LINE/CIRCLE
-bool collide_line_circle(Vector2 l1, Vector2 l2, Vector2 c, float r) {
-    // is either end INSIDE the circle?
-    // if so, return true immediately
-    bool inside_1 = collide_point_circle(l1, c, r);
-    bool inside_2 = collide_point_circle(l2, c, r);
-    if (inside_1 || inside_2)
-        return true;
+bool collide_line_circle(Vector2 l1,
+                         Vector2 l2,
+                         Vector2 c,
+                         float r,
+                         Vector2& ret) {
+    // // is either end INSIDE the circle?
+    // // if so, return true immediately
+    // bool inside_1 = collide_point_circle(l1, c, r);
+    // bool inside_2 = collide_point_circle(l2, c, r);
+    // if (inside_1 || inside_2)
+    //     return true;
 
     // get the length of the line
     float line_length = Vector2::distance(l1, l2);
@@ -77,6 +81,7 @@ bool collide_line_circle(Vector2 l1, Vector2 l2, Vector2 c, float r) {
     // get distance to closest point
     float distance = Vector2::distance({closest_x, closest_y}, c);
 
+    ret = Vector2(closest_x, closest_y) - c;
     return distance <= r;
 }
 
@@ -121,10 +126,10 @@ PhysicsObject::PhysicsObject(Vector2 pos, float mass)
     : prev_position(pos), current_position(pos), position(pos), mass(mass) {}
 
 void PhysicsObject::update(double alpha) {
-    // position = current_position * alpha + prev_position * (1.0 - alpha);
-    // velocity = current_velocity * alpha + prev_velocity * (1.0 - alpha);
-    position = current_position;
-    velocity = current_velocity;
+    position = current_position * alpha + prev_position * (1.0 - alpha);
+    velocity = current_velocity * alpha + prev_velocity * (1.0 - alpha);
+    // position = current_position;
+    // velocity = current_velocity;
 }
 
 void PhysicsObject::physics_update(double t, double dt) {
@@ -143,23 +148,25 @@ void PhysicsObject::add_force(const Vector2& force) {
     acceleration += force / mass;
 }
 
-Fruit::Fruit(std::string image_path, Vector2 pos, float mass)
+Fruit::Fruit(std::string image_name, float radius, Vector2 pos, float mass)
     : PhysicsObject(pos, mass),
       should_be_removed(false),
-      image(image_repository->load_image(image_path)) {}
+      radius(radius),
+      image_name(image_name),
+      image(image_repository->load_image("assets/" + image_name + ".png")) {}
 
 void Fruit::update(double alpha) {
-    if (game->paused == false) {
-        PhysicsObject::update(alpha);
+    if (game->paused)
+        return;
 
-        if (position.y - mass > LCD_HEIGHT + 100) {
-            should_be_removed = true;
-        }
+    PhysicsObject::update(alpha);
 
-        image->render(
-            position.x, position.y,
-            game->t * PI * std::clamp(velocity.x / 10.0f, -2.0f, 2.0f));
+    if (position.y - radius > LCD_HEIGHT + 100) {
+        should_be_removed = true;
     }
+
+    image->render(position.x, position.y,
+                  game->t * PI * std::clamp(velocity.x / 10.0f, -2.0f, 2.0f));
 }
 
 bool Fruit::get_should_be_removed() const {
@@ -173,97 +180,97 @@ void Fruit::physics_update(double t, double dt) {
     PhysicsObject::physics_update(t, dt);
 }
 
-Apple::Apple(Vector2 pos, float mass) : Fruit("assets/apple.png", pos, mass) {}
-
-void Apple::collision(Vector2 p1, Vector2 p2) {
-    if (!should_be_removed && collide_line_circle(p1, p2, position, mass)) {
+void Fruit::collision(Vector2 p1, Vector2 p2) {
+    Vector2 ret;
+    if (!should_be_removed &&
+        collide_line_circle(p1, p2, position, radius, ret)) {
         should_be_removed = true;
 
-        Vector2 force_left = {rand_range(-100000, -40000),
-                              rand_range(160000, -160000)};
-        auto shard_left = std::make_unique<FruitShard>(
-            "assets/apple-left.png", mass, position, force_left);
+        // float dot = ret.normalize().dot(Vector2(1, 0));
+        // std::cout << ret.x << " " << ret.y << "\n";
+        Vector2 perp = {-ret.y, ret.x};
+        Vector2 force_left = perp.normalize() * 100000;
+
+        // Vector2 force_left = {rand_range(-100000, -40000),
+        //                       rand_range(160000, -160000)};
+
+        auto shard_left =
+            std::make_unique<FruitShard>("assets/" + image_name + "-left.png",
+                                         radius, position, force_left, mass);
         game->fruit_shards.push_back(std::move(shard_left));
 
         Vector2 force_right = {-force_left.x, -force_left.y};
-        auto shard_right = std::make_unique<FruitShard>(
-            "assets/apple-right.png", mass, position, force_right);
+        auto shard_right =
+            std::make_unique<FruitShard>("assets/" + image_name + "-right.png",
+                                         radius, position, force_right, mass);
         game->fruit_shards.push_back(std::move(shard_right));
 
         game->points++;
     }
 }
 
-Bananas::Bananas(Vector2 pos, float mass)
-    : Fruit("assets/bananas.png", pos, mass) {}
+Apple::Apple(Vector2 pos) : Fruit("apple", 12, pos, 10) {}
+Bananas::Bananas(Vector2 pos) : Fruit("bananas", 12, pos, 10) {}
 
-void Bananas::collision(Vector2 p1, Vector2 p2) {
-    if (!should_be_removed && collide_line_circle(p1, p2, position, mass)) {
-        should_be_removed = true;
+Bomb::Bomb(Vector2 pos) : Fruit("bomb", 12, pos, 10) {}
 
-        Vector2 force_left = {rand_range(-100000, -40000),
-                              rand_range(160000, -160000)};
-        auto shard_left = std::make_unique<FruitShard>(
-            "assets/bananas-left.png", mass, position, force_left);
-        game->fruit_shards.push_back(std::move(shard_left));
+void Bomb::update(double alpha) {
+    if (game->paused)
+        return;
 
-        Vector2 force_right = {-force_left.x, -force_left.y};
-        auto shard_right = std::make_unique<FruitShard>(
-            "assets/bananas-right.png", mass, position, force_right);
-        game->fruit_shards.push_back(std::move(shard_right));
+    Fruit::update(alpha);
 
-        game->points++;
-    }
+    LCD.SetFontColor(RED);
+    draw_circle(position.x, position.y, radius + 5);
 }
-
-Bomb::Bomb(Vector2 pos, float mass) : Fruit("assets/bomb.png", pos, mass) {}
 
 void Bomb::collision(Vector2 p1, Vector2 p2) {
-    if (collide_line_circle(p1, p2, position, mass)) {
-        LCD.SetFontColor(INDIANRED);
-        LCD.FillCircle(position.x, position.y, 10);
+    // if (collide_line_circle(p1, p2, position, radius)) {
+    //     LCD.SetFontColor(INDIANRED);
+    //     LCD.FillCircle(position.x, position.y, 10);
 
-        game->paused = true;
-        game->time_paused = TimeNow();
+    //     game->paused = true;
+    //     game->time_paused = TimeNow();
 
-        // boom boom explode
-        for (int i = 3; i < 100; i++) {
-            LCD.SetFontColor(DARKGOLDENROD);
-            LCD.FillCircle(position.x + rand_range(-4 - i, 4 + i),
-                           position.y + rand_range(-4 - i, 4 + i),
-                           rand_range(1, i));
-            LCD.SetFontColor(RED);
-            LCD.FillCircle(position.x + rand_range(-4 - i, 4 + i),
-                           position.y + rand_range(-4 - i, 4 + i),
-                           rand_range(1, i));
-            LCD.SetFontColor(GRAY);
-            LCD.FillCircle(position.x + rand_range(-4 - i, 4 + i),
-                           position.y + rand_range(-4 - i, 4 + i),
-                           rand_range(1, i));
-            LCD.SetFontColor(FIREBRICK);
-            LCD.FillCircle(position.x + rand_range(-4 - i, 4 + i),
-                           position.y + rand_range(-4 - i, 4 + i),
-                           rand_range(1, i));
+    //     // boom boom explode
+    //     for (int i = 3; i < 100; i++) {
+    //         LCD.SetFontColor(DARKGOLDENROD);
+    //         LCD.FillCircle(position.x + rand_range(-4 - i, 4 + i),
+    //                        position.y + rand_range(-4 - i, 4 + i),
+    //                        rand_range(1, i));
+    //         LCD.SetFontColor(RED);
+    //         LCD.FillCircle(position.x + rand_range(-4 - i, 4 + i),
+    //                        position.y + rand_range(-4 - i, 4 + i),
+    //                        rand_range(1, i));
+    //         LCD.SetFontColor(GRAY);
+    //         LCD.FillCircle(position.x + rand_range(-4 - i, 4 + i),
+    //                        position.y + rand_range(-4 - i, 4 + i),
+    //                        rand_range(1, i));
+    //         LCD.SetFontColor(FIREBRICK);
+    //         LCD.FillCircle(position.x + rand_range(-4 - i, 4 + i),
+    //                        position.y + rand_range(-4 - i, 4 + i),
+    //                        rand_range(1, i));
 
-            Sleep(2.0 / 100.0);
-        }
+    //         Sleep(2.0 / 100.0);
+    //     }
 
-        LCD.SetFontColor(BLACK);
-        
-        for(uint64_t i=0; i<LCD_HEIGHT;i++){
-            LCD.DrawHorizontalLine(i, 0, LCD_WIDTH);
-            LCD.Update();
-        }
-        
-    }
+    //     LCD.SetFontColor(BLACK);
+
+    //     for (uint64_t i = 0; i < LCD_HEIGHT; i++) {
+    //         LCD.DrawHorizontalLine(i, 0, LCD_WIDTH);
+    //         LCD.Update();
+    //     }
+    // }
 }
 
 FruitShard::FruitShard(std::string image_path,
-                       float mass,
+                       float radius,
                        Vector2 pos,
-                       Vector2 force)
+                       Vector2 force,
+                       float mass)
     : PhysicsObject(pos, mass),
       should_be_removed(false),
+      radius(radius),
       image(image_repository->load_image(image_path)) {
     add_force(force);
 }
@@ -271,7 +278,7 @@ FruitShard::FruitShard(std::string image_path,
 void FruitShard::update(double alpha) {
     PhysicsObject::update(alpha);
 
-    if (position.y - mass > LCD_HEIGHT + 100) {
+    if (position.y - radius > LCD_HEIGHT + 100) {
         should_be_removed = true;
     }
 

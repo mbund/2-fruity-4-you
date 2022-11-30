@@ -73,17 +73,17 @@ void Game::update(double alpha) {
 
     if (rand_range(0.0f, 1.0f) < 0.025f) {
         Vector2 pos = {(float)LCD_WIDTH / 2, LCD_HEIGHT + 20};
-        auto apple = std::make_unique<Apple>(pos, 8);
+        auto apple = std::make_unique<Apple>(pos);
         apple->add_force(
             {rand_range(-80000, 80000), rand_range(-360000, -260000)});
         apples.push_back(std::move(apple));
 
-        auto banana = std::make_unique<Bananas>(pos, 8);
+        auto banana = std::make_unique<Bananas>(pos);
         banana->add_force(
             {rand_range(-80000, 80000), rand_range(-360000, -260000)});
         bananas.push_back(std::move(banana));
 
-        auto bomb = std::make_unique<Bomb>(pos, 8);
+        auto bomb = std::make_unique<Bomb>(pos);
         bomb->add_force(
             {rand_range(-80000, 80000), rand_range(-360000, -260000)});
         bombs.push_back(std::move(bomb));

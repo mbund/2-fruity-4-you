@@ -43,6 +43,9 @@ struct Vector2 {
     float x = 0;
     float y = 0;
 
+    Vector2();
+    Vector2(float x, float y);
+
     Vector2& operator+=(const Vector2& b);
     Vector2& operator+=(float b);
 
@@ -74,6 +77,7 @@ struct Vector2 {
     float distance(const Vector2& b) const;
 
     float magnitude() const;
+    Vector2 normalize() const;
 };
 
 /// Global varaible for what the current scene is

@@ -24,6 +24,9 @@ void draw_pixel_in_bounds(int x, int y) {
         LCD.DrawPixel(x, y);
 }
 
+Vector2::Vector2() : x(0), y(0) {}
+Vector2::Vector2(float x, float y) : x(x), y(y) {}
+
 Vector2& Vector2::operator+=(const Vector2& b) {
     x += b.x;
     y += b.y;
@@ -138,4 +141,10 @@ float Vector2::distance(const Vector2& b) const {
 
 float Vector2::magnitude() const {
     return std::sqrt(x * x + y * y);
+}
+
+Vector2 Vector2::normalize() const {
+    Vector2 copy(*this);
+    copy /= copy.magnitude();
+    return copy;
 }

@@ -42,7 +42,7 @@ class PhysicsObject {
 class Fruit : public PhysicsObject {
    public:
     /// Default constructor
-    Fruit(std::string image_path, Vector2 pos, float mass);
+    Fruit(std::string image_name, float radius, Vector2 pos, float mass);
 
     /// Update and render the fruit
     /// @param alpha physics alpha, for interpolation between previous state and
@@ -54,11 +54,18 @@ class Fruit : public PhysicsObject {
     /// @param dt physics timestep
     virtual void physics_update(double t, double dt);
 
+    /// Detect collision between the apple and a line
+    /// @param p1 first point on line
+    /// @param p2 second point on line
+    virtual void collision(Vector2 p1, Vector2 p2);
+
     /// Getter for if the fruit should be destroyed
     virtual bool get_should_be_removed() const;
 
    protected:
     bool should_be_removed;
+    float radius;
+    std::string image_name;
     std::shared_ptr<Image> image;
 };
 
@@ -66,31 +73,26 @@ class Fruit : public PhysicsObject {
 class Apple : public Fruit {
    public:
     /// Default constructor
-    Apple(Vector2 pos, float mass);
-
-    /// Detect collision between the apple and a line
-    /// @param p1 first point on line
-    /// @param p2 second point on line
-    void collision(Vector2 p1, Vector2 p2);
+    Apple(Vector2 pos);
 };
 
 /// Throwable bananas
 class Bananas : public Fruit {
    public:
     /// Default constructor
-    Bananas(Vector2 pos, float mass);
-
-    /// Detect collision between the bananas and a line
-    /// @param p1 first point on line
-    /// @param p2 second point on line
-    void collision(Vector2 p1, Vector2 p2);
+    Bananas(Vector2 pos);
 };
 
 /// Throwable bomb
 class Bomb : public Fruit {
    public:
     /// Default constructor
-    Bomb(Vector2 pos, float mass);
+    Bomb(Vector2 pos);
+
+    /// Update and render the fruit shard
+    /// @param alpha physics alpha, for interpolation between previous state and
+    /// next state
+    void update(double alpha);
 
     /// Detect collision between the bomb and a line
     /// @param p1 first point on line
@@ -102,7 +104,11 @@ class Bomb : public Fruit {
 class FruitShard : public PhysicsObject {
    public:
     /// Default constructor
-    FruitShard(std::string image_path, float mass, Vector2 pos, Vector2 force);
+    FruitShard(std::string image_path,
+               float radius,
+               Vector2 pos,
+               Vector2 force,
+               float mass);
 
     /// Update and render the fruit shard
     /// @param alpha physics alpha, for interpolation between previous state and
@@ -119,5 +125,6 @@ class FruitShard : public PhysicsObject {
 
    private:
     bool should_be_removed;
+    float radius;
     std::shared_ptr<Image> image;
 };
