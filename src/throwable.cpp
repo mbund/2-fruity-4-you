@@ -247,6 +247,13 @@ void Bomb::collision(Vector2 p1, Vector2 p2) {
 
             Sleep(2.0 / 100.0);
         }
+
+        LCD.SetFontColor(BLACK);
+        
+        for(uint64_t i=0; i<LCD_HEIGHT;i++){
+            LCD.DrawHorizontalLine(i, 0, LCD_WIDTH);
+            LCD.Update();
+        }
         
     }
 }
