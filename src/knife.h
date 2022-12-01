@@ -41,7 +41,6 @@ class Knife {
 
     /// colors
     /// red, orange, yellow, green, blue, violet, indigo
-    unsigned int colors[7] = {0xCD5C5C, 0xFFA500, 0xFFFF00, 0x008000,
-                              0x0000FF, 0x4B0082, 0xEE82EE};
+    unsigned int colors[7] = {RED,  ORANGE, YELLOW,  GREEN,  BLUE, VIOLET, INDIGO};
     int current_color;
 };

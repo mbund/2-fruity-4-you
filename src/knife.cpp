@@ -42,6 +42,10 @@ void Knife::draw_line(Point a, Point b) {
             current_color = 0;
         }
         LCD.DrawPixel(x, y);
+        LCD.DrawPixel(x+1, y);
+        LCD.DrawPixel(x-1, y);
+        LCD.DrawPixel(x, y+1);
+        LCD.DrawPixel(x, y-1);
 
         for (; x < xe; x++) {
             if (px < 0) {
@@ -60,6 +64,10 @@ void Knife::draw_line(Point a, Point b) {
                 current_color = 0;
             }
             LCD.DrawPixel(x, y);
+        LCD.DrawPixel(x+1, y);
+        LCD.DrawPixel(x-1, y);
+        LCD.DrawPixel(x, y+1);
+        LCD.DrawPixel(x, y-1);
         }
     } else {
         if (dy >= 0) {
@@ -78,6 +86,10 @@ void Knife::draw_line(Point a, Point b) {
             current_color = 0;
         }
         LCD.DrawPixel(x, y);
+        LCD.DrawPixel(x+1, y);
+        LCD.DrawPixel(x-1, y);
+        LCD.DrawPixel(x, y+1);
+        LCD.DrawPixel(x, y-1);
 
         for (; y < ye; y++) {
             if (py <= 0) {
@@ -96,6 +108,10 @@ void Knife::draw_line(Point a, Point b) {
                 current_color = 0;
             }
             LCD.DrawPixel(x, y);
+        LCD.DrawPixel(x+1, y);
+        LCD.DrawPixel(x-1, y);
+        LCD.DrawPixel(x, y+1);
+        LCD.DrawPixel(x, y-1);
         }
     }
 }
@@ -111,7 +127,8 @@ void Knife::update() {
     if (touchPressed) {
         current_color = 0;
         LCD.SetFontColor(colors[current_color]);
-        LCD.FillCircle(touchX, touchY, 2);
+        LCD.FillCircle(touchX, touchY, 3);
+        
 
         if (head < tail + TAIL_LEN) {
             points[head % TAIL_LEN] = {touchX, touchY};
@@ -135,6 +152,9 @@ void Knife::update() {
         } else {
             tail++;
         }
+        LCD.SetFontColor(colors[0]);
+        LCD.FillCircle(touchX, touchY, 3);
+
 
     } else {
         tail = head;
