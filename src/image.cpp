@@ -96,6 +96,18 @@ void Image::render(int x, int y, float theta) const {
 #include "build/assets/bananas-right.png.h"
 #include "build/assets/bananas.png.h"
 #include "build/assets/bomb.png.h"
+#include "build/assets/cherries-left.png.h"
+#include "build/assets/cherries-right.png.h"
+#include "build/assets/cherries.png.h"
+#include "build/assets/orange-left.png.h"
+#include "build/assets/orange-right.png.h"
+#include "build/assets/orange.png.h"
+#include "build/assets/pineapple-left.png.h"
+#include "build/assets/pineapple-right.png.h"
+#include "build/assets/pineapple.png.h"
+#include "build/assets/strawberry-left.png.h"
+#include "build/assets/strawberry-right.png.h"
+#include "build/assets/strawberry.png.h"
 
 ImageRepository::ImageRepository() {
     images["assets/apple.png"] =
@@ -111,6 +123,34 @@ ImageRepository::ImageRepository() {
         assets_bananas_left_png, assets_bananas_left_png_len);
     images["assets/bananas-right.png"] = std::make_shared<Image>(
         assets_bananas_right_png, assets_bananas_right_png_len);
+
+    images["assets/orange.png"] =
+        std::make_shared<Image>(assets_orange_png, assets_orange_png_len);
+    images["assets/orange-left.png"] = std::make_shared<Image>(
+        assets_orange_left_png, assets_orange_left_png_len);
+    images["assets/orange-right.png"] = std::make_shared<Image>(
+        assets_orange_right_png, assets_orange_right_png_len);
+
+    images["assets/cherries.png"] =
+        std::make_shared<Image>(assets_cherries_png, assets_cherries_png_len);
+    images["assets/cherries-left.png"] = std::make_shared<Image>(
+        assets_cherries_left_png, assets_cherries_left_png_len);
+    images["assets/cherries-right.png"] = std::make_shared<Image>(
+        assets_cherries_right_png, assets_cherries_right_png_len);
+
+    images["assets/strawberry.png"] = std::make_shared<Image>(
+        assets_strawberry_png, assets_strawberry_png_len);
+    images["assets/strawberry-left.png"] = std::make_shared<Image>(
+        assets_strawberry_left_png, assets_strawberry_left_png_len);
+    images["assets/strawberry-right.png"] = std::make_shared<Image>(
+        assets_strawberry_right_png, assets_strawberry_right_png_len);
+
+    images["assets/pineapple.png"] =
+        std::make_shared<Image>(assets_pineapple_png, assets_pineapple_png_len);
+    images["assets/pineapple-left.png"] = std::make_shared<Image>(
+        assets_pineapple_left_png, assets_pineapple_left_png_len);
+    images["assets/pineapple-right.png"] = std::make_shared<Image>(
+        assets_pineapple_right_png, assets_pineapple_right_png_len);
 
     images["assets/bomb.png"] =
         std::make_shared<Image>(assets_bomb_png, assets_bomb_png_len);

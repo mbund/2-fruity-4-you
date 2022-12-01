@@ -83,6 +83,34 @@ class Bananas : public Fruit {
     Bananas(Vector2 pos);
 };
 
+/// Throwable orange
+class Orange : public Fruit {
+   public:
+    /// Default constructor
+    Orange(Vector2 pos);
+};
+
+/// Throwable cherries
+class Cherries : public Fruit {
+   public:
+    /// Default constructor
+    Cherries(Vector2 pos);
+};
+
+/// Throwable strawberry
+class Strawberry : public Fruit {
+   public:
+    /// Default constructor
+    Strawberry(Vector2 pos);
+};
+
+/// Throwable pineapple
+class Pineapple : public Fruit {
+   public:
+    /// Default constructor
+    Pineapple(Vector2 pos);
+};
+
 /// Throwable bomb
 class Bomb : public Fruit {
    public:

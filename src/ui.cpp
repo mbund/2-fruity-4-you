@@ -18,12 +18,10 @@ UIButton::UIButton(std::string text,
       state(ButtonState::None),
       on_button_up([]() {}),
       on_button_down([]() {}),
-      on_button_hover([this]() {
-          this->box->set_background_color(FEHLCD::FEHLCDColor::Gray);
-      }),
-      on_button_leave([this]() {
-          this->box->set_background_color(FEHLCD::FEHLCDColor::Black);
-      }),
+      on_button_hover(
+          [this]() { this->box->set_background_color(0xff2a116a); }),
+      on_button_leave(
+          [this]() { this->box->set_background_color(0xff210d55); }),
       padding_x(padding_x),
       padding_y(padding_y) {
     uint64_t width = text.length() * FONT_GLYPH_WIDTH + padding_x * 2;
@@ -72,7 +70,7 @@ void UIButton::bind_on_button_leave(std::function<void()> f) {
     on_button_leave = f;
 }
 
-void UIBox::set_background_color(FEHLCD::FEHLCDColor background_color) {
+void UIBox::set_background_color(unsigned int background_color) {
     this->background_color = background_color;
 }
 
@@ -104,7 +102,11 @@ UIBox::UIBox(UIPosition pos,
              uint64_t width,
              uint64_t height,
              UIPosition::Anchor anchor)
-    : width(width), height(height), pos(pos), anchor(anchor) {}
+    : width(width),
+      height(height),
+      pos(pos),
+      anchor(anchor),
+      background_color(0xff210d55) {}
 
 uint64_t UIBox::get_x() {
     switch (anchor) {
@@ -142,8 +144,8 @@ void UIBox::update() {
     uint64_t x = get_x();
     uint64_t y = get_y();
 
-    LCD.SetFontColor(0xff3e2a14);
+    LCD.SetFontColor(background_color);
     LCD.FillRectangle(x, y, width, height);
-    LCD.SetFontColor(0xffaaaaaa);
+    LCD.SetFontColor(0xffffffff);
     LCD.DrawRectangle(x, y, width, height);
 }

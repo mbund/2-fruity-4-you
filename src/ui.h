@@ -82,7 +82,7 @@ class UIBox {
 
     /// Sets the background color of the box to the given color
     /// @param background_color the background color to set it to
-    void set_background_color(FEHLCD::FEHLCDColor background_color);
+    void set_background_color(unsigned int background_color);
 
     /// Width in pixels of the box
     uint64_t width;
@@ -93,7 +93,7 @@ class UIBox {
    private:
     UIPosition pos;
     UIPosition::Anchor anchor;
-    FEHLCD::FEHLCDColor background_color;
+    unsigned int background_color;
 
     friend class UIButton;
 };

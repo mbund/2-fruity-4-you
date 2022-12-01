@@ -35,6 +35,10 @@ class Game : public Scene {
 
     std::vector<std::unique_ptr<Apple>> apples;
     std::vector<std::unique_ptr<Bananas>> bananas;
+    std::vector<std::unique_ptr<Orange>> oranges;
+    std::vector<std::unique_ptr<Cherries>> cherries;
+    std::vector<std::unique_ptr<Strawberry>> strawberries;
+    std::vector<std::unique_ptr<Pineapple>> pineapples;
     std::vector<std::unique_ptr<Bomb>> bombs;
     std::vector<std::unique_ptr<FruitShard>> fruit_shards;
 
@@ -48,7 +52,7 @@ class Game : public Scene {
 
    private:
     float bomb_probability;
-    
+
     double time_started;
     Knife knife;
     std::unique_ptr<UIButton> exit_button;

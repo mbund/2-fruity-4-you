@@ -263,16 +263,20 @@ void Fruit::collision(Vector2 p1, Vector2 p2) {
                                          radius, position, force_right, mass);
         game->fruit_shards.push_back(std::move(shard_right));
 
-        game->points+=game->multiplier+game->combo;
+        game->points += game->multiplier + game->combo;
         game->combo++;
-        game->comboTime=TimeNow();
+        game->comboTime = TimeNow();
     }
 }
 
-Apple::Apple(Vector2 pos) : Fruit("apple", 13, pos, 10) {}
-Bananas::Bananas(Vector2 pos) : Fruit("bananas", 13, pos, 10) {}
+Apple::Apple(Vector2 pos) : Fruit("apple", 13, pos, 8) {}
+Bananas::Bananas(Vector2 pos) : Fruit("bananas", 13, pos, 8) {}
+Orange::Orange(Vector2 pos) : Fruit("orange", 13, pos, 8) {}
+Cherries::Cherries(Vector2 pos) : Fruit("cherries", 13, pos, 8) {}
+Strawberry::Strawberry(Vector2 pos) : Fruit("strawberry", 13, pos, 8) {}
+Pineapple::Pineapple(Vector2 pos) : Fruit("pineapple", 13, pos, 8) {}
 
-Bomb::Bomb(Vector2 pos) : Fruit("bomb", 13, pos, 10) {}
+Bomb::Bomb(Vector2 pos) : Fruit("bomb", 13, pos, 8) {}
 
 void Bomb::update(double alpha) {
     if (game->paused)
@@ -287,7 +291,7 @@ void Bomb::update(double alpha) {
 void Bomb::collision(Vector2 p1, Vector2 p2) {
     Vector2 ret;
     if (collide_line_circle(p1, p2, position, radius, ret)) {
-        //flags pausing
+        // flags pausing
         game->paused = true;
         game->time_paused = TimeNow();
 
@@ -295,7 +299,7 @@ void Bomb::collision(Vector2 p1, Vector2 p2) {
         LCD.FillCircle(position.x, position.y, 10);
 
         // explosion
-        for (int i = 3; i < 100; i+=2) {
+        for (int i = 3; i < 100; i += 2) {
             LCD.SetFontColor(DARKGOLDENROD);
             FillCircle(position.x + rand_range(-4 - i, 4 + i),
                        position.y + rand_range(-4 - i, 4 + i),
@@ -315,11 +319,11 @@ void Bomb::collision(Vector2 p1, Vector2 p2) {
             Sleep(2.0 / 100.0);
         }
 
-        //screen wipe
+        // screen wipe
         LCD.SetFontColor(BLACK);
-        for (uint64_t i = 0; i < LCD_HEIGHT; i+=2) {
+        for (uint64_t i = 0; i < LCD_HEIGHT; i += 2) {
             LCD.DrawHorizontalLine(i, 0, LCD_WIDTH);
-            LCD.DrawHorizontalLine(i+1, 0, LCD_WIDTH);
+            LCD.DrawHorizontalLine(i + 1, 0, LCD_WIDTH);
             LCD.Update();
         }
     }

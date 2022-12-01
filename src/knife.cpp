@@ -37,7 +37,6 @@ void Knife::draw_line(Point a, Point b) {
         }
 
         rainbow_dot(x, y);
-        
 
         for (; x < xe; x++) {
             if (px < 0) {
@@ -50,7 +49,7 @@ void Knife::draw_line(Point a, Point b) {
                 px += 2 * (dy1 - dx1);
             }
 
-        rainbow_dot(x, y);
+            rainbow_dot(x, y);
         }
     } else {
         if (dy >= 0) {
@@ -76,7 +75,7 @@ void Knife::draw_line(Point a, Point b) {
                 py += 2 * (dx1 - dy1);
             }
 
-        rainbow_dot(x, y);
+            rainbow_dot(x, y);
         }
     }
 }
@@ -88,21 +87,20 @@ void collision(Knife::Point p1, Knife::Point p2, T& a) {
     });
 }
 
-
 /// @brief changes font color to next one in a ranbow and makes cross
 /// @param x x-position
 /// @param y y-position
-void Knife::rainbow_dot(int x, int y){
+void Knife::rainbow_dot(int x, int y) {
     LCD.SetFontColor(colors[current_color]);
-            current_color++;
-            if (current_color == 7) {
-                current_color = 0;
-            }
+    current_color++;
+    if (current_color == 7) {
+        current_color = 0;
+    }
     LCD.DrawPixel(x, y);
-        LCD.DrawPixel(x+1, y);
-        LCD.DrawPixel(x-1, y);
-        LCD.DrawPixel(x, y+1);
-        LCD.DrawPixel(x, y-1);
+    LCD.DrawPixel(x + 1, y);
+    LCD.DrawPixel(x - 1, y);
+    LCD.DrawPixel(x, y + 1);
+    LCD.DrawPixel(x, y - 1);
 }
 
 /// @brief both updates position of knife and renders knife
@@ -111,7 +109,6 @@ void Knife::update() {
         current_color = 0;
         LCD.SetFontColor(colors[current_color]);
         LCD.FillCircle(touchX, touchY, 3);
-        
 
         if (head < tail + TAIL_LEN) {
             points[head % TAIL_LEN] = {touchX, touchY};
@@ -128,6 +125,10 @@ void Knife::update() {
                 auto p2 = points[(head - 1) % TAIL_LEN];
                 collision(p1, p2, game->apples);
                 collision(p1, p2, game->bananas);
+                collision(p1, p2, game->oranges);
+                collision(p1, p2, game->cherries);
+                collision(p1, p2, game->strawberries);
+                collision(p1, p2, game->pineapples);
                 collision(p1, p2, game->bombs);
             }
 
@@ -137,7 +138,6 @@ void Knife::update() {
         }
         LCD.SetFontColor(colors[0]);
         LCD.FillCircle(touchX, touchY, 3);
-
 
     } else {
         tail = head;
