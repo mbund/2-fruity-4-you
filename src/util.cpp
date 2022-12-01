@@ -148,3 +148,93 @@ Vector2 Vector2::normalize() const {
     copy /= copy.magnitude();
     return copy;
 }
+
+void draw_circle(int x0, int y0, int r) {
+    // This alogorithm is from wikipedia
+    // It's called the "midpoint circle algorithm"
+    // or the "Bresenham's circle algorithm"
+    // http://en.wikipedia.org/wiki/Midpoint_circle_algorithm
+    // See the page for further details
+    int f = 1 - r;
+    int ddF_x = 1;
+    int ddF_y = -2 * r;
+    int x = 0;
+    int y = r;
+
+    draw_pixel_in_bounds(x0, y0 + r);
+    draw_pixel_in_bounds(x0, y0 - r);
+    draw_pixel_in_bounds(x0 + r, y0);
+    draw_pixel_in_bounds(x0 - r, y0);
+
+    while (x < y) {
+        if (f >= 0) {
+            y--;
+            ddF_y += 2;
+            f += ddF_y;
+        }
+        x++;
+        ddF_x += 2;
+        f += ddF_x;
+        draw_pixel_in_bounds(x0 + x, y0 + y);
+        draw_pixel_in_bounds(x0 - x, y0 + y);
+        draw_pixel_in_bounds(x0 + x, y0 - y);
+        draw_pixel_in_bounds(x0 - x, y0 - y);
+        draw_pixel_in_bounds(x0 + y, y0 + x);
+        draw_pixel_in_bounds(x0 - y, y0 + x);
+        draw_pixel_in_bounds(x0 + y, y0 - x);
+        draw_pixel_in_bounds(x0 - y, y0 - x);
+    }
+}
+
+void draw_horizontal_line(int y, int x1, int x2) {
+    if (x2 < x1) {
+        int c = x2;
+        x2 = x1;
+        x1 = c;
+    }
+    for (int i = x1; i <= x2; i++) {
+        draw_pixel_in_bounds(i, y);
+    }
+}
+
+void draw_vertical_line(int x, int y1, int y2) {
+    if (y2 < y1) {
+        int c = y2;
+        y2 = y1;
+        y1 = c;
+    }
+    for (int i = y1; i <= y2; i++) {
+        draw_pixel_in_bounds(x, i);
+    }
+}
+
+void fill_circle(int x0, int y0, int r) {
+    // This algorithm is a variant on DrawCircle.
+    // Rather than draw the points around the circle,
+    // We connect them with a series of lines
+    // to fill in the circle.
+
+    int f = 1 - r;
+    int ddF_x = 1;
+    int ddF_y = -2 * r;
+    int x = 0;
+    int y = r;
+
+    draw_vertical_line(x0, y0 - r, y0 + r);
+    draw_horizontal_line(y0, x0 - r, x0 + r);
+
+    while (x < y) {
+        if (f >= 0) {
+            y--;
+            ddF_y += 2;
+            f += ddF_y;
+        }
+        x++;
+        ddF_x += 2;
+        f += ddF_x;
+        draw_horizontal_line(y0 + x, x0 - y, x0 + y);
+        draw_horizontal_line(y0 - x, x0 - y, x0 + y);
+        draw_vertical_line(x0 + x, y0 - y, y0 + y);
+        draw_vertical_line(x0 - x, y0 - y, y0 + y);
+    }
+}

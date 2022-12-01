@@ -8,6 +8,7 @@
 
 #include "game.h"
 #include "knife.h"
+#include "src/util.h"
 
 Knife::Knife() {}
 
@@ -96,19 +97,17 @@ void Knife::rainbow_dot(int x, int y) {
     if (current_color == 7) {
         current_color = 0;
     }
-    LCD.DrawPixel(x, y);
-    LCD.DrawPixel(x + 1, y);
-    LCD.DrawPixel(x - 1, y);
-    LCD.DrawPixel(x, y + 1);
-    LCD.DrawPixel(x, y - 1);
+    draw_pixel_in_bounds(x, y);
+    draw_pixel_in_bounds(x + 1, y);
+    draw_pixel_in_bounds(x - 1, y);
+    draw_pixel_in_bounds(x, y + 1);
+    draw_pixel_in_bounds(x, y - 1);
 }
 
 /// @brief both updates position of knife and renders knife
 void Knife::update() {
     if (touchPressed) {
         current_color = 0;
-        LCD.SetFontColor(colors[current_color]);
-        LCD.FillCircle(touchX, touchY, 3);
 
         if (head < tail + TAIL_LEN) {
             points[head % TAIL_LEN] = {touchX, touchY};
@@ -136,8 +135,9 @@ void Knife::update() {
         } else {
             tail++;
         }
+
         LCD.SetFontColor(colors[0]);
-        LCD.FillCircle(touchX, touchY, 3);
+        fill_circle(touchX, touchY, 3);
 
     } else {
         tail = head;

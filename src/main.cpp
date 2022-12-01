@@ -4,6 +4,7 @@
 #include <FEHLCD.h>
 #include <FEHUtility.h>
 
+#include <algorithm>
 #include <cstdint>
 #include <iostream>
 
@@ -41,6 +42,8 @@ int main() {
         double alpha = accumulator / dt;
 
         touchPressed = LCD.Touch(&touchX, &touchY);
+        touchX = std::clamp(touchX, 0, (int)LCD_WIDTH);
+        touchY = std::clamp(touchY, 0, (int)LCD_HEIGHT);
         LCD.Clear();
         current_scene->update(alpha);
     }

@@ -22,7 +22,11 @@ inline int touchY;
 float rand_range(float lower, float upper);
 
 /// Same as LCD.DrawPixel will ignore out of bounds pixels (does not do modulus)
+void draw_circle(int x0, int y0, int r);
 void draw_pixel_in_bounds(int x, int y);
+void fill_circle(int x0, int y0, int r);
+void draw_vertical_line(int x, int y1, int y2);
+void draw_horizontal_line(int y, int x1, int x2);
 
 /// Base class for a scene in the game
 class Scene {

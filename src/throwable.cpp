@@ -2,6 +2,7 @@
 /// Implementation of objects with physics
 
 #include <algorithm>
+#include <cmath>
 #include <cstdint>
 #include <iostream>
 #include <limits>
@@ -90,96 +91,6 @@ bool collide_line_circle(Vector2 l1,
     return distance <= r;
 }
 
-void draw_circle(int x0, int y0, int r) {
-    // This alogorithm is from wikipedia
-    // It's called the "midpoint circle algorithm"
-    // or the "Bresenham's circle algorithm"
-    // http://en.wikipedia.org/wiki/Midpoint_circle_algorithm
-    // See the page for further details
-    int f = 1 - r;
-    int ddF_x = 1;
-    int ddF_y = -2 * r;
-    int x = 0;
-    int y = r;
-
-    draw_pixel_in_bounds(x0, y0 + r);
-    draw_pixel_in_bounds(x0, y0 - r);
-    draw_pixel_in_bounds(x0 + r, y0);
-    draw_pixel_in_bounds(x0 - r, y0);
-
-    while (x < y) {
-        if (f >= 0) {
-            y--;
-            ddF_y += 2;
-            f += ddF_y;
-        }
-        x++;
-        ddF_x += 2;
-        f += ddF_x;
-        draw_pixel_in_bounds(x0 + x, y0 + y);
-        draw_pixel_in_bounds(x0 - x, y0 + y);
-        draw_pixel_in_bounds(x0 + x, y0 - y);
-        draw_pixel_in_bounds(x0 - x, y0 - y);
-        draw_pixel_in_bounds(x0 + y, y0 + x);
-        draw_pixel_in_bounds(x0 - y, y0 + x);
-        draw_pixel_in_bounds(x0 + y, y0 - x);
-        draw_pixel_in_bounds(x0 - y, y0 - x);
-    }
-}
-
-void DrawHorizontalLine(int y, int x1, int x2) {
-    if (x2 < x1) {
-        int c = x2;
-        x2 = x1;
-        x1 = c;
-    }
-    for (int i = x1; i <= x2; i++) {
-        draw_pixel_in_bounds(i, y);
-    }
-}
-
-void DrawVerticalLine(int x, int y1, int y2) {
-    if (y2 < y1) {
-        int c = y2;
-        y2 = y1;
-        y1 = c;
-    }
-    for (int i = y1; i <= y2; i++) {
-        draw_pixel_in_bounds(x, i);
-    }
-}
-
-void FillCircle(int x0, int y0, int r) {
-    // This algorithm is a variant on DrawCircle.
-    // Rather than draw the points around the circle,
-    // We connect them with a series of lines
-    // to fill in the circle.
-
-    int f = 1 - r;
-    int ddF_x = 1;
-    int ddF_y = -2 * r;
-    int x = 0;
-    int y = r;
-
-    DrawVerticalLine(x0, y0 - r, y0 + r);
-    DrawHorizontalLine(y0, x0 - r, x0 + r);
-
-    while (x < y) {
-        if (f >= 0) {
-            y--;
-            ddF_y += 2;
-            f += ddF_y;
-        }
-        x++;
-        ddF_x += 2;
-        f += ddF_x;
-        DrawHorizontalLine(y0 + x, x0 - y, x0 + y);
-        DrawHorizontalLine(y0 - x, x0 - y, x0 + y);
-        DrawVerticalLine(x0 + x, y0 - y, y0 + y);
-        DrawVerticalLine(x0 - x, y0 - y, y0 + y);
-    }
-}
-
 PhysicsObject::PhysicsObject(Vector2 pos, float mass)
     : prev_position(pos), current_position(pos), position(pos), mass(mass) {}
 
@@ -244,13 +155,8 @@ void Fruit::collision(Vector2 p1, Vector2 p2) {
         collide_line_circle(p1, p2, position, radius, ret)) {
         should_be_removed = true;
 
-        // float dot = ret.normalize().dot(Vector2(1, 0));
-        // std::cout << ret.x << " " << ret.y << "\n";
         Vector2 perp = {-ret.y, ret.x};
         Vector2 force_left = perp.normalize() * 100000;
-
-        // Vector2 force_left = {rand_range(-100000, -40000),
-        //                       rand_range(160000, -160000)};
 
         auto shard_left =
             std::make_unique<FruitShard>("assets/" + image_name + "-left.png",
@@ -263,7 +169,7 @@ void Fruit::collision(Vector2 p1, Vector2 p2) {
                                          radius, position, force_right, mass);
         game->fruit_shards.push_back(std::move(shard_right));
 
-        game->points += game->multiplier + game->combo;
+        game->points += game->multiplier * std::log2(game->combo + 2);
         game->combo++;
         game->comboTime = TimeNow();
     }
@@ -301,21 +207,21 @@ void Bomb::collision(Vector2 p1, Vector2 p2) {
         // explosion
         for (int i = 3; i < 100; i += 2) {
             LCD.SetFontColor(DARKGOLDENROD);
-            FillCircle(position.x + rand_range(-4 - i, 4 + i),
-                       position.y + rand_range(-4 - i, 4 + i),
-                       rand_range(1, i));
+            fill_circle(position.x + rand_range(-4 - i, 4 + i),
+                        position.y + rand_range(-4 - i, 4 + i),
+                        rand_range(1, i));
             LCD.SetFontColor(RED);
-            FillCircle(position.x + rand_range(-4 - i, 4 + i),
-                       position.y + rand_range(-4 - i, 4 + i),
-                       rand_range(1, i));
+            fill_circle(position.x + rand_range(-4 - i, 4 + i),
+                        position.y + rand_range(-4 - i, 4 + i),
+                        rand_range(1, i));
             LCD.SetFontColor(GRAY);
-            FillCircle(position.x + rand_range(-4 - i, 4 + i),
-                       position.y + rand_range(-4 - i, 4 + i),
-                       rand_range(1, i));
+            fill_circle(position.x + rand_range(-4 - i, 4 + i),
+                        position.y + rand_range(-4 - i, 4 + i),
+                        rand_range(1, i));
             LCD.SetFontColor(FIREBRICK);
-            FillCircle(position.x + rand_range(-4 - i, 4 + i),
-                       position.y + rand_range(-4 - i, 4 + i),
-                       rand_range(1, i));
+            fill_circle(position.x + rand_range(-4 - i, 4 + i),
+                        position.y + rand_range(-4 - i, 4 + i),
+                        rand_range(1, i));
             Sleep(2.0 / 100.0);
         }
 
