@@ -295,7 +295,7 @@ void Bomb::collision(Vector2 p1, Vector2 p2) {
         LCD.FillCircle(position.x, position.y, 10);
 
         // explosion
-        for (int i = 3; i < 100; i++) {
+        for (int i = 3; i < 100; i+=2) {
             LCD.SetFontColor(DARKGOLDENROD);
             FillCircle(position.x + rand_range(-4 - i, 4 + i),
                        position.y + rand_range(-4 - i, 4 + i),

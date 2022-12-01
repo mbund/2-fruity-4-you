@@ -17,6 +17,7 @@
 #include "util.h"
 
 #define COMBO_DUR 2.0
+#define CORNER_OFFSET 15
 
 Game::Game() {
     exit_button = std::make_unique<UIButton>(
@@ -78,15 +79,15 @@ void Game::update(double alpha) {
     //displays score
     auto num = std::to_string(points);
     LCD.SetFontColor(WHITE);
-    LCD.WriteAt(num.c_str(), 10, LCD_HEIGHT - FONT_GLYPH_HEIGHT - 10);
+    LCD.WriteAt(num.c_str(), CORNER_OFFSET, LCD_HEIGHT - FONT_GLYPH_HEIGHT - CORNER_OFFSET);
     
     //displays time
     int time_left= (int)(30-(TimeNow()-time_started))+1;
     if(time_left>=10)
-        LCD.WriteAt(time_left, 10, 10);
+        LCD.WriteAt(time_left, CORNER_OFFSET, CORNER_OFFSET);
     else{
-        LCD.WriteAt(0, 10, 10);
-        LCD.WriteAt(time_left, 10+FONT_GLYPH_WIDTH, 10);
+        LCD.WriteAt(0, CORNER_OFFSET, CORNER_OFFSET);
+        LCD.WriteAt(time_left, CORNER_OFFSET+FONT_GLYPH_WIDTH, CORNER_OFFSET);
     }
     paused =(30<=TimeNow()-time_started);
 
@@ -95,13 +96,21 @@ void Game::update(double alpha) {
         combo=0;
     }
 
-    int color1=ORANGERED;
-    int color2=0x2145A8+game->combo*0x050000;
+    int color1=0xFF4545;
+    int color2=0x214545+game->combo*0x050000;
+
+    
 
     if(game->combo !=0 ){
         LCD.SetFontColor(std::min(color1, color2));
-        LCD.WriteAt((int)(game->combo), LCD_WIDTH-10-FONT_GLYPH_WIDTH*(int)(log10(game->combo)+1), 10);
-        LCD.DrawHorizontalLine(10+FONT_GLYPH_HEIGHT+4,LCD_WIDTH-10, LCD_WIDTH-10+FONT_GLYPH_WIDTH*2/COMBO_DUR*(TimeNow()-comboTime-COMBO_DUR));
+    LCD.FillRectangle(LCD_WIDTH-(CORNER_OFFSET+5+2*FONT_GLYPH_WIDTH), CORNER_OFFSET-5, 10+2*FONT_GLYPH_WIDTH, 10+FONT_GLYPH_HEIGHT);
+
+    LCD.SetFontColor(0xffaaaaaa);
+    LCD.DrawRectangle(LCD_WIDTH-(CORNER_OFFSET+5+2*FONT_GLYPH_WIDTH), CORNER_OFFSET-5, 10+2*FONT_GLYPH_WIDTH, 10+FONT_GLYPH_HEIGHT);
+
+        LCD.SetFontColor(WHITE);
+        LCD.WriteAt((int)(game->combo), LCD_WIDTH-CORNER_OFFSET-FONT_GLYPH_WIDTH*(int)(log10(game->combo)+1), CORNER_OFFSET);
+        LCD.DrawHorizontalLine(CORNER_OFFSET+FONT_GLYPH_HEIGHT+2,LCD_WIDTH-CORNER_OFFSET, LCD_WIDTH-CORNER_OFFSET+FONT_GLYPH_WIDTH*2/COMBO_DUR*(TimeNow()-comboTime-COMBO_DUR));
     }
 
     //random generation of fruits
