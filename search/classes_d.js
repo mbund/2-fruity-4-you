@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['vector2_0',['Vector2',['../structVector2.html',1,'']]]
+  ['uibox_0',['UIBox',['../classUIBox.html',1,'']]],
+  ['uibutton_1',['UIButton',['../classUIButton.html',1,'']]],
+  ['uiposition_2',['UIPosition',['../classUIPosition.html',1,'']]]
 ];
