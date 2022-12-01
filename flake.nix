@@ -23,6 +23,8 @@
 
         buildInputs = with pkgs; [
           xorg.libX11
+          xorg.libXau
+          xorg.libXdmcp
           libGL
           unixtools.xxd
         ];

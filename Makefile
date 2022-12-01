@@ -18,7 +18,7 @@ else
 	ifeq ($(UNAME_S),Darwin)
 		LDFLAGS = -framework OpenGL -framework Cocoa
 	else
-		LDFLAGS = $(shell pkg-config --libs --cflags opengl x11 glx)
+		LDFLAGS = $(shell pkg-config --static --libs --cflags opengl x11 glx)
 	endif
 	EXEC = game.out
 endif
