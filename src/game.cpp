@@ -20,6 +20,8 @@ Game::Game() {
     exit_button = std::make_unique<UIButton>(
         "X", UIPosition(10, 10, UIPosition::TopRight));
     exit_button->bind_on_button_up([]() { current_scene = menu; });
+
+    background = image_repository->load_image("assets/background-menu.png");
 }
 
 void Game::start(float bomb_probability, float multiplier) {
@@ -67,6 +69,8 @@ void Game::physics_update(double t, double dt) {
 }
 
 void Game::update(double alpha) {
+    background->render(LCD_WIDTH / 2, LCD_HEIGHT / 2, 0);
+
     auto num = std::to_string(points);
     LCD.SetFontColor(WHITE);
     LCD.WriteAt(num.c_str(), 10, LCD_HEIGHT - FONT_GLYPH_HEIGHT - 10);

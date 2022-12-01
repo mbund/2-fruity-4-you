@@ -142,8 +142,8 @@ void UIBox::update() {
     uint64_t x = get_x();
     uint64_t y = get_y();
 
-    LCD.SetFontColor(background_color);
+    LCD.SetFontColor(0xff3e2a14);
     LCD.FillRectangle(x, y, width, height);
-    LCD.SetFontColor(FEHLCD::FEHLCDColor::White);
+    LCD.SetFontColor(0xffaaaaaa);
     LCD.DrawRectangle(x, y, width, height);
 }

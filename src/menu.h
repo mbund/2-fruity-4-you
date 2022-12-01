@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 
+#include "image.h"
 #include "ui.h"
 #include "util.h"
 
@@ -24,6 +25,7 @@ class Credits : public Scene {
    private:
     std::unique_ptr<UIButton> close_button;
     std::unique_ptr<UIBox> box;
+    std::shared_ptr<Image> background;
 };
 
 /// UI component for displaying and interacting with the leaderboard
@@ -71,6 +73,7 @@ class Menu : public Scene {
     std::unique_ptr<UIButton> play_easy;
     std::unique_ptr<UIButton> play_medium;
     std::unique_ptr<UIButton> play_hard;
+    std::shared_ptr<Image> background;
 };
 
 /// Global variable to hold the state of the menu

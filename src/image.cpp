@@ -91,6 +91,7 @@ void Image::render(int x, int y, float theta) const {
 #include "build/assets/apple-left.png.h"
 #include "build/assets/apple-right.png.h"
 #include "build/assets/apple.png.h"
+#include "build/assets/background-menu.png.h"
 #include "build/assets/bananas-left.png.h"
 #include "build/assets/bananas-right.png.h"
 #include "build/assets/bananas.png.h"
@@ -113,6 +114,9 @@ ImageRepository::ImageRepository() {
 
     images["assets/bomb.png"] =
         std::make_shared<Image>(assets_bomb_png, assets_bomb_png_len);
+
+    images["assets/background-menu.png"] = std::make_shared<Image>(
+        assets_background_menu_png, assets_background_menu_png_len);
 }
 
 std::shared_ptr<Image> ImageRepository::load_image(std::string filename) {

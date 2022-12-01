@@ -13,6 +13,7 @@
 
 #include "game.h"
 #include "menu.h"
+#include "src/image.h"
 #include "ui.h"
 #include "util.h"
 
@@ -23,9 +24,13 @@ Credits::Credits() {
                                   LCD_WIDTH - 10 * 2, LCD_HEIGHT - 10 * 2);
 
     close_button->bind_on_button_up([&]() { current_scene = menu; });
+
+    background = image_repository->load_image("assets/background-menu.png");
 }
 
 void Credits::update(double alpha) {
+    background->render(LCD_WIDTH / 2, LCD_HEIGHT / 2, 0);
+
     box->update();
     constexpr uint64_t inner_padding = 10;
     uint64_t x = box->get_x() + inner_padding, y = box->get_y() + inner_padding;
@@ -105,6 +110,8 @@ Menu::Menu() {
     play_hard = std::make_unique<UIButton>(
         "Play (hard 3x)", UIPosition(10, 120, UIPosition::Anchor::TopLeft));
 
+    background = image_repository->load_image("assets/background-menu.png");
+
     show_credits_button->bind_on_button_up([&]() { current_scene = credits; });
     quit_button->bind_on_button_up([&]() { exit(0); });
     play_easy->bind_on_button_up([&]() {
@@ -128,6 +135,7 @@ void Menu::update(double alpha) {
     LCD.DrawHorizontalLine(y + FONT_GLYPH_HEIGHT + 1, x,
                            x + title.length() * FONT_GLYPH_WIDTH);
 
+    background->render(LCD_WIDTH / 2, LCD_HEIGHT / 2, 0);
     show_credits_button->update();
     quit_button->update();
     play_easy->update();

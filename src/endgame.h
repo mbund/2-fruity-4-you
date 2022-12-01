@@ -6,6 +6,7 @@
 #include <array>
 #include <memory>
 
+#include "image.h"
 #include "ui.h"
 #include "util.h"
 
@@ -33,6 +34,7 @@ class EndGame : public Scene {
     std::array<std::unique_ptr<UIButton>, 7> row3;
     std::unique_ptr<UIButton> clear_button;
     std::unique_ptr<UIButton> confirm_button;
+    std::shared_ptr<Image> background;
 };
 
 /// Global variable to hold the state of the end game

@@ -50,6 +50,7 @@ class Game : public Scene {
     double time_started;
     Knife knife;
     std::unique_ptr<UIButton> exit_button;
+    std::shared_ptr<Image> background;
 
     float x;
 };

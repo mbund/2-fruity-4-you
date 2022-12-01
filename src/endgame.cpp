@@ -70,9 +70,13 @@ EndGame::EndGame() {
         menu->leaderboard.add_entry({.name = name, .points = points});
         current_scene = menu;
     });
+
+    background = image_repository->load_image("assets/background-menu.png");
 }
 
 void EndGame::update(double alpha) {
+    background->render(LCD_WIDTH / 2, LCD_HEIGHT / 2, 0);
+
     LCD.SetFontColor(WHITE);
     auto points_str = std::to_string(points);
     LCD.WriteAt(
