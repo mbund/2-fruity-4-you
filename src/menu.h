@@ -28,6 +28,23 @@ class Credits : public Scene {
     std::shared_ptr<Image> background;
 };
 
+/// Main menu Scene which shows the instructions for how to play the game
+class Instructions : public Scene {
+   public:
+    /// Default constructor
+    Instructions();
+
+    /// Update and render the apple
+    /// @param alpha physics alpha, for interpolation between previous state and
+    /// next state
+    virtual void update(double alpha);
+
+   private:
+    std::unique_ptr<UIButton> close_button;
+    std::unique_ptr<UIBox> box;
+    std::shared_ptr<Image> background;
+};
+
 /// UI component for displaying and interacting with the leaderboard
 class Leaderboard {
    public:
@@ -69,6 +86,7 @@ class Menu : public Scene {
 
    private:
     std::unique_ptr<UIButton> show_credits_button;
+    std::unique_ptr<UIButton> show_instructions_button;
     std::unique_ptr<UIButton> quit_button;
     std::unique_ptr<UIButton> play_easy;
     std::unique_ptr<UIButton> play_medium;
@@ -81,3 +99,6 @@ inline auto menu = std::make_shared<Menu>();
 
 /// Global variable to hold the state of the credits
 inline auto credits = std::make_shared<Credits>();
+
+/// Global variable to hold the state of the instructions
+inline auto instructions = std::make_shared<Instructions>();

@@ -34,7 +34,7 @@ void Credits::update(double alpha) {
     box->update();
     constexpr uint64_t inner_padding = 10;
     uint64_t x = box->get_x() + inner_padding, y = box->get_y() + inner_padding;
-    std::string title = "2 Fruity 4 you";
+    std::string title = "Credits";
     LCD.WriteAt(title.c_str(), x, y);
     LCD.DrawHorizontalLine(y + FONT_GLYPH_HEIGHT + 1, x,
                            x + title.length() * FONT_GLYPH_WIDTH);
@@ -45,6 +45,38 @@ void Credits::update(double alpha) {
 
     LCD.WriteAt("Autumn 2022", x, y + SPACING * 5);
     LCD.WriteAt("ENGR 1281.02H (6989)", x, y + SPACING * 6);
+
+    close_button->update();
+}
+
+Instructions::Instructions() {
+    close_button = std::make_unique<UIButton>(
+        "Close", UIPosition(30, 30, UIPosition::Anchor::BottomRight));
+    box = std::make_unique<UIBox>(UIPosition(0, 0, UIPosition::Center),
+                                  LCD_WIDTH - 10 * 2, LCD_HEIGHT - 10 * 2);
+
+    close_button->bind_on_button_up([&]() { current_scene = menu; });
+
+    background = image_repository->load_image("assets/background-menu.png");
+}
+
+void Instructions::update(double alpha) {
+    background->render(LCD_WIDTH / 2, LCD_HEIGHT / 2, 0);
+
+    box->update();
+    constexpr uint64_t inner_padding = 10;
+    uint64_t x = box->get_x() + inner_padding, y = box->get_y() + inner_padding;
+    std::string title = "Instructions";
+    LCD.WriteAt(title.c_str(), x, y);
+    LCD.DrawHorizontalLine(y + FONT_GLYPH_HEIGHT + 1, x,
+                           x + title.length() * FONT_GLYPH_WIDTH);
+
+    constexpr uint64_t SPACING = FONT_GLYPH_HEIGHT + 2;
+    LCD.WriteAt("Chop fruit and avoid", x, y + SPACING * 2);
+    LCD.WriteAt("bombs. Slice multiple", x, y + SPACING * 3);
+    LCD.WriteAt("fruit to get a combo", x, y + SPACING * 4);
+    LCD.WriteAt("and go for the high", x, y + SPACING * 5);
+    LCD.WriteAt("score!", x, y + SPACING * 6);
 
     close_button->update();
 }
@@ -101,6 +133,8 @@ void Leaderboard::update() {
 Menu::Menu() {
     show_credits_button = std::make_unique<UIButton>(
         "Credits", UIPosition(10, 10, UIPosition::Anchor::BottomLeft));
+    show_instructions_button = std::make_unique<UIButton>(
+        "Rules", UIPosition(118, 10, UIPosition::Anchor::BottomLeft));
     quit_button = std::make_unique<UIButton>(
         "Quit", UIPosition(10, 50, UIPosition::Anchor::BottomLeft));
     play_easy = std::make_unique<UIButton>(
@@ -113,6 +147,8 @@ Menu::Menu() {
     background = image_repository->load_image("assets/background-menu.png");
 
     show_credits_button->bind_on_button_up([&]() { current_scene = credits; });
+    show_instructions_button->bind_on_button_up(
+        [&]() { current_scene = instructions; });
     quit_button->bind_on_button_up([&]() { exit(0); });
     play_easy->bind_on_button_up([&]() {
         current_scene = game;
@@ -129,14 +165,17 @@ Menu::Menu() {
 }
 
 void Menu::update(double alpha) {
+    background->render(LCD_WIDTH / 2, LCD_HEIGHT / 2, 0);
+
     uint64_t x = 20, y = 20;
-    std::string title = "2 Fruity 4 you";
+    std::string title = "2 Fruity 4 You";
+    LCD.SetFontColor(WHITE);
     LCD.WriteAt(title.c_str(), x, y);
     LCD.DrawHorizontalLine(y + FONT_GLYPH_HEIGHT + 1, x,
                            x + title.length() * FONT_GLYPH_WIDTH);
 
-    background->render(LCD_WIDTH / 2, LCD_HEIGHT / 2, 0);
     show_credits_button->update();
+    show_instructions_button->update();
     quit_button->update();
     play_easy->update();
     play_medium->update();
