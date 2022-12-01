@@ -36,16 +36,8 @@ void Knife::draw_line(Point a, Point b) {
             xe = a.x;
         }
 
-        LCD.SetFontColor(colors[current_color]);
-        current_color++;
-        if (current_color == 7) {
-            current_color = 0;
-        }
-        LCD.DrawPixel(x, y);
-        LCD.DrawPixel(x+1, y);
-        LCD.DrawPixel(x-1, y);
-        LCD.DrawPixel(x, y+1);
-        LCD.DrawPixel(x, y-1);
+        rainbow_dot(x, y);
+        
 
         for (; x < xe; x++) {
             if (px < 0) {
@@ -58,16 +50,7 @@ void Knife::draw_line(Point a, Point b) {
                 px += 2 * (dy1 - dx1);
             }
 
-            LCD.SetFontColor(colors[current_color]);
-            current_color++;
-            if (current_color == 7) {
-                current_color = 0;
-            }
-            LCD.DrawPixel(x, y);
-        LCD.DrawPixel(x+1, y);
-        LCD.DrawPixel(x-1, y);
-        LCD.DrawPixel(x, y+1);
-        LCD.DrawPixel(x, y-1);
+        rainbow_dot(x, y);
         }
     } else {
         if (dy >= 0) {
@@ -80,16 +63,7 @@ void Knife::draw_line(Point a, Point b) {
             ye = a.y;
         }
 
-        LCD.SetFontColor(colors[current_color]);
-        current_color++;
-        if (current_color == 7) {
-            current_color = 0;
-        }
-        LCD.DrawPixel(x, y);
-        LCD.DrawPixel(x+1, y);
-        LCD.DrawPixel(x-1, y);
-        LCD.DrawPixel(x, y+1);
-        LCD.DrawPixel(x, y-1);
+        rainbow_dot(x, y);
 
         for (; y < ye; y++) {
             if (py <= 0) {
@@ -102,16 +76,7 @@ void Knife::draw_line(Point a, Point b) {
                 py += 2 * (dx1 - dy1);
             }
 
-            LCD.SetFontColor(colors[current_color]);
-            current_color++;
-            if (current_color == 7) {
-                current_color = 0;
-            }
-            LCD.DrawPixel(x, y);
-        LCD.DrawPixel(x+1, y);
-        LCD.DrawPixel(x-1, y);
-        LCD.DrawPixel(x, y+1);
-        LCD.DrawPixel(x, y-1);
+        rainbow_dot(x, y);
         }
     }
 }
@@ -123,6 +88,24 @@ void collision(Knife::Point p1, Knife::Point p2, T& a) {
     });
 }
 
+
+/// @brief changes font color to next one in a ranbow and makes cross
+/// @param x x-position
+/// @param y y-position
+void Knife::rainbow_dot(int x, int y){
+    LCD.SetFontColor(colors[current_color]);
+            current_color++;
+            if (current_color == 7) {
+                current_color = 0;
+            }
+    LCD.DrawPixel(x, y);
+        LCD.DrawPixel(x+1, y);
+        LCD.DrawPixel(x-1, y);
+        LCD.DrawPixel(x, y+1);
+        LCD.DrawPixel(x, y-1);
+}
+
+/// @brief both updates position of knife and renders knife
 void Knife::update() {
     if (touchPressed) {
         current_color = 0;

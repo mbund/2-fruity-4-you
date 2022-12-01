@@ -30,6 +30,8 @@ class Knife {
    private:
     void draw_line(Point a, Point b);
 
+    void rainbow_dot(int , int);
+
     /// Ring buffer for storing the touch points to draw the knife between
     Point points[TAIL_LEN];
 

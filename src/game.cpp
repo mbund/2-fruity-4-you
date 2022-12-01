@@ -71,12 +71,16 @@ void Game::physics_update(double t, double dt) {
 }
 
 void Game::update(double alpha) {
+    
+    //renders background
     background->render(LCD_WIDTH / 2, LCD_HEIGHT / 2, 0);
 
+    //displays score
     auto num = std::to_string(points);
     LCD.SetFontColor(WHITE);
     LCD.WriteAt(num.c_str(), 10, LCD_HEIGHT - FONT_GLYPH_HEIGHT - 10);
     
+    //displays time
     int time_left= (int)(30-(TimeNow()-time_started))+1;
     if(time_left>=10)
         LCD.WriteAt(time_left, 10, 10);
@@ -84,6 +88,9 @@ void Game::update(double alpha) {
         LCD.WriteAt(0, 10, 10);
         LCD.WriteAt(time_left, 10+FONT_GLYPH_WIDTH, 10);
     }
+    paused =(30<=TimeNow()-time_started);
+
+    //displays combo and combo time
     if(TimeNow()-comboTime>COMBO_DUR){
         combo=0;
     }
@@ -97,12 +104,11 @@ void Game::update(double alpha) {
         LCD.DrawHorizontalLine(10+FONT_GLYPH_HEIGHT+4,LCD_WIDTH-10, LCD_WIDTH-10+FONT_GLYPH_WIDTH*2/COMBO_DUR*(TimeNow()-comboTime-COMBO_DUR));
     }
 
-
+    //random generation of fruits
     int randSpawn = rand_range(0, 120 + 1.5*bomb_probability);
     float randX = rand_range(20, LCD_WIDTH - 20);
     float randForce = rand_range(-50, 80000);
-    paused =(30<=TimeNow()-time_started);
-
+    
     if (randX > LCD_WIDTH / 2)
         randForce *= -1.0;
 
@@ -131,23 +137,25 @@ void Game::update(double alpha) {
         bananas.push_back(std::move(banana));
     }
 
+    //removes physics objects
     remove_if_foreach(apples);
     remove_if_foreach(bananas);
     remove_if_foreach(bombs);
     remove_if_foreach(fruit_shards);
 
+    //updates physics objects
     update_foreach(alpha, apples);
     update_foreach(alpha, bananas);
     update_foreach(alpha, bombs);
 
+    //updates knife and fruit shards
     if (!paused) {
         knife.update();
 
         update_foreach(alpha, fruit_shards);
     }
-    
 
-    // screen wipe clear the screen
+    // transitions to endgame
     if (paused) {
         end_game->end(points);
         current_scene = end_game;

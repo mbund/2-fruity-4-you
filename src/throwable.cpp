@@ -287,13 +287,14 @@ void Bomb::update(double alpha) {
 void Bomb::collision(Vector2 p1, Vector2 p2) {
     Vector2 ret;
     if (collide_line_circle(p1, p2, position, radius, ret)) {
-        LCD.SetFontColor(INDIANRED);
-        LCD.FillCircle(position.x, position.y, 10);
-
+        //flags pausing
         game->paused = true;
         game->time_paused = TimeNow();
 
-        // explode
+        LCD.SetFontColor(INDIANRED);
+        LCD.FillCircle(position.x, position.y, 10);
+
+        // explosion
         for (int i = 3; i < 100; i++) {
             LCD.SetFontColor(DARKGOLDENROD);
             FillCircle(position.x + rand_range(-4 - i, 4 + i),
@@ -314,8 +315,8 @@ void Bomb::collision(Vector2 p1, Vector2 p2) {
             Sleep(2.0 / 100.0);
         }
 
+        //screen wipe
         LCD.SetFontColor(BLACK);
-
         for (uint64_t i = 0; i < LCD_HEIGHT; i+=2) {
             LCD.DrawHorizontalLine(i, 0, LCD_WIDTH);
             LCD.DrawHorizontalLine(i+1, 0, LCD_WIDTH);
