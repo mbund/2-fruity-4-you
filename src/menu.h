@@ -12,7 +12,7 @@
 #include "util.h"
 
 /// Main menu Scene which shows the credits
-class Credits : public Scene {
+class Credits final : public Scene {
    public:
     /// Default constructor
     Credits();
@@ -29,7 +29,7 @@ class Credits : public Scene {
 };
 
 /// Main menu Scene which shows the instructions for how to play the game
-class Instructions : public Scene {
+class Instructions final : public Scene {
    public:
     /// Default constructor
     Instructions();
@@ -69,8 +69,8 @@ class Leaderboard {
     std::unique_ptr<UIBox> box;
 };
 
-/// Menu scene
-class Menu : public Scene {
+/// Main menu Scene
+class Menu final : public Scene {
    public:
     /// Default constructor
     Menu();

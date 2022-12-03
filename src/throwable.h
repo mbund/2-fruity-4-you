@@ -4,9 +4,6 @@
 /// Throwable objects with physics
 
 #include <memory>
-#include <vector>
-
-#include "FEHLCD.h"
 
 #include "image.h"
 #include "util.h"
@@ -14,7 +11,9 @@
 /// Base class for objects which have physics
 class PhysicsObject {
    public:
-    /// Default constructor
+    /// Create a physics object at a given position with a given mass
+    /// @param pos screenspace position coordinate to place the object
+    /// @param mass mass of the physics object
     PhysicsObject(Vector2 pos, float mass);
 
     /// Update and render the apple
@@ -41,7 +40,11 @@ class PhysicsObject {
 /// Throwable fruit
 class Fruit : public PhysicsObject {
    public:
-    /// Default constructor
+    /// Create a fruit object
+    /// @param image_name path to image to display as the base
+    /// @param radius collision radius in pixels
+    /// @param pos screenspace position coordinate to place the object
+    /// @param mass mass of the underlying physics object
     Fruit(std::string image_name, float radius, Vector2 pos, float mass);
 
     /// Update and render the fruit
@@ -72,49 +75,56 @@ class Fruit : public PhysicsObject {
 /// Throwable apple fruit
 class Apple final : public Fruit {
    public:
-    /// Default constructor
+    /// Create an apple
+    /// @param pos screenspace position coordinate to place the apple
     Apple(Vector2 pos);
 };
 
 /// Throwable bananas
 class Bananas final : public Fruit {
    public:
-    /// Default constructor
+    /// Create a banana
+    /// @param pos screenspace position coordinate to place the banana
     Bananas(Vector2 pos);
 };
 
 /// Throwable orange
 class Orange final : public Fruit {
    public:
-    /// Default constructor
+    /// Create an orange
+    /// @param pos screenspace position coordinate to place the orange
     Orange(Vector2 pos);
 };
 
 /// Throwable cherries
 class Cherries final : public Fruit {
    public:
-    /// Default constructor
+    /// Create a cherry
+    /// @param pos screenspace position coordinate to place the cherry
     Cherries(Vector2 pos);
 };
 
 /// Throwable strawberry
 class Strawberry final : public Fruit {
    public:
-    /// Default constructor
+    /// Create a strawberry
+    /// @param pos screenspace position coordinate to place the strawberry
     Strawberry(Vector2 pos);
 };
 
 /// Throwable pineapple
 class Pineapple final : public Fruit {
    public:
-    /// Default constructor
+    /// Create a pineapple
+    /// @param pos screenspace position coordinate to place the pineapple
     Pineapple(Vector2 pos);
 };
 
 /// Throwable bomb
 class Bomb final : public Fruit {
    public:
-    /// Default constructor
+    /// Create a bomb
+    /// @param pos screenspace position coordinate to place the bomb
     Bomb(Vector2 pos);
 
     /// Update and render the fruit shard
@@ -131,7 +141,11 @@ class Bomb final : public Fruit {
 /// Shard of a fruit (one half after it is cut)
 class FruitShard final : public PhysicsObject {
    public:
-    /// Default constructor
+    /// Create a fruit shard
+    /// @param image_name path to image to display as the base
+    /// @param radius collision radius in pixels
+    /// @param pos screenspace position coordinate to place the fruit shard
+    /// @param mass mass of the underlying physics object
     FruitShard(std::string image_path,
                float radius,
                Vector2 pos,
