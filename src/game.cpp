@@ -82,7 +82,7 @@ void Game::physics_update(double t, double dt) {
     float randX = rand_range(20, LCD_WIDTH - 20);
     float randForce = rand_range(-50, 80000);
 
-    if (randX > LCD_WIDTH / 2)
+    if (randX > (float)LCD_WIDTH / 2)
         randForce *= -1.0;
 
     Vector2 pos = {randX, LCD_HEIGHT + 20};

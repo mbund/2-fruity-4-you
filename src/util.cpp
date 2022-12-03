@@ -20,7 +20,7 @@ float rand_range(float lower, float upper) {
 }
 
 void draw_pixel_in_bounds(int x, int y) {
-    if (x >= 0 && x < LCD_WIDTH && y >= 0 && y < LCD_HEIGHT)
+    if (x >= 0 && x < (int)LCD_WIDTH && y >= 0 && y < (int)LCD_HEIGHT)
         LCD.DrawPixel(x, y);
 }
 

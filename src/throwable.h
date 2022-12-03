@@ -29,7 +29,7 @@ class PhysicsObject {
 
     /// Add an impulse force to the object
     /// @param force 2D force vector to apply as an impulse force
-    virtual void add_force(const Vector2& force);
+    void add_force(const Vector2& force);
 
    protected:
     Vector2 prev_position, current_position, position;
@@ -47,12 +47,12 @@ class Fruit : public PhysicsObject {
     /// Update and render the fruit
     /// @param alpha physics alpha, for interpolation between previous state and
     /// next state
-    virtual void update(double alpha);
+    void update(double alpha) override;
 
     /// Run physics calculations
     /// @param t time since start of game
     /// @param dt physics timestep
-    virtual void physics_update(double t, double dt);
+    void physics_update(double t, double dt) override;
 
     /// Detect collision between the apple and a line
     /// @param p1 first point on line
@@ -70,49 +70,49 @@ class Fruit : public PhysicsObject {
 };
 
 /// Throwable apple fruit
-class Apple : public Fruit {
+class Apple final : public Fruit {
    public:
     /// Default constructor
     Apple(Vector2 pos);
 };
 
 /// Throwable bananas
-class Bananas : public Fruit {
+class Bananas final : public Fruit {
    public:
     /// Default constructor
     Bananas(Vector2 pos);
 };
 
 /// Throwable orange
-class Orange : public Fruit {
+class Orange final : public Fruit {
    public:
     /// Default constructor
     Orange(Vector2 pos);
 };
 
 /// Throwable cherries
-class Cherries : public Fruit {
+class Cherries final : public Fruit {
    public:
     /// Default constructor
     Cherries(Vector2 pos);
 };
 
 /// Throwable strawberry
-class Strawberry : public Fruit {
+class Strawberry final : public Fruit {
    public:
     /// Default constructor
     Strawberry(Vector2 pos);
 };
 
 /// Throwable pineapple
-class Pineapple : public Fruit {
+class Pineapple final : public Fruit {
    public:
     /// Default constructor
     Pineapple(Vector2 pos);
 };
 
 /// Throwable bomb
-class Bomb : public Fruit {
+class Bomb final : public Fruit {
    public:
     /// Default constructor
     Bomb(Vector2 pos);
@@ -120,16 +120,16 @@ class Bomb : public Fruit {
     /// Update and render the fruit shard
     /// @param alpha physics alpha, for interpolation between previous state and
     /// next state
-    void update(double alpha);
+    void update(double alpha) override;
 
     /// Detect collision between the bomb and a line
     /// @param p1 first point on line
     /// @param p2 second point on line
-    void collision(Vector2 p1, Vector2 p2);
+    void collision(Vector2 p1, Vector2 p2) override;
 };
 
 /// Shard of a fruit (one half after it is cut)
-class FruitShard : public PhysicsObject {
+class FruitShard final : public PhysicsObject {
    public:
     /// Default constructor
     FruitShard(std::string image_path,
