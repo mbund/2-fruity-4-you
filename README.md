@@ -1,7 +1,7 @@
 # 2 Fruity 4 You
 Fruit Ninja clone FEH Proteus Simulator project for Autumn 2022.
 
-![game screenshot](assignment/game-screenshot.png)
+![gameplay screenshot](assignment/gameplay-screenshot.png)
 
 ## Documentation
 
@@ -14,8 +14,10 @@ The [latest binary releases can be found here](https://github.com/mbund/2-fruity
 Clone the repository (including submodules) and run make to build.
 
 ```
-$ git clone https://github.com/mbund/2-fruity-4-you --recurse-submodules
-$ make
+git clone https://github.com/mbund/2-fruity-4-you --recurse-submodules
+```
+```
+make
 ```
 
 [Doxygen](https://doxygen.nl) is used to create the documentation and may need to be installed as well.
@@ -26,11 +28,11 @@ $ make
 Install the required dependencies.
 
 ```
-$ apt install pkg-config mesa-common-dev libopengl-dev
+apt install pkg-config mesa-common-dev libopengl-dev
 ```
 
 ### Nix/OS
 This repository is a flake and has a nix development shell available. You can also just run the game directly without cloning anything by running the following.
 ```
-$ nix run github:mbund/2-fruity-4-you
+nix run github:mbund/2-fruity-4-you
 ```
