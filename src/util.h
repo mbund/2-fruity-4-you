@@ -3,12 +3,7 @@
 /// @file util.h
 /// Global variables, definitions, and miscellaneous utilities
 
-// Use c++17 inline for global variables
-
 #include <memory>
-#include <random>
-
-#include "FEHRandom.h"
 
 /// Global variable for whether the screen is currently being touched
 inline bool touchPressed;
@@ -31,6 +26,9 @@ void draw_horizontal_line(int y, int x1, int x2);
 /// Base class for a scene in the game
 class Scene {
    public:
+    /// Default virtual destructor
+    virtual ~Scene();
+
     /// Update and render the apple
     /// @param alpha physics alpha, for interpolation between previous state and
     /// next state

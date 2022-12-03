@@ -1,6 +1,7 @@
 /// @file game.cpp
 /// Main gameplay implementation
 
+#include <math.h>
 #include <algorithm>
 #include <cstddef>
 #include <cstdint>
@@ -16,14 +17,7 @@
 #include "ui.h"
 #include "util.h"
 
-#define COMBO_DUR 2.0
-#define CORNER_OFFSET 15
-
 Game::Game() {
-    exit_button = std::make_unique<UIButton>(
-        "X", UIPosition(10, 10, UIPosition::TopRight));
-    exit_button->bind_on_button_up([]() { current_scene = menu; });
-
     background = image_repository->load_image("assets/background-menu.png");
 }
 
@@ -40,9 +34,37 @@ void Game::start(float bomb_probability, float multiplier) {
     this->multiplier = multiplier;
     points = 0;
     combo = 0;
-    t = 0;
-    paused = false;
     time_started = TimeNow();
+}
+
+void Game::end() {
+    // screen wipe
+    LCD.SetFontColor(BLACK);
+    for (uint64_t i = 0; i < LCD_HEIGHT; i += 2) {
+        LCD.DrawHorizontalLine(i, 0, LCD_WIDTH);
+        LCD.DrawHorizontalLine(i + 1, 0, LCD_WIDTH);
+        LCD.Update();
+    }
+
+    // switch scenes and show keyboard/end game screen
+    end_game->end(points);
+    current_scene = end_game;
+}
+
+template <typename T>
+void collision(Vector2 p1, Vector2 p2, T& a) {
+    std::for_each(a.begin(), a.end(),
+                  [p1, p2](auto& b) { b->collision(p1, p2); });
+}
+
+void Game::collide_with_knife(Vector2 p1, Vector2 p2) {
+    collision(p1, p2, apples);
+    collision(p1, p2, bananas);
+    collision(p1, p2, oranges);
+    collision(p1, p2, cherries);
+    collision(p1, p2, strawberries);
+    collision(p1, p2, pineapples);
+    collision(p1, p2, bombs);
 }
 
 template <typename T>
@@ -64,9 +86,6 @@ void remove_if_foreach(T& a) {
 }
 
 void Game::physics_update(double t, double dt) {
-    if (paused)
-        return;
-
     physics_update_foreach(t, dt, apples);
     physics_update_foreach(t, dt, bananas);
     physics_update_foreach(t, dt, oranges);
@@ -75,8 +94,6 @@ void Game::physics_update(double t, double dt) {
     physics_update_foreach(t, dt, pineapples);
     physics_update_foreach(t, dt, bombs);
     physics_update_foreach(t, dt, fruit_shards);
-
-    this->t += dt;
 
     // random generation of fruits
     float randX = rand_range(20, LCD_WIDTH - 20);
@@ -88,6 +105,10 @@ void Game::physics_update(double t, double dt) {
     Vector2 pos = {randX, LCD_HEIGHT + 20};
     Vector2 first_force = {randForce, rand_range(-360000, -260000)};
 
+    // There is a 1.5% chance every physics update (which keeps it in real
+    // time) to spawn any item. There is a bomb_probability (difficulty level)
+    // chance of spawning a bomb and if the item turns out to not be a bomb it
+    // will uniformly randomly select from one of the five fruit to spawn.
     if (rand_range(0, 1) <= 0.015) {
         if (rand_range(0, 1) <= bomb_probability) {
             auto bomb = std::make_unique<Bomb>(pos);
@@ -126,32 +147,33 @@ void Game::physics_update(double t, double dt) {
 }
 
 void Game::update(double alpha) {
-    // renders background
+    // render background
     background->render(LCD_WIDTH / 2, LCD_HEIGHT / 2, 0);
 
-    // displays score
+    // display score
+    const uint32_t CORNER_OFFSET = 15;
     auto num = std::to_string(points);
     LCD.SetFontColor(WHITE);
     LCD.WriteAt(num.c_str(), CORNER_OFFSET,
                 LCD_HEIGHT - FONT_GLYPH_HEIGHT - CORNER_OFFSET);
 
-    // displays time
-    int time_left = (int)(30 - (TimeNow() - time_started)) + 1;
-    if (time_left >= 10)
+    // display time
+    auto time_left = (int)(GAME_DURATION + 1 - (TimeNow() - time_started));
+    if (time_left >= 10) {
         LCD.WriteAt(time_left, CORNER_OFFSET, CORNER_OFFSET);
-    else {
+    } else {
         LCD.WriteAt(0, CORNER_OFFSET, CORNER_OFFSET);
         LCD.WriteAt(time_left, CORNER_OFFSET + FONT_GLYPH_WIDTH, CORNER_OFFSET);
     }
-    paused = (30 <= TimeNow() - time_started);
 
-    // displays combo and combo time
-    if (TimeNow() - comboTime > COMBO_DUR) {
+    // display combo and combo time
+    const float COMBO_DUR = 2.0;
+    if (TimeNow() - combo_time > COMBO_DUR) {
         combo = 0;
     }
 
-    int color1 = 0xFF4545;
-    int color2 = 0x214545 + game->combo * 0x050000;
+    unsigned int color1 = 0xFF4545;
+    unsigned int color2 = 0x214545 + game->combo * 0x050000;
 
     if (game->combo != 0) {
         LCD.SetFontColor(std::min(color1, color2));
@@ -175,10 +197,11 @@ void Game::update(double alpha) {
                                LCD_WIDTH - CORNER_OFFSET,
                                LCD_WIDTH - CORNER_OFFSET +
                                    FONT_GLYPH_WIDTH * 2 / COMBO_DUR *
-                                       (TimeNow() - comboTime - COMBO_DUR));
+                                       (TimeNow() - combo_time - COMBO_DUR));
     }
 
-    // removes physics objects
+    // remove physics objects if they've gone out of bounds or otherwise need to
+    // be destroyed
     remove_if_foreach(apples);
     remove_if_foreach(bananas);
     remove_if_foreach(oranges);
@@ -188,7 +211,7 @@ void Game::update(double alpha) {
     remove_if_foreach(bombs);
     remove_if_foreach(fruit_shards);
 
-    // updates physics objects
+    // update physics objects
     update_foreach(alpha, apples);
     update_foreach(alpha, bananas);
     update_foreach(alpha, oranges);
@@ -197,16 +220,14 @@ void Game::update(double alpha) {
     update_foreach(alpha, pineapples);
     update_foreach(alpha, bombs);
 
-    // updates knife and fruit shards
-    if (!paused) {
-        knife.update();
+    // update and draw knife
+    knife.update();
 
-        update_foreach(alpha, fruit_shards);
-    }
+    // update and draw fruit shards
+    update_foreach(alpha, fruit_shards);
 
-    // transitions to endgame
-    if (paused) {
-        end_game->end(points);
-        current_scene = end_game;
+    // End the game if the game has gone on for max duration
+    if (GAME_DURATION <= TimeNow() - time_started) {
+        end();
     }
 }

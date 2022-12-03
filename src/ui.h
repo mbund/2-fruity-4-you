@@ -3,12 +3,9 @@
 /// @file ui.h
 /// User interface components and utilities
 
-#include <cstdint>
 #include <functional>
 #include <memory>
 #include <string>
-
-#include "FEHLCD.h"
 
 /// Width in pixels of a single character in the default font
 const uint64_t FONT_GLYPH_WIDTH = 12;
