@@ -9,6 +9,7 @@
 #include "ui.h"
 #include "util.h"
 
+Scene::~Scene() {}
 void Scene::update(double alpha) {}
 void Scene::physics_update(double t, double dt) {}
 
@@ -17,11 +18,6 @@ float rand_range(float lower, float upper) {
     float randNum = (rand() % 1025) / 1024.0;
 
     return randNum * (range) + lower;
-}
-
-void draw_pixel_in_bounds(int x, int y) {
-    if (x >= 0 && x < (int)LCD_WIDTH && y >= 0 && y < (int)LCD_HEIGHT)
-        LCD.DrawPixel(x, y);
 }
 
 Vector2::Vector2() : x(0), y(0) {}
@@ -149,6 +145,11 @@ Vector2 Vector2::normalize() const {
     return copy;
 }
 
+void draw_pixel_in_bounds(int x, int y) {
+    if (x >= 0 && x < (int)LCD_WIDTH && y >= 0 && y < (int)LCD_HEIGHT)
+        LCD.DrawPixel(x, y);
+}
+
 void draw_circle(int x0, int y0, int r) {
     // This alogorithm is from wikipedia
     // It's called the "midpoint circle algorithm"
@@ -192,6 +193,7 @@ void draw_horizontal_line(int y, int x1, int x2) {
         x2 = x1;
         x1 = c;
     }
+
     for (int i = x1; i <= x2; i++) {
         draw_pixel_in_bounds(i, y);
     }
@@ -203,6 +205,7 @@ void draw_vertical_line(int x, int y1, int y2) {
         y2 = y1;
         y1 = c;
     }
+
     for (int i = y1; i <= y2; i++) {
         draw_pixel_in_bounds(x, i);
     }
@@ -229,6 +232,7 @@ void fill_circle(int x0, int y0, int r) {
             ddF_y += 2;
             f += ddF_y;
         }
+
         x++;
         ddF_x += 2;
         f += ddF_x;

@@ -14,13 +14,13 @@
 #include "util.h"
 
 EndGame::EndGame() {
-    uint64_t Y_POS = 100;
-    uint64_t BUTTON_WIDTH = 20;
-    uint64_t BUTTON_HEIGHT = 24;
-    uint64_t MAX_WIDTH = row1.size() * BUTTON_WIDTH;
-    uint64_t LEFTMOST = (LCD_WIDTH / 2) - (MAX_WIDTH / 2);
+    const uint64_t Y_POS = 100;
+    const uint64_t BUTTON_WIDTH = 20;
+    const uint64_t BUTTON_HEIGHT = 24;
+    const uint64_t MAX_WIDTH = row1.size() * BUTTON_WIDTH;
+    const uint64_t LEFTMOST = (LCD_WIDTH / 2) - (MAX_WIDTH / 2);
 
-    std::string keyrow1 = "QWERTYUIOP";
+    const std::string keyrow1 = "QWERTYUIOP";
     for (size_t i = 0; i < row1.size(); i++) {
         row1[i] = std::make_unique<UIButton>(
             std::string(1, keyrow1[i]),
@@ -31,7 +31,7 @@ EndGame::EndGame() {
         });
     }
 
-    std::string keyrow2 = "ASDFGHJKL";
+    const std::string keyrow2 = "ASDFGHJKL";
     for (size_t i = 0; i < row2.size(); i++) {
         row2[i] = std::make_unique<UIButton>(
             std::string(1, keyrow2[i]),
@@ -43,7 +43,7 @@ EndGame::EndGame() {
         });
     }
 
-    std::string keyrow3 = "ZXCVBNM";
+    const std::string keyrow3 = "ZXCVBNM";
     for (size_t i = 0; i < row3.size(); i++) {
         row3[i] = std::make_unique<UIButton>(
             std::string(1, keyrow3[i]),
@@ -78,7 +78,7 @@ void EndGame::update(double alpha) {
     background->render(LCD_WIDTH / 2, LCD_HEIGHT / 2, 0);
 
     LCD.SetFontColor(WHITE);
-    auto points_str = std::to_string(points);
+    const auto points_str = std::to_string(points);
     LCD.WriteAt(
         points_str.c_str(),
         (LCD_WIDTH / 2.0) - (points_str.size() * FONT_GLYPH_WIDTH / 2.0),

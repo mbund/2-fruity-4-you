@@ -11,6 +11,7 @@
 #include "FEHLCD.h"
 #include "FEHUtility.h"
 
+#include "endgame.h"
 #include "game.h"
 #include "image.h"
 #include "menu.h"
@@ -118,9 +119,6 @@ Fruit::Fruit(std::string image_name, float radius, Vector2 pos, float mass)
       image(image_repository->load_image("assets/" + image_name + ".png")) {}
 
 void Fruit::update(double alpha) {
-    if (game->paused)
-        return;
-
     PhysicsObject::update(alpha);
 
     if (position.y - radius > LCD_HEIGHT + 100) {
@@ -128,7 +126,7 @@ void Fruit::update(double alpha) {
     }
 
     image->render(position.x, position.y,
-                  game->t * PI * std::clamp(velocity.x / 10.0f, -2.0f, 2.0f));
+                  TimeNow() * PI * std::clamp(velocity.x / 10.0f, -2.0f, 2.0f));
 }
 
 bool Fruit::get_should_be_removed() const {
@@ -162,7 +160,7 @@ void Fruit::collision(Vector2 p1, Vector2 p2) {
 
         game->points += game->multiplier * std::log2(game->combo + 2);
         game->combo++;
-        game->comboTime = TimeNow();
+        game->combo_time = TimeNow();
     }
 }
 
@@ -176,9 +174,6 @@ Pineapple::Pineapple(Vector2 pos) : Fruit("pineapple", 13, pos, 8) {}
 Bomb::Bomb(Vector2 pos) : Fruit("bomb", 13, pos, 8) {}
 
 void Bomb::update(double alpha) {
-    if (game->paused)
-        return;
-
     Fruit::update(alpha);
 
     LCD.SetFontColor(RED);
@@ -187,10 +182,6 @@ void Bomb::update(double alpha) {
 
 void Bomb::collision(Vector2 p1, Vector2 p2) {
     if (collide_line_circle(p1, p2, position, radius)) {
-        // flags pausing
-        game->paused = true;
-        game->time_paused = TimeNow();
-
         LCD.SetFontColor(INDIANRED);
         LCD.FillCircle(position.x, position.y, 10);
 
@@ -212,16 +203,10 @@ void Bomb::collision(Vector2 p1, Vector2 p2) {
             fill_circle(position.x + rand_range(-4 - i, 4 + i),
                         position.y + rand_range(-4 - i, 4 + i),
                         rand_range(1, i));
-            Sleep(2.0 / 100.0);
+            Sleep(0.0175);
         }
 
-        // screen wipe
-        LCD.SetFontColor(BLACK);
-        for (uint64_t i = 0; i < LCD_HEIGHT; i += 2) {
-            LCD.DrawHorizontalLine(i, 0, LCD_WIDTH);
-            LCD.DrawHorizontalLine(i + 1, 0, LCD_WIDTH);
-            LCD.Update();
-        }
+        game->end();
     }
 }
 
@@ -244,7 +229,7 @@ void FruitShard::update(double alpha) {
         should_be_removed = true;
     }
 
-    image->render(position.x, position.y, game->t * PI);
+    image->render(position.x, position.y, TimeNow() * PI);
 }
 
 bool FruitShard::get_should_be_removed() const {

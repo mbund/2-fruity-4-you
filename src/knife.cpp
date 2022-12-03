@@ -13,7 +13,7 @@
 Knife::Knife() {}
 
 // Bresenham's line drawing algorithm which works for all points a and b
-void Knife::draw_line(Point a, Point b) {
+void Knife::rainbow_draw_line(Point a, Point b) {
     int x, y;
     int xe, ye;
 
@@ -81,14 +81,7 @@ void Knife::draw_line(Point a, Point b) {
     }
 }
 
-template <typename T>
-void collision(Knife::Point p1, Knife::Point p2, T& a) {
-    std::for_each(a.begin(), a.end(), [p1, p2](auto& b) {
-        b->collision({(float)p1.x, (float)p1.y}, {(float)p2.x, (float)p2.y});
-    });
-}
-
-// changes font color to next one in a ranbow and makes cross
+// Change font color to next one in a ranbow and makes cross
 void Knife::rainbow_dot(int x, int y) {
     LCD.SetFontColor(colors[current_color]);
     current_color++;
@@ -111,19 +104,14 @@ void Knife::update() {
             Point p2 = points[(i + 1) % TAIL_LEN];
 
             current_color = 0;
-            draw_line(p1, p2);
+            rainbow_draw_line(p1, p2);
         }
 
         if (head - tail > 1) {
             auto p1 = points[(head - 0) % TAIL_LEN];
             auto p2 = points[(head - 1) % TAIL_LEN];
-            collision(p1, p2, game->apples);
-            collision(p1, p2, game->bananas);
-            collision(p1, p2, game->oranges);
-            collision(p1, p2, game->cherries);
-            collision(p1, p2, game->strawberries);
-            collision(p1, p2, game->pineapples);
-            collision(p1, p2, game->bombs);
+
+            game->collide_with_knife(Vector2(p1.x, p1.y), Vector2(p2.x, p2.y));
         }
 
         if (head < tail + TAIL_LEN - 1) {

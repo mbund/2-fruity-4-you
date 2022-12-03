@@ -11,7 +11,7 @@
 /// Render an image (.png, .jpeg, etc.)
 class Image {
    public:
-    /// Default constructor
+    /// Create and image based on a file path
     /// @param filename path to image file (.png, .jpeg, etc.) to load
     Image(std::string filename);
 
