@@ -78,7 +78,7 @@ $(function() {
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;LCDColors.h&quot;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="util_8h.html">util.h</a>&quot;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="knife_8h.html#aeabb2e4cbcd0780b79affa90d2a6bc79">   13</a></span><span class="preprocessor">#define TAIL_LEN 5</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="knife_8h.html#aeabb2e4cbcd0780b79affa90d2a6bc79">   13</a></span><span class="preprocessor">#define TAIL_LEN 4</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classKnife.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="classKnife.html">Knife</a> {</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>   <span class="keyword">public</span>:</div>
@@ -94,7 +94,7 @@ $(function() {
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>   <span class="keyword">private</span>:</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">void</span> draw_line(<a class="code hl_struct" href="structKnife_1_1Point.html">Point</a> a, <a class="code hl_struct" href="structKnife_1_1Point.html">Point</a> b);</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">void</span> rainbow_dot(<span class="keywordtype">int</span> , <span class="keywordtype">int</span>);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">void</span> rainbow_dot(<span class="keywordtype">int</span>, <span class="keywordtype">int</span>);</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <a class="code hl_struct" href="structKnife_1_1Point.html">Point</a> points[<a class="code hl_define" href="knife_8h.html#aeabb2e4cbcd0780b79affa90d2a6bc79">TAIL_LEN</a>];</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
@@ -102,12 +102,12 @@ $(function() {
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    uint64_t head;</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> colors[7] = {RED,  ORANGE, YELLOW,  GREEN,  BLUE, VIOLET, INDIGO};</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> colors[7] = {RED, ORANGE, YELLOW, GREEN, BLUE, VIOLET, INDIGO};</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">int</span> current_color;</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>};</div>
 <div class="ttc" id="aclassKnife_html"><div class="ttname"><a href="classKnife.html">Knife</a></div><div class="ttdoc">Representation of the knife, moving with the mouse.</div><div class="ttdef"><b>Definition:</b> knife.h:16</div></div>
 <div class="ttc" id="aclassKnife_html_a3e236e9208af135226100e63853f90ac"><div class="ttname"><a href="classKnife.html#a3e236e9208af135226100e63853f90ac">Knife::Knife</a></div><div class="ttdeci">Knife()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> knife.cpp:13</div></div>
-<div class="ttc" id="aclassKnife_html_a4042fbacbbf856ce97e277e35d6faa46"><div class="ttname"><a href="classKnife.html#a4042fbacbbf856ce97e277e35d6faa46">Knife::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">Update and render the knife.</div><div class="ttdef"><b>Definition:</b> knife.cpp:108</div></div>
+<div class="ttc" id="aclassKnife_html_a4042fbacbbf856ce97e277e35d6faa46"><div class="ttname"><a href="classKnife.html#a4042fbacbbf856ce97e277e35d6faa46">Knife::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">Update and render the knife.</div><div class="ttdef"><b>Definition:</b> knife.cpp:105</div></div>
 <div class="ttc" id="aknife_8h_html_aeabb2e4cbcd0780b79affa90d2a6bc79"><div class="ttname"><a href="knife_8h.html#aeabb2e4cbcd0780b79affa90d2a6bc79">TAIL_LEN</a></div><div class="ttdeci">#define TAIL_LEN</div><div class="ttdoc">Length of the tail.</div><div class="ttdef"><b>Definition:</b> knife.h:13</div></div>
 <div class="ttc" id="astructKnife_1_1Point_html"><div class="ttname"><a href="structKnife_1_1Point.html">Knife::Point</a></div><div class="ttdoc">Primitive for a point on the screen.</div><div class="ttdef"><b>Definition:</b> knife.h:25</div></div>
 <div class="ttc" id="autil_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div></div>
