@@ -49,19 +49,13 @@ bool collide_line_point(Vector2 l1, Vector2 l2, Vector2 p) {
 }
 
 // LINE/CIRCLE
-bool collide_line_circle(Vector2 l1,
-                         Vector2 l2,
-                         Vector2 c,
-                         float r,
-                         Vector2& ret) {
+bool collide_line_circle(Vector2 l1, Vector2 l2, Vector2 c, float r) {
     // is either end INSIDE the circle?
     // if so, return true immediately
-    ret = l1 - c;
     bool inside_1 = collide_point_circle(l1, c, r);
     if (inside_1)
         return true;
 
-    ret = l2 - c;
     bool inside_2 = collide_point_circle(l2, c, r);
     if (inside_2)
         return true;
@@ -87,7 +81,6 @@ bool collide_line_circle(Vector2 l1,
     // get distance to closest point
     float distance = Vector2::distance({closest_x, closest_y}, c);
 
-    ret = Vector2(closest_x, closest_y) - c;
     return distance <= r;
 }
 
@@ -150,13 +143,11 @@ void Fruit::physics_update(double t, double dt) {
 }
 
 void Fruit::collision(Vector2 p1, Vector2 p2) {
-    Vector2 ret;
-    if (!should_be_removed &&
-        collide_line_circle(p1, p2, position, radius, ret)) {
+    if (!should_be_removed && collide_line_circle(p1, p2, position, radius)) {
         should_be_removed = true;
 
-        Vector2 perp = {-ret.y, ret.x};
-        Vector2 force_left = perp.normalize() * 100000;
+        Vector2 force_left = {rand_range(-60000, -120000),
+                              rand_range(-120000, 120000)};
 
         auto shard_left =
             std::make_unique<FruitShard>("assets/" + image_name + "-left.png",
@@ -195,8 +186,7 @@ void Bomb::update(double alpha) {
 }
 
 void Bomb::collision(Vector2 p1, Vector2 p2) {
-    Vector2 ret;
-    if (collide_line_circle(p1, p2, position, radius, ret)) {
+    if (collide_line_circle(p1, p2, position, radius)) {
         // flags pausing
         game->paused = true;
         game->time_paused = TimeNow();

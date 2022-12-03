@@ -12,7 +12,7 @@
 
 Knife::Knife() {}
 
-/// Bresenham's line drawing algorithm which works for all points a and b
+// Bresenham's line drawing algorithm which works for all points a and b
 void Knife::draw_line(Point a, Point b) {
     int x, y;
     int xe, ye;
@@ -88,9 +88,7 @@ void collision(Knife::Point p1, Knife::Point p2, T& a) {
     });
 }
 
-/// @brief changes font color to next one in a ranbow and makes cross
-/// @param x x-position
-/// @param y y-position
+// changes font color to next one in a ranbow and makes cross
 void Knife::rainbow_dot(int x, int y) {
     LCD.SetFontColor(colors[current_color]);
     current_color++;
@@ -104,33 +102,31 @@ void Knife::rainbow_dot(int x, int y) {
     draw_pixel_in_bounds(x, y - 1);
 }
 
-/// @brief both updates position of knife and renders knife
 void Knife::update() {
     if (touchPressed) {
-        current_color = 0;
+        points[head % TAIL_LEN] = {touchX, touchY};
 
-        if (head < tail + TAIL_LEN) {
-            points[head % TAIL_LEN] = {touchX, touchY};
+        for (size_t i = tail; i < head; i++) {
+            Point p1 = points[i % TAIL_LEN];
+            Point p2 = points[(i + 1) % TAIL_LEN];
 
-            for (size_t i = tail + 1; i < head; i++) {
-                Point p1 = points[i % TAIL_LEN];
-                Point p2 = points[(i + 1) % TAIL_LEN];
+            current_color = 0;
+            draw_line(p1, p2);
+        }
 
-                draw_line(p1, p2);
-            }
+        if (head - tail > 1) {
+            auto p1 = points[(head - 0) % TAIL_LEN];
+            auto p2 = points[(head - 1) % TAIL_LEN];
+            collision(p1, p2, game->apples);
+            collision(p1, p2, game->bananas);
+            collision(p1, p2, game->oranges);
+            collision(p1, p2, game->cherries);
+            collision(p1, p2, game->strawberries);
+            collision(p1, p2, game->pineapples);
+            collision(p1, p2, game->bombs);
+        }
 
-            if (head - tail > 1) {
-                auto p1 = points[(head - 0) % TAIL_LEN];
-                auto p2 = points[(head - 1) % TAIL_LEN];
-                collision(p1, p2, game->apples);
-                collision(p1, p2, game->bananas);
-                collision(p1, p2, game->oranges);
-                collision(p1, p2, game->cherries);
-                collision(p1, p2, game->strawberries);
-                collision(p1, p2, game->pineapples);
-                collision(p1, p2, game->bombs);
-            }
-
+        if (head < tail + TAIL_LEN - 1) {
             head++;
         } else {
             tail++;

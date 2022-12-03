@@ -77,6 +77,52 @@ void Game::physics_update(double t, double dt) {
     physics_update_foreach(t, dt, fruit_shards);
 
     this->t += dt;
+
+    // random generation of fruits
+    float randX = rand_range(20, LCD_WIDTH - 20);
+    float randForce = rand_range(-50, 80000);
+
+    if (randX > LCD_WIDTH / 2)
+        randForce *= -1.0;
+
+    Vector2 pos = {randX, LCD_HEIGHT + 20};
+    Vector2 first_force = {randForce, rand_range(-360000, -260000)};
+
+    if (rand_range(0, 1) <= 0.015) {
+        if (rand_range(0, 1) <= bomb_probability) {
+            auto bomb = std::make_unique<Bomb>(pos);
+            bomb->add_force(first_force);
+            bombs.push_back(std::move(bomb));
+        } else {
+            uint32_t choice = (uint32_t)rand_range(0, 5 + 1);
+
+            if (choice == 0) {
+                auto apple = std::make_unique<Apple>(pos);
+                apple->add_force(first_force);
+                apples.push_back(std::move(apple));
+            } else if (choice == 1) {
+                auto banana = std::make_unique<Bananas>(pos);
+                banana->add_force(first_force);
+                bananas.push_back(std::move(banana));
+            } else if (choice == 2) {
+                auto orange = std::make_unique<Orange>(pos);
+                orange->add_force(first_force);
+                oranges.push_back(std::move(orange));
+            } else if (choice == 3) {
+                auto cherry = std::make_unique<Cherries>(pos);
+                cherry->add_force(first_force);
+                cherries.push_back(std::move(cherry));
+            } else if (choice == 4) {
+                auto strawberry = std::make_unique<Strawberry>(pos);
+                strawberry->add_force(first_force);
+                strawberries.push_back(std::move(strawberry));
+            } else if (choice == 5) {
+                auto pineapple = std::make_unique<Pineapple>(pos);
+                pineapple->add_force(first_force);
+                pineapples.push_back(std::move(pineapple));
+            }
+        }
+    }
 }
 
 void Game::update(double alpha) {
@@ -130,49 +176,6 @@ void Game::update(double alpha) {
                                LCD_WIDTH - CORNER_OFFSET +
                                    FONT_GLYPH_WIDTH * 2 / COMBO_DUR *
                                        (TimeNow() - comboTime - COMBO_DUR));
-    }
-
-    // TODO: make fruit spawn based on real time, not checking once per frame
-
-    // random generation of fruits
-    int randSpawn = rand_range(0, 160 + 1.5 * bomb_probability);
-    float randX = rand_range(20, LCD_WIDTH - 20);
-    float randForce = rand_range(-50, 80000);
-
-    if (randX > LCD_WIDTH / 2)
-        randForce *= -1.0;
-
-    Vector2 pos = {randX, LCD_HEIGHT + 20};
-    Vector2 first_force = {randForce, rand_range(-360000, -260000)};
-
-    if (randSpawn > 160 - 2) {
-        auto bomb = std::make_unique<Bomb>(pos);
-        bomb->add_force(first_force);
-        bombs.push_back(std::move(bomb));
-    } else if (randSpawn == 0) {
-        auto apple = std::make_unique<Apple>(pos);
-        apple->add_force(first_force);
-        apples.push_back(std::move(apple));
-    } else if (randSpawn == 1) {
-        auto banana = std::make_unique<Bananas>(pos);
-        banana->add_force(first_force);
-        bananas.push_back(std::move(banana));
-    } else if (randSpawn == 2) {
-        auto orange = std::make_unique<Orange>(pos);
-        orange->add_force(first_force);
-        oranges.push_back(std::move(orange));
-    } else if (randSpawn == 3) {
-        auto cherry = std::make_unique<Cherries>(pos);
-        cherry->add_force(first_force);
-        cherries.push_back(std::move(cherry));
-    } else if (randSpawn == 4) {
-        auto strawberry = std::make_unique<Strawberry>(pos);
-        strawberry->add_force(first_force);
-        strawberries.push_back(std::move(strawberry));
-    } else if (randSpawn == 5) {
-        auto pineapple = std::make_unique<Pineapple>(pos);
-        pineapple->add_force(first_force);
-        pineapples.push_back(std::move(pineapple));
     }
 
     // removes physics objects
