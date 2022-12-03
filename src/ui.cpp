@@ -35,10 +35,10 @@ void UIButton::update() {
                      (uint64_t)touchY >= box->get_y() &&
                      (uint64_t)touchY <= box->get_y() + box->height;
 
-    if (in_bounds && touchPressed && state != ButtonState::Down) {
+    if (in_bounds && touchPressed && state == ButtonState::Hover) {
         state = ButtonState::Down;
         on_button_down();
-    } else if (!touchPressed && state == ButtonState::Down) {
+    } else if (in_bounds && !touchPressed && state == ButtonState::Down) {
         state = ButtonState::Up;
         on_button_up();
     } else if (in_bounds && !touchPressed && state != ButtonState::Hover) {
