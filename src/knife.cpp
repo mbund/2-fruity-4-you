@@ -1,5 +1,6 @@
 /// @file knife.cpp
-/// Knife implementation
+/// @author John Ulm
+/// @brief Knife implementation
 
 #include <algorithm>
 #include <cmath>
@@ -8,7 +9,7 @@
 
 #include "game.h"
 #include "knife.h"
-#include "src/util.h"
+#include "util.h"
 
 Knife::Knife() {}
 

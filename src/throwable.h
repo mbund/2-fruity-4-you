@@ -1,8 +1,8 @@
 #pragma once
 
 /// @file throwable.h
-/// Throwable objects with physics
-/// Author: Mark unless stated otherwise
+/// @author Mark Bundschuh
+/// @brief Throwable objects with physics
 
 #include <memory>
 
@@ -134,7 +134,6 @@ class Bomb final : public Fruit {
     void update(double alpha) override;
 
     /// Detect collision between the bomb and a line
-    ///Author: John
     /// @param p1 first point on line
     /// @param p2 second point on line
     void collision(Vector2 p1, Vector2 p2) override;

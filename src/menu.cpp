@@ -1,5 +1,6 @@
 /// @file menu.cpp
-/// Implementation for menu components
+/// @author Mark Bundschuh
+/// @briief Implementation for menu components
 
 #include <algorithm>
 #include <fstream>
@@ -13,7 +14,7 @@
 
 #include "game.h"
 #include "menu.h"
-#include "src/image.h"
+#include "image.h"
 #include "ui.h"
 #include "util.h"
 

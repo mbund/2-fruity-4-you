@@ -1,5 +1,6 @@
 /// @file image.cpp
-/// Implementation of image rendering and loading
+/// @author Mark Bundschuh
+/// @brief Implementation of image rendering and loading
 
 #include <algorithm>
 #include <cmath>
@@ -69,6 +70,7 @@ void Image::render(int x, int y, float theta) const {
     for (int i = 0; i < w; i++) {
         for (int j = 0; j < h; j++) {
             uint32_t color = colors->at(i)[j];
+
             // dont draw transparent pixels
             if (color << 24 == 0x00)
                 continue;
@@ -88,6 +90,7 @@ void Image::render(int x, int y, float theta) const {
     }
 }
 
+// include each of the generated header files for each image
 #include "build/assets/apple-left.png.h"
 #include "build/assets/apple-right.png.h"
 #include "build/assets/apple.png.h"
@@ -109,6 +112,8 @@ void Image::render(int x, int y, float theta) const {
 #include "build/assets/strawberry-right.png.h"
 #include "build/assets/strawberry.png.h"
 
+/// Initialize the image repository with images loaded into code directly so
+/// that it is statically included within the binary.
 ImageRepository::ImageRepository() {
     images["assets/apple.png"] =
         std::make_shared<Image>(assets_apple_png, assets_apple_png_len);

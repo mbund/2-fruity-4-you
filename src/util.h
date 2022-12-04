@@ -1,8 +1,8 @@
 #pragma once
 
 /// @file util.h
-/// Global variables, definitions, and miscellaneous utilities
-/// Author: Mark
+/// @author Mark Bundschuh
+/// @brief Global variables, definitions, and miscellaneous utilities
 
 #include <memory>
 

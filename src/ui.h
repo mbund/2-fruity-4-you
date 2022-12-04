@@ -1,8 +1,8 @@
 #pragma once
 
 /// @file ui.h
-/// User interface components and utilities
-/// Author: Mark
+/// @author Mark Bundschuh
+/// @brief User interface components and utilities
 
 #include <functional>
 #include <memory>

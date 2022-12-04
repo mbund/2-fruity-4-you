@@ -1,8 +1,8 @@
 #pragma once
 
 /// @file image.h
-/// Image rendering and loading
-///Author: Mark
+/// @author Mark Bundschuh
+/// @brief Image rendering and loading
 
 #include <memory>
 #include <string>

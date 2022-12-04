@@ -1,5 +1,6 @@
 /// @file game.cpp
-/// Main gameplay implementation
+/// @author John Ulm and Mark Bundschuh
+/// @brief Main gameplay implementation
 
 #include <math.h>
 #include <algorithm>
@@ -17,10 +18,12 @@
 #include "ui.h"
 #include "util.h"
 
+/// @author Mark Bundschuh
 Game::Game() {
     background = image_repository->load_image("assets/background-menu.png");
 }
 
+/// @author Mark Bundschuh
 void Game::start(float bomb_probability, float multiplier) {
     apples.clear();
     bananas.clear();
@@ -37,6 +40,7 @@ void Game::start(float bomb_probability, float multiplier) {
     time_started = TimeNow();
 }
 
+/// @author Mark Bundschuh
 void Game::end() {
     // screen wipe
     LCD.SetFontColor(BLACK);
@@ -51,12 +55,14 @@ void Game::end() {
     current_scene = end_game;
 }
 
+/// @author Mark Bundschuh
 template <typename T>
 void collision(Vector2 p1, Vector2 p2, T& a) {
     std::for_each(a.begin(), a.end(),
                   [p1, p2](auto& b) { b->collision(p1, p2); });
 }
 
+/// @author Mark Bundschuh
 void Game::collide_with_knife(Vector2 p1, Vector2 p2) {
     collision(p1, p2, apples);
     collision(p1, p2, bananas);
@@ -67,17 +73,20 @@ void Game::collide_with_knife(Vector2 p1, Vector2 p2) {
     collision(p1, p2, bombs);
 }
 
+/// @author Mark Bundschuh
 template <typename T>
 void physics_update_foreach(double t, double dt, T& a) {
     std::for_each(a.begin(), a.end(),
                   [t, dt](auto& b) { b->physics_update(t, dt); });
 }
 
+/// @author Mark Bundschuh
 template <typename T>
 void update_foreach(double alpha, T& a) {
     std::for_each(a.begin(), a.end(), [alpha](auto& b) { b->update(alpha); });
 }
 
+/// @author Mark Bundschuh
 template <typename T>
 void remove_if_foreach(T& a) {
     a.erase(std::remove_if(a.begin(), a.end(),
@@ -85,6 +94,7 @@ void remove_if_foreach(T& a) {
             a.end());
 }
 
+/// @author John Ulm
 void Game::physics_update(double t, double dt) {
     physics_update_foreach(t, dt, apples);
     physics_update_foreach(t, dt, bananas);
@@ -146,6 +156,7 @@ void Game::physics_update(double t, double dt) {
     }
 }
 
+/// @author John Ulm
 void Game::update(double alpha) {
     // render background
     background->render(LCD_WIDTH / 2, LCD_HEIGHT / 2, 0);

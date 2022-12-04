@@ -1,5 +1,6 @@
 /// @file endgame.cpp
-/// End game and keyboard input implementation
+/// @author Mark Bundschuh
+/// @brief End game and keyboard input implementation
 
 #include <algorithm>
 #include <iostream>
