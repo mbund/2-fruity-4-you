@@ -71,76 +71,78 @@ $(function() {
 <div class="contents">
 <a href="game_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="image_8h.html">image.h</a>&quot;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="knife_8h.html">knife.h</a>&quot;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="throwable_8h.html">throwable.h</a>&quot;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="util_8h.html">util.h</a>&quot;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classGame.html">   15</a></span><span class="keyword">class </span><a class="code hl_class" href="classGame.html">Game</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classScene.html">Scene</a> {</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_function" href="classGame.html#ad59df6562a58a614fda24622d3715b65">Game</a>();</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGame.html#a7c9f1a2bca5b10d0028252e628b0430f">update</a>(<span class="keywordtype">double</span> alpha);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGame.html#ac205a23eea8ccd093549c6def8687493">physics_update</a>(<span class="keywordtype">double</span> t, <span class="keywordtype">double</span> dt);</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGame.html#ad98010cd07d9b8051afb96edd300d484">start</a>(<span class="keywordtype">float</span> bomb_probability, <span class="keywordtype">float</span> <a class="code hl_variable" href="classGame.html#ad80da8bca2f132980bff37a79c9c998a">multiplier</a>);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGame.html#aa2d938aa918268060e63980c7efd86f8">end</a>();</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGame.html#a5b7a68bce1a1f5f1b03dcd0b1d435d1e">collide_with_knife</a>(<a class="code hl_struct" href="structVector2.html">Vector2</a> p1, <a class="code hl_struct" href="structVector2.html">Vector2</a> p2);</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classGame.html#a15b628e2ea4c050595ed56e3383bcfe3">   48</a></span>    std::vector&lt;std::unique_ptr&lt;FruitShard&gt;&gt; <a class="code hl_variable" href="classGame.html#a15b628e2ea4c050595ed56e3383bcfe3">fruit_shards</a>;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classGame.html#a25f2b099ffcddef6a21d722d165908db">   51</a></span>    uint32_t <a class="code hl_variable" href="classGame.html#a25f2b099ffcddef6a21d722d165908db">points</a>;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classGame.html#a1a0f6e65b1cc68a3125478447a75609c">   54</a></span>    uint32_t <a class="code hl_variable" href="classGame.html#a1a0f6e65b1cc68a3125478447a75609c">combo</a>;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classGame.html#af550874909aa9c57732616ab3ce90a33">   57</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="classGame.html#af550874909aa9c57732616ab3ce90a33">combo_time</a>;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classGame.html#ad80da8bca2f132980bff37a79c9c998a">   60</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classGame.html#ad80da8bca2f132980bff37a79c9c998a">multiplier</a>;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keyword">const</span> uint32_t GAME_DURATION = 30;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">float</span> bomb_probability;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordtype">double</span> time_started;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <a class="code hl_class" href="classKnife.html">Knife</a> knife;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    std::shared_ptr&lt;Image&gt; background;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    std::vector&lt;std::unique_ptr&lt;Apple&gt;&gt; apples;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    std::vector&lt;std::unique_ptr&lt;Bananas&gt;&gt; bananas;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    std::vector&lt;std::unique_ptr&lt;Orange&gt;&gt; oranges;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    std::vector&lt;std::unique_ptr&lt;Cherries&gt;&gt; cherries;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    std::vector&lt;std::unique_ptr&lt;Strawberry&gt;&gt; strawberries;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    std::vector&lt;std::unique_ptr&lt;Pineapple&gt;&gt; pineapples;</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    std::vector&lt;std::unique_ptr&lt;Bomb&gt;&gt; bombs;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>};</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="game_8h.html#aaa752ad17416980090dfa48e301a8c59">   81</a></span><span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code hl_variable" href="game_8h.html#aaa752ad17416980090dfa48e301a8c59">game</a> = std::make_shared&lt;Game&gt;();</div>
-<div class="ttc" id="aclassGame_html"><div class="ttname"><a href="classGame.html">Game</a></div><div class="ttdoc">Main Scene for playing the game.</div><div class="ttdef"><b>Definition:</b> game.h:15</div></div>
-<div class="ttc" id="aclassGame_html_a15b628e2ea4c050595ed56e3383bcfe3"><div class="ttname"><a href="classGame.html#a15b628e2ea4c050595ed56e3383bcfe3">Game::fruit_shards</a></div><div class="ttdeci">std::vector&lt; std::unique_ptr&lt; FruitShard &gt; &gt; fruit_shards</div><div class="ttdoc">All fruit shards which need to be updated and rendered.</div><div class="ttdef"><b>Definition:</b> game.h:48</div></div>
-<div class="ttc" id="aclassGame_html_a1a0f6e65b1cc68a3125478447a75609c"><div class="ttname"><a href="classGame.html#a1a0f6e65b1cc68a3125478447a75609c">Game::combo</a></div><div class="ttdeci">uint32_t combo</div><div class="ttdoc">Current combo in the game.</div><div class="ttdef"><b>Definition:</b> game.h:54</div></div>
-<div class="ttc" id="aclassGame_html_a25f2b099ffcddef6a21d722d165908db"><div class="ttname"><a href="classGame.html#a25f2b099ffcddef6a21d722d165908db">Game::points</a></div><div class="ttdeci">uint32_t points</div><div class="ttdoc">Number of points scored in the game.</div><div class="ttdef"><b>Definition:</b> game.h:51</div></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="image_8h.html">image.h</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="knife_8h.html">knife.h</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="throwable_8h.html">throwable.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="util_8h.html">util.h</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classGame.html">   18</a></span><span class="keyword">class </span><a class="code hl_class" href="classGame.html">Game</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classScene.html">Scene</a> {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <a class="code hl_function" href="classGame.html#ad59df6562a58a614fda24622d3715b65">Game</a>();</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGame.html#a7c9f1a2bca5b10d0028252e628b0430f">update</a>(<span class="keywordtype">double</span> alpha);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGame.html#ac205a23eea8ccd093549c6def8687493">physics_update</a>(<span class="keywordtype">double</span> t, <span class="keywordtype">double</span> dt);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGame.html#ad98010cd07d9b8051afb96edd300d484">start</a>(<span class="keywordtype">float</span> bomb_probability, <span class="keywordtype">float</span> <a class="code hl_variable" href="classGame.html#ad80da8bca2f132980bff37a79c9c998a">multiplier</a>);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGame.html#aa2d938aa918268060e63980c7efd86f8">end</a>();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGame.html#a5b7a68bce1a1f5f1b03dcd0b1d435d1e">collide_with_knife</a>(<a class="code hl_struct" href="structVector2.html">Vector2</a> p1, <a class="code hl_struct" href="structVector2.html">Vector2</a> p2);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classGame.html#a15b628e2ea4c050595ed56e3383bcfe3">   52</a></span>    std::vector&lt;std::unique_ptr&lt;FruitShard&gt;&gt; <a class="code hl_variable" href="classGame.html#a15b628e2ea4c050595ed56e3383bcfe3">fruit_shards</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classGame.html#a25f2b099ffcddef6a21d722d165908db">   55</a></span>    uint32_t <a class="code hl_variable" href="classGame.html#a25f2b099ffcddef6a21d722d165908db">points</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classGame.html#a1a0f6e65b1cc68a3125478447a75609c">   58</a></span>    uint32_t <a class="code hl_variable" href="classGame.html#a1a0f6e65b1cc68a3125478447a75609c">combo</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classGame.html#af550874909aa9c57732616ab3ce90a33">   61</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="classGame.html#af550874909aa9c57732616ab3ce90a33">combo_time</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classGame.html#ad80da8bca2f132980bff37a79c9c998a">   64</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classGame.html#ad80da8bca2f132980bff37a79c9c998a">multiplier</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keyword">const</span> uint32_t GAME_DURATION = 30;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">float</span> bomb_probability;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">double</span> time_started;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <a class="code hl_class" href="classKnife.html">Knife</a> knife;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    std::shared_ptr&lt;Image&gt; background;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    std::vector&lt;std::unique_ptr&lt;Apple&gt;&gt; apples;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    std::vector&lt;std::unique_ptr&lt;Bananas&gt;&gt; bananas;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    std::vector&lt;std::unique_ptr&lt;Orange&gt;&gt; oranges;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    std::vector&lt;std::unique_ptr&lt;Cherries&gt;&gt; cherries;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    std::vector&lt;std::unique_ptr&lt;Strawberry&gt;&gt; strawberries;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    std::vector&lt;std::unique_ptr&lt;Pineapple&gt;&gt; pineapples;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    std::vector&lt;std::unique_ptr&lt;Bomb&gt;&gt; bombs;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>};</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="game_8h.html#aaa752ad17416980090dfa48e301a8c59">   88</a></span><span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code hl_variable" href="game_8h.html#aaa752ad17416980090dfa48e301a8c59">game</a> = std::make_shared&lt;Game&gt;();</div>
+<div class="ttc" id="aclassGame_html"><div class="ttname"><a href="classGame.html">Game</a></div><div class="ttdoc">Main Scene for playing the game.</div><div class="ttdef"><b>Definition:</b> game.h:18</div></div>
+<div class="ttc" id="aclassGame_html_a15b628e2ea4c050595ed56e3383bcfe3"><div class="ttname"><a href="classGame.html#a15b628e2ea4c050595ed56e3383bcfe3">Game::fruit_shards</a></div><div class="ttdeci">std::vector&lt; std::unique_ptr&lt; FruitShard &gt; &gt; fruit_shards</div><div class="ttdoc">All fruit shards which need to be updated and rendered.</div><div class="ttdef"><b>Definition:</b> game.h:52</div></div>
+<div class="ttc" id="aclassGame_html_a1a0f6e65b1cc68a3125478447a75609c"><div class="ttname"><a href="classGame.html#a1a0f6e65b1cc68a3125478447a75609c">Game::combo</a></div><div class="ttdeci">uint32_t combo</div><div class="ttdoc">Current combo in the game.</div><div class="ttdef"><b>Definition:</b> game.h:58</div></div>
+<div class="ttc" id="aclassGame_html_a25f2b099ffcddef6a21d722d165908db"><div class="ttname"><a href="classGame.html#a25f2b099ffcddef6a21d722d165908db">Game::points</a></div><div class="ttdeci">uint32_t points</div><div class="ttdoc">Number of points scored in the game.</div><div class="ttdef"><b>Definition:</b> game.h:55</div></div>
 <div class="ttc" id="aclassGame_html_a5b7a68bce1a1f5f1b03dcd0b1d435d1e"><div class="ttname"><a href="classGame.html#a5b7a68bce1a1f5f1b03dcd0b1d435d1e">Game::collide_with_knife</a></div><div class="ttdeci">void collide_with_knife(Vector2 p1, Vector2 p2)</div><div class="ttdef"><b>Definition:</b> game.cpp:60</div></div>
 <div class="ttc" id="aclassGame_html_a7c9f1a2bca5b10d0028252e628b0430f"><div class="ttname"><a href="classGame.html#a7c9f1a2bca5b10d0028252e628b0430f">Game::update</a></div><div class="ttdeci">void update(double alpha)</div><div class="ttdef"><b>Definition:</b> game.cpp:149</div></div>
 <div class="ttc" id="aclassGame_html_aa2d938aa918268060e63980c7efd86f8"><div class="ttname"><a href="classGame.html#aa2d938aa918268060e63980c7efd86f8">Game::end</a></div><div class="ttdeci">void end()</div><div class="ttdoc">End the current game.</div><div class="ttdef"><b>Definition:</b> game.cpp:40</div></div>
 <div class="ttc" id="aclassGame_html_ac205a23eea8ccd093549c6def8687493"><div class="ttname"><a href="classGame.html#ac205a23eea8ccd093549c6def8687493">Game::physics_update</a></div><div class="ttdeci">void physics_update(double t, double dt)</div><div class="ttdef"><b>Definition:</b> game.cpp:88</div></div>
 <div class="ttc" id="aclassGame_html_ad59df6562a58a614fda24622d3715b65"><div class="ttname"><a href="classGame.html#ad59df6562a58a614fda24622d3715b65">Game::Game</a></div><div class="ttdeci">Game()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> game.cpp:20</div></div>
-<div class="ttc" id="aclassGame_html_ad80da8bca2f132980bff37a79c9c998a"><div class="ttname"><a href="classGame.html#ad80da8bca2f132980bff37a79c9c998a">Game::multiplier</a></div><div class="ttdeci">float multiplier</div><div class="ttdoc">score multiplier (should reward higher difficulties)</div><div class="ttdef"><b>Definition:</b> game.h:60</div></div>
+<div class="ttc" id="aclassGame_html_ad80da8bca2f132980bff37a79c9c998a"><div class="ttname"><a href="classGame.html#ad80da8bca2f132980bff37a79c9c998a">Game::multiplier</a></div><div class="ttdeci">float multiplier</div><div class="ttdoc">score multiplier (should reward higher difficulties)</div><div class="ttdef"><b>Definition:</b> game.h:64</div></div>
 <div class="ttc" id="aclassGame_html_ad98010cd07d9b8051afb96edd300d484"><div class="ttname"><a href="classGame.html#ad98010cd07d9b8051afb96edd300d484">Game::start</a></div><div class="ttdeci">void start(float bomb_probability, float multiplier)</div><div class="ttdef"><b>Definition:</b> game.cpp:24</div></div>
-<div class="ttc" id="aclassGame_html_af550874909aa9c57732616ab3ce90a33"><div class="ttname"><a href="classGame.html#af550874909aa9c57732616ab3ce90a33">Game::combo_time</a></div><div class="ttdeci">double combo_time</div><div class="ttdoc">Time that the most recent fruit was cut.</div><div class="ttdef"><b>Definition:</b> game.h:57</div></div>
-<div class="ttc" id="aclassKnife_html"><div class="ttname"><a href="classKnife.html">Knife</a></div><div class="ttdoc">Representation of the knife, moving with the mouse.</div><div class="ttdef"><b>Definition:</b> knife.h:10</div></div>
-<div class="ttc" id="aclassScene_html"><div class="ttname"><a href="classScene.html">Scene</a></div><div class="ttdoc">Base class for a scene in the game.</div><div class="ttdef"><b>Definition:</b> util.h:27</div></div>
-<div class="ttc" id="agame_8h_html_aaa752ad17416980090dfa48e301a8c59"><div class="ttname"><a href="game_8h.html#aaa752ad17416980090dfa48e301a8c59">game</a></div><div class="ttdeci">auto game</div><div class="ttdoc">Global variable to hold the state of the game.</div><div class="ttdef"><b>Definition:</b> game.h:81</div></div>
+<div class="ttc" id="aclassGame_html_af550874909aa9c57732616ab3ce90a33"><div class="ttname"><a href="classGame.html#af550874909aa9c57732616ab3ce90a33">Game::combo_time</a></div><div class="ttdeci">double combo_time</div><div class="ttdoc">Time that the most recent fruit was cut.</div><div class="ttdef"><b>Definition:</b> game.h:61</div></div>
+<div class="ttc" id="aclassKnife_html"><div class="ttname"><a href="classKnife.html">Knife</a></div><div class="ttdoc">Representation of the knife, moving with the mouse.</div><div class="ttdef"><b>Definition:</b> knife.h:12</div></div>
+<div class="ttc" id="aclassScene_html"><div class="ttname"><a href="classScene.html">Scene</a></div><div class="ttdoc">Base class for a scene in the game.</div><div class="ttdef"><b>Definition:</b> util.h:28</div></div>
+<div class="ttc" id="agame_8h_html_aaa752ad17416980090dfa48e301a8c59"><div class="ttname"><a href="game_8h.html#aaa752ad17416980090dfa48e301a8c59">game</a></div><div class="ttdeci">auto game</div><div class="ttdoc">Global variable to hold the state of the game.</div><div class="ttdef"><b>Definition:</b> game.h:88</div></div>
 <div class="ttc" id="aimage_8h_html"><div class="ttname"><a href="image_8h.html">image.h</a></div></div>
 <div class="ttc" id="aknife_8h_html"><div class="ttname"><a href="knife_8h.html">knife.h</a></div></div>
-<div class="ttc" id="astructVector2_html"><div class="ttname"><a href="structVector2.html">Vector2</a></div><div class="ttdoc">2 dimensional mathmatical vector</div><div class="ttdef"><b>Definition:</b> util.h:44</div></div>
+<div class="ttc" id="astructVector2_html"><div class="ttname"><a href="structVector2.html">Vector2</a></div><div class="ttdoc">2 dimensional mathmatical vector</div><div class="ttdef"><b>Definition:</b> util.h:45</div></div>
 <div class="ttc" id="athrowable_8h_html"><div class="ttname"><a href="throwable_8h.html">throwable.h</a></div></div>
 <div class="ttc" id="autil_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

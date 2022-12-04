@@ -71,100 +71,100 @@ $(function() {
 <div class="contents">
 <a href="menu_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="image_8h.html">image.h</a>&quot;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="ui_8h.html">ui.h</a>&quot;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="util_8h.html">util.h</a>&quot;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classCredits.html">   15</a></span><span class="keyword">class </span><a class="code hl_class" href="classCredits.html">Credits</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classScene.html">Scene</a> {</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_function" href="classCredits.html#aed33ebbb9f35f09034f52ca47f30d5b8">Credits</a>();</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classCredits.html#a9d690e95c541f10525566f205eb4430e">update</a>(<span class="keywordtype">double</span> alpha);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    std::unique_ptr&lt;UIButton&gt; close_button;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    std::unique_ptr&lt;UIBox&gt; box;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    std::shared_ptr&lt;Image&gt; background;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>};</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classInstructions.html">   32</a></span><span class="keyword">class </span><a class="code hl_class" href="classInstructions.html">Instructions</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classScene.html">Scene</a> {</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_function" href="classInstructions.html#accd980e9c726a3c6aec6fb0bc79b3731">Instructions</a>();</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classInstructions.html#a1adbaadd7006e3e9ba75183bab336dce">update</a>(<span class="keywordtype">double</span> alpha);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    std::unique_ptr&lt;UIButton&gt; close_button;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    std::unique_ptr&lt;UIBox&gt; box;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    std::shared_ptr&lt;Image&gt; background;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>};</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classLeaderboard.html">   49</a></span><span class="keyword">class </span><a class="code hl_class" href="classLeaderboard.html">Leaderboard</a> {</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="structLeaderboard_1_1Entry.html">   52</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structLeaderboard_1_1Entry.html">Entry</a> {</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        std::string name;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        uint64_t points;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    };</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <a class="code hl_function" href="classLeaderboard.html#ab094b18c57ab9b8ef9d06a94d9b11f02">Leaderboard</a>();</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classLeaderboard.html#ac7e379864f2ca9622bd9be616363adfd">update</a>();</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classLeaderboard.html#acb60e150090b02766969efc5c32912db">add_entry</a>(<a class="code hl_struct" href="structLeaderboard_1_1Entry.html">Entry</a> entry);</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    std::vector&lt;Entry&gt; entries;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    std::unique_ptr&lt;UIBox&gt; box;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>};</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classMenu.html">   73</a></span><span class="keyword">class </span><a class="code hl_class" href="classMenu.html">Menu</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classScene.html">Scene</a> {</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <a class="code hl_function" href="classMenu.html#ad466dd83355124a6ed958430450bfe94">Menu</a>();</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMenu.html#a3a79900dd619cd0bbdc1f324fb27c000">update</a>(<span class="keywordtype">double</span> alpha);</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classMenu.html#ade29c9adf0ff928d85fba769a3ca5e34">   85</a></span>    <a class="code hl_class" href="classLeaderboard.html">Leaderboard</a> <a class="code hl_variable" href="classMenu.html#ade29c9adf0ff928d85fba769a3ca5e34">leaderboard</a>;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    std::unique_ptr&lt;UIButton&gt; show_credits_button;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    std::unique_ptr&lt;UIButton&gt; show_instructions_button;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    std::unique_ptr&lt;UIButton&gt; quit_button;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    std::unique_ptr&lt;UIButton&gt; play_easy;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    std::unique_ptr&lt;UIButton&gt; play_medium;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    std::unique_ptr&lt;UIButton&gt; play_hard;</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    std::shared_ptr&lt;Image&gt; background;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>};</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="menu_8h.html#a0fc7fa7ee1223f672fd4f00631ff0f19">   98</a></span><span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code hl_variable" href="menu_8h.html#a0fc7fa7ee1223f672fd4f00631ff0f19">menu</a> = std::make_shared&lt;Menu&gt;();</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="menu_8h.html#a7b10d3be7f13da4f2a4623ae6a266487">  101</a></span><span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code hl_variable" href="menu_8h.html#a7b10d3be7f13da4f2a4623ae6a266487">credits</a> = std::make_shared&lt;Credits&gt;();</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="menu_8h.html#a57ff4f0c3308817b1a756d5d8863f6c0">  104</a></span><span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code hl_variable" href="menu_8h.html#a57ff4f0c3308817b1a756d5d8863f6c0">instructions</a> = std::make_shared&lt;Instructions&gt;();</div>
-<div class="ttc" id="aclassCredits_html"><div class="ttname"><a href="classCredits.html">Credits</a></div><div class="ttdoc">Main menu Scene which shows the credits.</div><div class="ttdef"><b>Definition:</b> menu.h:15</div></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="image_8h.html">image.h</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="ui_8h.html">ui.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="util_8h.html">util.h</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classCredits.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="classCredits.html">Credits</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classScene.html">Scene</a> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_function" href="classCredits.html#aed33ebbb9f35f09034f52ca47f30d5b8">Credits</a>();</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classCredits.html#a9d690e95c541f10525566f205eb4430e">update</a>(<span class="keywordtype">double</span> alpha);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    std::unique_ptr&lt;UIButton&gt; close_button;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    std::unique_ptr&lt;UIBox&gt; box;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    std::shared_ptr&lt;Image&gt; background;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>};</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classInstructions.html">   33</a></span><span class="keyword">class </span><a class="code hl_class" href="classInstructions.html">Instructions</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classScene.html">Scene</a> {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <a class="code hl_function" href="classInstructions.html#accd980e9c726a3c6aec6fb0bc79b3731">Instructions</a>();</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classInstructions.html#a1adbaadd7006e3e9ba75183bab336dce">update</a>(<span class="keywordtype">double</span> alpha);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    std::unique_ptr&lt;UIButton&gt; close_button;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    std::unique_ptr&lt;UIBox&gt; box;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    std::shared_ptr&lt;Image&gt; background;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>};</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classLeaderboard.html">   50</a></span><span class="keyword">class </span><a class="code hl_class" href="classLeaderboard.html">Leaderboard</a> {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="structLeaderboard_1_1Entry.html">   53</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structLeaderboard_1_1Entry.html">Entry</a> {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        std::string name;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        uint64_t points;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    };</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <a class="code hl_function" href="classLeaderboard.html#ab094b18c57ab9b8ef9d06a94d9b11f02">Leaderboard</a>();</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classLeaderboard.html#ac7e379864f2ca9622bd9be616363adfd">update</a>();</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classLeaderboard.html#acb60e150090b02766969efc5c32912db">add_entry</a>(<a class="code hl_struct" href="structLeaderboard_1_1Entry.html">Entry</a> entry);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    std::vector&lt;Entry&gt; entries;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    std::unique_ptr&lt;UIBox&gt; box;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>};</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classMenu.html">   74</a></span><span class="keyword">class </span><a class="code hl_class" href="classMenu.html">Menu</a> final : <span class="keyword">public</span> <a class="code hl_class" href="classScene.html">Scene</a> {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <a class="code hl_function" href="classMenu.html#ad466dd83355124a6ed958430450bfe94">Menu</a>();</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMenu.html#a3a79900dd619cd0bbdc1f324fb27c000">update</a>(<span class="keywordtype">double</span> alpha);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classMenu.html#ade29c9adf0ff928d85fba769a3ca5e34">   86</a></span>    <a class="code hl_class" href="classLeaderboard.html">Leaderboard</a> <a class="code hl_variable" href="classMenu.html#ade29c9adf0ff928d85fba769a3ca5e34">leaderboard</a>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    std::unique_ptr&lt;UIButton&gt; show_credits_button;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    std::unique_ptr&lt;UIButton&gt; show_instructions_button;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    std::unique_ptr&lt;UIButton&gt; quit_button;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    std::unique_ptr&lt;UIButton&gt; play_easy;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    std::unique_ptr&lt;UIButton&gt; play_medium;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    std::unique_ptr&lt;UIButton&gt; play_hard;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    std::shared_ptr&lt;Image&gt; background;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>};</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="menu_8h.html#a0fc7fa7ee1223f672fd4f00631ff0f19">   99</a></span><span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code hl_variable" href="menu_8h.html#a0fc7fa7ee1223f672fd4f00631ff0f19">menu</a> = std::make_shared&lt;Menu&gt;();</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="menu_8h.html#a7b10d3be7f13da4f2a4623ae6a266487">  102</a></span><span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code hl_variable" href="menu_8h.html#a7b10d3be7f13da4f2a4623ae6a266487">credits</a> = std::make_shared&lt;Credits&gt;();</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="menu_8h.html#a57ff4f0c3308817b1a756d5d8863f6c0">  105</a></span><span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code hl_variable" href="menu_8h.html#a57ff4f0c3308817b1a756d5d8863f6c0">instructions</a> = std::make_shared&lt;Instructions&gt;();</div>
+<div class="ttc" id="aclassCredits_html"><div class="ttname"><a href="classCredits.html">Credits</a></div><div class="ttdoc">Main menu Scene which shows the credits.</div><div class="ttdef"><b>Definition:</b> menu.h:16</div></div>
 <div class="ttc" id="aclassCredits_html_a9d690e95c541f10525566f205eb4430e"><div class="ttname"><a href="classCredits.html#a9d690e95c541f10525566f205eb4430e">Credits::update</a></div><div class="ttdeci">virtual void update(double alpha)</div><div class="ttdef"><b>Definition:</b> menu.cpp:31</div></div>
 <div class="ttc" id="aclassCredits_html_aed33ebbb9f35f09034f52ca47f30d5b8"><div class="ttname"><a href="classCredits.html#aed33ebbb9f35f09034f52ca47f30d5b8">Credits::Credits</a></div><div class="ttdeci">Credits()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> menu.cpp:20</div></div>
-<div class="ttc" id="aclassInstructions_html"><div class="ttname"><a href="classInstructions.html">Instructions</a></div><div class="ttdoc">Main menu Scene which shows the instructions for how to play the game.</div><div class="ttdef"><b>Definition:</b> menu.h:32</div></div>
+<div class="ttc" id="aclassInstructions_html"><div class="ttname"><a href="classInstructions.html">Instructions</a></div><div class="ttdoc">Main menu Scene which shows the instructions for how to play the game.</div><div class="ttdef"><b>Definition:</b> menu.h:33</div></div>
 <div class="ttc" id="aclassInstructions_html_a1adbaadd7006e3e9ba75183bab336dce"><div class="ttname"><a href="classInstructions.html#a1adbaadd7006e3e9ba75183bab336dce">Instructions::update</a></div><div class="ttdeci">virtual void update(double alpha)</div><div class="ttdef"><b>Definition:</b> menu.cpp:63</div></div>
 <div class="ttc" id="aclassInstructions_html_accd980e9c726a3c6aec6fb0bc79b3731"><div class="ttname"><a href="classInstructions.html#accd980e9c726a3c6aec6fb0bc79b3731">Instructions::Instructions</a></div><div class="ttdeci">Instructions()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> menu.cpp:52</div></div>
-<div class="ttc" id="aclassLeaderboard_html"><div class="ttname"><a href="classLeaderboard.html">Leaderboard</a></div><div class="ttdoc">UI component for displaying and interacting with the leaderboard.</div><div class="ttdef"><b>Definition:</b> menu.h:49</div></div>
+<div class="ttc" id="aclassLeaderboard_html"><div class="ttname"><a href="classLeaderboard.html">Leaderboard</a></div><div class="ttdoc">UI component for displaying and interacting with the leaderboard.</div><div class="ttdef"><b>Definition:</b> menu.h:50</div></div>
 <div class="ttc" id="aclassLeaderboard_html_ab094b18c57ab9b8ef9d06a94d9b11f02"><div class="ttname"><a href="classLeaderboard.html#ab094b18c57ab9b8ef9d06a94d9b11f02">Leaderboard::Leaderboard</a></div><div class="ttdeci">Leaderboard()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> menu.cpp:84</div></div>
 <div class="ttc" id="aclassLeaderboard_html_ac7e379864f2ca9622bd9be616363adfd"><div class="ttname"><a href="classLeaderboard.html#ac7e379864f2ca9622bd9be616363adfd">Leaderboard::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">Update and render the component.</div><div class="ttdef"><b>Definition:</b> menu.cpp:113</div></div>
 <div class="ttc" id="aclassLeaderboard_html_acb60e150090b02766969efc5c32912db"><div class="ttname"><a href="classLeaderboard.html#acb60e150090b02766969efc5c32912db">Leaderboard::add_entry</a></div><div class="ttdeci">void add_entry(Entry entry)</div><div class="ttdef"><b>Definition:</b> menu.cpp:98</div></div>
-<div class="ttc" id="aclassMenu_html"><div class="ttname"><a href="classMenu.html">Menu</a></div><div class="ttdoc">Main menu Scene.</div><div class="ttdef"><b>Definition:</b> menu.h:73</div></div>
+<div class="ttc" id="aclassMenu_html"><div class="ttname"><a href="classMenu.html">Menu</a></div><div class="ttdoc">Main menu Scene.</div><div class="ttdef"><b>Definition:</b> menu.h:74</div></div>
 <div class="ttc" id="aclassMenu_html_a3a79900dd619cd0bbdc1f324fb27c000"><div class="ttname"><a href="classMenu.html#a3a79900dd619cd0bbdc1f324fb27c000">Menu::update</a></div><div class="ttdeci">void update(double alpha)</div><div class="ttdef"><b>Definition:</b> menu.cpp:167</div></div>
 <div class="ttc" id="aclassMenu_html_ad466dd83355124a6ed958430450bfe94"><div class="ttname"><a href="classMenu.html#ad466dd83355124a6ed958430450bfe94">Menu::Menu</a></div><div class="ttdeci">Menu()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> menu.cpp:133</div></div>
-<div class="ttc" id="aclassMenu_html_ade29c9adf0ff928d85fba769a3ca5e34"><div class="ttname"><a href="classMenu.html#ade29c9adf0ff928d85fba769a3ca5e34">Menu::leaderboard</a></div><div class="ttdeci">Leaderboard leaderboard</div><div class="ttdef"><b>Definition:</b> menu.h:85</div></div>
-<div class="ttc" id="aclassScene_html"><div class="ttname"><a href="classScene.html">Scene</a></div><div class="ttdoc">Base class for a scene in the game.</div><div class="ttdef"><b>Definition:</b> util.h:27</div></div>
+<div class="ttc" id="aclassMenu_html_ade29c9adf0ff928d85fba769a3ca5e34"><div class="ttname"><a href="classMenu.html#ade29c9adf0ff928d85fba769a3ca5e34">Menu::leaderboard</a></div><div class="ttdeci">Leaderboard leaderboard</div><div class="ttdef"><b>Definition:</b> menu.h:86</div></div>
+<div class="ttc" id="aclassScene_html"><div class="ttname"><a href="classScene.html">Scene</a></div><div class="ttdoc">Base class for a scene in the game.</div><div class="ttdef"><b>Definition:</b> util.h:28</div></div>
 <div class="ttc" id="aimage_8h_html"><div class="ttname"><a href="image_8h.html">image.h</a></div></div>
-<div class="ttc" id="amenu_8h_html_a0fc7fa7ee1223f672fd4f00631ff0f19"><div class="ttname"><a href="menu_8h.html#a0fc7fa7ee1223f672fd4f00631ff0f19">menu</a></div><div class="ttdeci">auto menu</div><div class="ttdoc">Global variable to hold the state of the menu.</div><div class="ttdef"><b>Definition:</b> menu.h:98</div></div>
-<div class="ttc" id="amenu_8h_html_a57ff4f0c3308817b1a756d5d8863f6c0"><div class="ttname"><a href="menu_8h.html#a57ff4f0c3308817b1a756d5d8863f6c0">instructions</a></div><div class="ttdeci">auto instructions</div><div class="ttdoc">Global variable to hold the state of the instructions.</div><div class="ttdef"><b>Definition:</b> menu.h:104</div></div>
-<div class="ttc" id="amenu_8h_html_a7b10d3be7f13da4f2a4623ae6a266487"><div class="ttname"><a href="menu_8h.html#a7b10d3be7f13da4f2a4623ae6a266487">credits</a></div><div class="ttdeci">auto credits</div><div class="ttdoc">Global variable to hold the state of the credits.</div><div class="ttdef"><b>Definition:</b> menu.h:101</div></div>
-<div class="ttc" id="astructLeaderboard_1_1Entry_html"><div class="ttname"><a href="structLeaderboard_1_1Entry.html">Leaderboard::Entry</a></div><div class="ttdoc">An entry of the Leaderboard.</div><div class="ttdef"><b>Definition:</b> menu.h:52</div></div>
+<div class="ttc" id="amenu_8h_html_a0fc7fa7ee1223f672fd4f00631ff0f19"><div class="ttname"><a href="menu_8h.html#a0fc7fa7ee1223f672fd4f00631ff0f19">menu</a></div><div class="ttdeci">auto menu</div><div class="ttdoc">Global variable to hold the state of the menu.</div><div class="ttdef"><b>Definition:</b> menu.h:99</div></div>
+<div class="ttc" id="amenu_8h_html_a57ff4f0c3308817b1a756d5d8863f6c0"><div class="ttname"><a href="menu_8h.html#a57ff4f0c3308817b1a756d5d8863f6c0">instructions</a></div><div class="ttdeci">auto instructions</div><div class="ttdoc">Global variable to hold the state of the instructions.</div><div class="ttdef"><b>Definition:</b> menu.h:105</div></div>
+<div class="ttc" id="amenu_8h_html_a7b10d3be7f13da4f2a4623ae6a266487"><div class="ttname"><a href="menu_8h.html#a7b10d3be7f13da4f2a4623ae6a266487">credits</a></div><div class="ttdeci">auto credits</div><div class="ttdoc">Global variable to hold the state of the credits.</div><div class="ttdef"><b>Definition:</b> menu.h:102</div></div>
+<div class="ttc" id="astructLeaderboard_1_1Entry_html"><div class="ttname"><a href="structLeaderboard_1_1Entry.html">Leaderboard::Entry</a></div><div class="ttdoc">An entry of the Leaderboard.</div><div class="ttdef"><b>Definition:</b> menu.h:53</div></div>
 <div class="ttc" id="aui_8h_html"><div class="ttname"><a href="ui_8h.html">ui.h</a></div></div>
 <div class="ttc" id="autil_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
