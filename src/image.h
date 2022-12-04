@@ -9,7 +9,6 @@
 #include <unordered_map>
 #include <vector>
 
-
 /// Render an image (.png, .jpeg, etc.)
 class Image {
    public:

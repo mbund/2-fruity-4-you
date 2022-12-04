@@ -13,8 +13,8 @@
 #include <FEHLCD.h>
 
 #include "game.h"
-#include "menu.h"
 #include "image.h"
+#include "menu.h"
 #include "ui.h"
 #include "util.h"
 

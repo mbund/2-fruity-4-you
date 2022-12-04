@@ -7,7 +7,6 @@
 #include <cstddef>
 #include <cstdint>
 
-
 /// Representation of the knife, moving with the mouse
 class Knife {
    public:
