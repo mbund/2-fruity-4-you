@@ -153,15 +153,15 @@ Menu::Menu() {
     quit_button->bind_on_button_up([&]() { exit(0); });
     play_easy->bind_on_button_up([&]() {
         current_scene = game;
-        game->start(0.10, 1);
+        game->start(0.12, 1);
     });
     play_medium->bind_on_button_up([&]() {
         current_scene = game;
-        game->start(0.20, 2);
+        game->start(0.24, 2);
     });
     play_hard->bind_on_button_up([&]() {
         current_scene = game;
-        game->start(0.30, 3);
+        game->start(0.36, 3);
     });
 }
 

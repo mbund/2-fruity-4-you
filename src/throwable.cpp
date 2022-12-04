@@ -155,7 +155,7 @@ void Fruit::physics_update(double t, double dt) {
     PhysicsObject::physics_update(t, dt);
 }
 
-/// @author John Ulm
+
 void Fruit::collision(Vector2 p1, Vector2 p2) {
     if (!should_be_removed && collide_line_circle(p1, p2, position, radius)) {
         should_be_removed = true;

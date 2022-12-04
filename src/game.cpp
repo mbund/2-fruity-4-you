@@ -96,15 +96,7 @@ void remove_if_foreach(T& a) {
 
 /// @author John Ulm
 void Game::physics_update(double t, double dt) {
-    physics_update_foreach(t, dt, apples);
-    physics_update_foreach(t, dt, bananas);
-    physics_update_foreach(t, dt, oranges);
-    physics_update_foreach(t, dt, cherries);
-    physics_update_foreach(t, dt, strawberries);
-    physics_update_foreach(t, dt, pineapples);
-    physics_update_foreach(t, dt, bombs);
-    physics_update_foreach(t, dt, fruit_shards);
-
+    
     // random generation of fruits
     float randX = rand_range(20, LCD_WIDTH - 20);
     float randForce = rand_range(-50, 80000);
@@ -154,6 +146,15 @@ void Game::physics_update(double t, double dt) {
             }
         }
     }
+
+    physics_update_foreach(t, dt, apples);
+    physics_update_foreach(t, dt, bananas);
+    physics_update_foreach(t, dt, oranges);
+    physics_update_foreach(t, dt, cherries);
+    physics_update_foreach(t, dt, strawberries);
+    physics_update_foreach(t, dt, pineapples);
+    physics_update_foreach(t, dt, bombs);
+    physics_update_foreach(t, dt, fruit_shards);
 }
 
 /// @author John Ulm
