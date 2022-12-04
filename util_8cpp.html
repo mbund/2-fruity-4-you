@@ -71,6 +71,9 @@ $(function() {
   <div class="headertitle"><div class="title">util.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implementation of miscellaneous utilities.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;cmath&gt;</code><br />
 <code>#include &quot;FEHLCD.h&quot;</code><br />
 <code>#include &quot;FEHRandom.h&quot;</code><br />
@@ -79,29 +82,225 @@ $(function() {
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a12dbb1a49e153c125bed65bfba40cc88"><td class="memItemLeft" align="right" valign="top"><a id="a12dbb1a49e153c125bed65bfba40cc88" name="a12dbb1a49e153c125bed65bfba40cc88"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>rand_range</b> (float lower, float upper)</td></tr>
+<tr class="memitem:a12dbb1a49e153c125bed65bfba40cc88"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#a12dbb1a49e153c125bed65bfba40cc88">rand_range</a> (float lower, float upper)</td></tr>
 <tr class="separator:a12dbb1a49e153c125bed65bfba40cc88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0361ad757e860c0217ecd79d5cea3202"><td class="memItemLeft" align="right" valign="top"><a id="a0361ad757e860c0217ecd79d5cea3202" name="a0361ad757e860c0217ecd79d5cea3202"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>draw_pixel_in_bounds</b> (int x, int y)</td></tr>
+<tr class="memitem:a0361ad757e860c0217ecd79d5cea3202"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#a0361ad757e860c0217ecd79d5cea3202">draw_pixel_in_bounds</a> (int x, int y)</td></tr>
 <tr class="separator:a0361ad757e860c0217ecd79d5cea3202"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e599d059a07f287c3a63db86dd5dd8c"><td class="memItemLeft" align="right" valign="top"><a id="a9e599d059a07f287c3a63db86dd5dd8c" name="a9e599d059a07f287c3a63db86dd5dd8c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>draw_circle</b> (int x0, int y0, int r)</td></tr>
-<tr class="memdesc:a9e599d059a07f287c3a63db86dd5dd8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as LCD.DrawPixel will ignore out of bounds pixels (does not do modulus) <br /></td></tr>
+<tr class="memitem:a9e599d059a07f287c3a63db86dd5dd8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#a9e599d059a07f287c3a63db86dd5dd8c">draw_circle</a> (int x0, int y0, int r)</td></tr>
+<tr class="memdesc:a9e599d059a07f287c3a63db86dd5dd8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as LCD.DrawPixel will ignore out of bounds pixels (does not do modulus)  <a href="util_8cpp.html#a9e599d059a07f287c3a63db86dd5dd8c">More...</a><br /></td></tr>
 <tr class="separator:a9e599d059a07f287c3a63db86dd5dd8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acab70836f43da1e0aebfd1e092fb36a1"><td class="memItemLeft" align="right" valign="top"><a id="acab70836f43da1e0aebfd1e092fb36a1" name="acab70836f43da1e0aebfd1e092fb36a1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>draw_horizontal_line</b> (int y, int x1, int x2)</td></tr>
+<tr class="memitem:acab70836f43da1e0aebfd1e092fb36a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#acab70836f43da1e0aebfd1e092fb36a1">draw_horizontal_line</a> (int y, int x1, int x2)</td></tr>
 <tr class="separator:acab70836f43da1e0aebfd1e092fb36a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8bc837c4182f14110494d26b1ef0e66"><td class="memItemLeft" align="right" valign="top"><a id="ad8bc837c4182f14110494d26b1ef0e66" name="ad8bc837c4182f14110494d26b1ef0e66"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>draw_vertical_line</b> (int x, int y1, int y2)</td></tr>
+<tr class="memitem:ad8bc837c4182f14110494d26b1ef0e66"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#ad8bc837c4182f14110494d26b1ef0e66">draw_vertical_line</a> (int x, int y1, int y2)</td></tr>
 <tr class="separator:ad8bc837c4182f14110494d26b1ef0e66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3cff632891f53d67952e2ad2982621fb"><td class="memItemLeft" align="right" valign="top"><a id="a3cff632891f53d67952e2ad2982621fb" name="a3cff632891f53d67952e2ad2982621fb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>fill_circle</b> (int x0, int y0, int r)</td></tr>
+<tr class="memitem:a3cff632891f53d67952e2ad2982621fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#a3cff632891f53d67952e2ad2982621fb">fill_circle</a> (int x0, int y0, int r)</td></tr>
 <tr class="separator:a3cff632891f53d67952e2ad2982621fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Implementation of miscellaneous utilities </p>
-</div></div><!-- contents -->
+<div class="textblock"><p >Implementation of miscellaneous utilities. </p>
+<dl class="section author"><dt>Authors</dt><dd>Mark Bundschuh and John Ulm </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a9e599d059a07f287c3a63db86dd5dd8c" name="a9e599d059a07f287c3a63db86dd5dd8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e599d059a07f287c3a63db86dd5dd8c">&#9670;&nbsp;</a></span>draw_circle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void draw_circle </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>r</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Same as LCD.DrawPixel will ignore out of bounds pixels (does not do modulus) </p>
+<dl class="section author"><dt>Authors</dt><dd>Department of Engineering Education, The Ohio State University and Mark Bundschuh </dd></dl>
+
+</div>
+</div>
+<a id="acab70836f43da1e0aebfd1e092fb36a1" name="acab70836f43da1e0aebfd1e092fb36a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acab70836f43da1e0aebfd1e092fb36a1">&#9670;&nbsp;</a></span>draw_horizontal_line()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void draw_horizontal_line </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section author"><dt>Authors</dt><dd>Department of Engineering Education, The Ohio State University and John Ulm </dd></dl>
+
+</div>
+</div>
+<a id="a0361ad757e860c0217ecd79d5cea3202" name="a0361ad757e860c0217ecd79d5cea3202"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0361ad757e860c0217ecd79d5cea3202">&#9670;&nbsp;</a></span>draw_pixel_in_bounds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void draw_pixel_in_bounds </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section author"><dt>Author</dt><dd>Mark Bundschuh </dd></dl>
+
+</div>
+</div>
+<a id="ad8bc837c4182f14110494d26b1ef0e66" name="ad8bc837c4182f14110494d26b1ef0e66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8bc837c4182f14110494d26b1ef0e66">&#9670;&nbsp;</a></span>draw_vertical_line()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void draw_vertical_line </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section author"><dt>Authors</dt><dd>Department of Engineering Education, The Ohio State University and John Ulm </dd></dl>
+
+</div>
+</div>
+<a id="a3cff632891f53d67952e2ad2982621fb" name="a3cff632891f53d67952e2ad2982621fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cff632891f53d67952e2ad2982621fb">&#9670;&nbsp;</a></span>fill_circle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void fill_circle </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>r</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section author"><dt>Authors</dt><dd>Department of Engineering Education, The Ohio State University and John Ulm </dd></dl>
+
+</div>
+</div>
+<a id="a12dbb1a49e153c125bed65bfba40cc88" name="a12dbb1a49e153c125bed65bfba40cc88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12dbb1a49e153c125bed65bfba40cc88">&#9670;&nbsp;</a></span>rand_range()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float rand_range </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>lower</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>upper</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section author"><dt>Author</dt><dd>John Ulm </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4

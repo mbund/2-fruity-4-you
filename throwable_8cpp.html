@@ -72,6 +72,9 @@ $(function() {
   <div class="headertitle"><div class="title">throwable.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implementation of objects with physics.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;cmath&gt;</code><br />
 <code>#include &lt;cstdint&gt;</code><br />
@@ -96,19 +99,154 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:afcd413467995628acaab52a1ea3c7e15"><td class="memItemLeft" align="right" valign="top"><a id="afcd413467995628acaab52a1ea3c7e15" name="afcd413467995628acaab52a1ea3c7e15"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>collide_point_circle</b> (<a class="el" href="structVector2.html">Vector2</a> p, <a class="el" href="structVector2.html">Vector2</a> c, float r)</td></tr>
+<tr class="memitem:afcd413467995628acaab52a1ea3c7e15"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="throwable_8cpp.html#afcd413467995628acaab52a1ea3c7e15">collide_point_circle</a> (<a class="el" href="structVector2.html">Vector2</a> p, <a class="el" href="structVector2.html">Vector2</a> c, float r)</td></tr>
 <tr class="separator:afcd413467995628acaab52a1ea3c7e15"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a221fcb3941d4b3bb28b53fb1ecd006c1"><td class="memItemLeft" align="right" valign="top"><a id="a221fcb3941d4b3bb28b53fb1ecd006c1" name="a221fcb3941d4b3bb28b53fb1ecd006c1"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>collide_line_point</b> (<a class="el" href="structVector2.html">Vector2</a> l1, <a class="el" href="structVector2.html">Vector2</a> l2, <a class="el" href="structVector2.html">Vector2</a> p)</td></tr>
+<tr class="memitem:a221fcb3941d4b3bb28b53fb1ecd006c1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="throwable_8cpp.html#a221fcb3941d4b3bb28b53fb1ecd006c1">collide_line_point</a> (<a class="el" href="structVector2.html">Vector2</a> l1, <a class="el" href="structVector2.html">Vector2</a> l2, <a class="el" href="structVector2.html">Vector2</a> p)</td></tr>
 <tr class="separator:a221fcb3941d4b3bb28b53fb1ecd006c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a509306729af6fde7b43b1be71eb8b8db"><td class="memItemLeft" align="right" valign="top"><a id="a509306729af6fde7b43b1be71eb8b8db" name="a509306729af6fde7b43b1be71eb8b8db"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>collide_line_circle</b> (<a class="el" href="structVector2.html">Vector2</a> l1, <a class="el" href="structVector2.html">Vector2</a> l2, <a class="el" href="structVector2.html">Vector2</a> c, float r)</td></tr>
+<tr class="memitem:a509306729af6fde7b43b1be71eb8b8db"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="throwable_8cpp.html#a509306729af6fde7b43b1be71eb8b8db">collide_line_circle</a> (<a class="el" href="structVector2.html">Vector2</a> l1, <a class="el" href="structVector2.html">Vector2</a> l2, <a class="el" href="structVector2.html">Vector2</a> c, float r)</td></tr>
 <tr class="separator:a509306729af6fde7b43b1be71eb8b8db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Implementation of objects with physics </p>
-</div></div><!-- contents -->
+<div class="textblock"><p >Implementation of objects with physics. </p>
+<dl class="section author"><dt>Authors</dt><dd>Mark Bundschuh or John Ulm if stated </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a509306729af6fde7b43b1be71eb8b8db" name="a509306729af6fde7b43b1be71eb8b8db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a509306729af6fde7b43b1be71eb8b8db">&#9670;&nbsp;</a></span>collide_line_circle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool collide_line_circle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVector2.html">Vector2</a>&#160;</td>
+          <td class="paramname"><em>l1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVector2.html">Vector2</a>&#160;</td>
+          <td class="paramname"><em>l2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVector2.html">Vector2</a>&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>r</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Check a collision between a line and a circle </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l1</td><td>first endpoint of line </td></tr>
+    <tr><td class="paramname">l2</td><td>last endpoint of line </td></tr>
+    <tr><td class="paramname">p</td><td>the center of the circle </td></tr>
+    <tr><td class="paramname">r</td><td>the radius of the circle </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether the collision did happen </dd></dl>
+
+</div>
+</div>
+<a id="a221fcb3941d4b3bb28b53fb1ecd006c1" name="a221fcb3941d4b3bb28b53fb1ecd006c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a221fcb3941d4b3bb28b53fb1ecd006c1">&#9670;&nbsp;</a></span>collide_line_point()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool collide_line_point </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVector2.html">Vector2</a>&#160;</td>
+          <td class="paramname"><em>l1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVector2.html">Vector2</a>&#160;</td>
+          <td class="paramname"><em>l2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVector2.html">Vector2</a>&#160;</td>
+          <td class="paramname"><em>p</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Check a collision between a line and a point </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l1</td><td>first endpoint of line </td></tr>
+    <tr><td class="paramname">l2</td><td>last endpoint of line </td></tr>
+    <tr><td class="paramname">p</td><td>the point </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether the collision did happen </dd></dl>
+
+</div>
+</div>
+<a id="afcd413467995628acaab52a1ea3c7e15" name="afcd413467995628acaab52a1ea3c7e15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcd413467995628acaab52a1ea3c7e15">&#9670;&nbsp;</a></span>collide_point_circle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool collide_point_circle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVector2.html">Vector2</a>&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVector2.html">Vector2</a>&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>r</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Check a collision between a point and a circle with a given radius </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>point to check </td></tr>
+    <tr><td class="paramname">c</td><td>position of center of circle </td></tr>
+    <tr><td class="paramname">r</td><td>radius of circle </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether the collision did happen </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4

@@ -79,38 +79,36 @@ $(function() {
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="ui_8h.html">ui.h</a>&quot;</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="util_8h.html">util.h</a>&quot;</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classEndGame.html">   17</a></span><span class="keyword">class </span><a class="code hl_class" href="classEndGame.html">EndGame</a> : <span class="keyword">public</span> <a class="code hl_class" href="classScene.html">Scene</a> {</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <a class="code hl_function" href="classEndGame.html#a716a438b0f11a3efe08352c30873a12d">EndGame</a>();</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classEndGame.html#ab7a61da73a0b20f2e02c433fe1836c4f">update</a>(<span class="keywordtype">double</span> alpha);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classEndGame.html#a2f51af756abab0fa5a59345dc04442e8">end</a>(uint32_t points);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    uint32_t points;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    std::string name;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">size_t</span> index = 0;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    std::array&lt;std::unique_ptr&lt;UIButton&gt;, 10&gt; row1;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    std::array&lt;std::unique_ptr&lt;UIButton&gt;, 9&gt; row2;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    std::array&lt;std::unique_ptr&lt;UIButton&gt;, 7&gt; row3;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    std::unique_ptr&lt;UIButton&gt; clear_button;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    std::unique_ptr&lt;UIButton&gt; confirm_button;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    std::shared_ptr&lt;Image&gt; background;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>};</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="endgame_8h.html#a27cdeaf31054e0438593fa1bb3a94c72">   44</a></span><span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code hl_variable" href="endgame_8h.html#a27cdeaf31054e0438593fa1bb3a94c72">end_game</a> = std::make_shared&lt;EndGame&gt;();</div>
-<div class="ttc" id="aclassEndGame_html"><div class="ttname"><a href="classEndGame.html">EndGame</a></div><div class="ttdoc">End game Scene.</div><div class="ttdef"><b>Definition:</b> endgame.h:17</div></div>
-<div class="ttc" id="aclassEndGame_html_a2f51af756abab0fa5a59345dc04442e8"><div class="ttname"><a href="classEndGame.html#a2f51af756abab0fa5a59345dc04442e8">EndGame::end</a></div><div class="ttdeci">void end(uint32_t points)</div><div class="ttdef"><b>Definition:</b> endgame.cpp:98</div></div>
-<div class="ttc" id="aclassEndGame_html_a716a438b0f11a3efe08352c30873a12d"><div class="ttname"><a href="classEndGame.html#a716a438b0f11a3efe08352c30873a12d">EndGame::EndGame</a></div><div class="ttdeci">EndGame()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> endgame.cpp:16</div></div>
-<div class="ttc" id="aclassEndGame_html_ab7a61da73a0b20f2e02c433fe1836c4f"><div class="ttname"><a href="classEndGame.html#ab7a61da73a0b20f2e02c433fe1836c4f">EndGame::update</a></div><div class="ttdeci">void update(double alpha)</div><div class="ttdef"><b>Definition:</b> endgame.cpp:77</div></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classEndGame.html">   15</a></span><span class="keyword">class </span><a class="code hl_class" href="classEndGame.html">EndGame</a> : <span class="keyword">public</span> <a class="code hl_class" href="classScene.html">Scene</a> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_function" href="classEndGame.html#a716a438b0f11a3efe08352c30873a12d">EndGame</a>();</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classEndGame.html#ab7a61da73a0b20f2e02c433fe1836c4f">update</a>(<span class="keywordtype">double</span> alpha);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classEndGame.html#a2f51af756abab0fa5a59345dc04442e8">end</a>(uint32_t points);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    uint32_t points;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    std::string name;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">size_t</span> index = 0;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    std::array&lt;std::unique_ptr&lt;UIButton&gt;, 10&gt; row1;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    std::array&lt;std::unique_ptr&lt;UIButton&gt;, 9&gt; row2;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    std::array&lt;std::unique_ptr&lt;UIButton&gt;, 7&gt; row3;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    std::unique_ptr&lt;UIButton&gt; clear_button;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    std::unique_ptr&lt;UIButton&gt; confirm_button;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    std::shared_ptr&lt;Image&gt; background;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>};</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="endgame_8h.html#a27cdeaf31054e0438593fa1bb3a94c72">   42</a></span><span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code hl_variable" href="endgame_8h.html#a27cdeaf31054e0438593fa1bb3a94c72">end_game</a> = std::make_shared&lt;EndGame&gt;();</div>
+<div class="ttc" id="aclassEndGame_html"><div class="ttname"><a href="classEndGame.html">EndGame</a></div><div class="ttdoc">End game Scene.</div><div class="ttdef"><b>Definition:</b> endgame.h:15</div></div>
+<div class="ttc" id="aclassEndGame_html_a2f51af756abab0fa5a59345dc04442e8"><div class="ttname"><a href="classEndGame.html#a2f51af756abab0fa5a59345dc04442e8">EndGame::end</a></div><div class="ttdeci">void end(uint32_t points)</div><div class="ttdef"><b>Definition:</b> endgame.cpp:99</div></div>
+<div class="ttc" id="aclassEndGame_html_a716a438b0f11a3efe08352c30873a12d"><div class="ttname"><a href="classEndGame.html#a716a438b0f11a3efe08352c30873a12d">EndGame::EndGame</a></div><div class="ttdeci">EndGame()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> endgame.cpp:17</div></div>
+<div class="ttc" id="aclassEndGame_html_ab7a61da73a0b20f2e02c433fe1836c4f"><div class="ttname"><a href="classEndGame.html#ab7a61da73a0b20f2e02c433fe1836c4f">EndGame::update</a></div><div class="ttdeci">void update(double alpha)</div><div class="ttdef"><b>Definition:</b> endgame.cpp:78</div></div>
 <div class="ttc" id="aclassScene_html"><div class="ttname"><a href="classScene.html">Scene</a></div><div class="ttdoc">Base class for a scene in the game.</div><div class="ttdef"><b>Definition:</b> util.h:28</div></div>
-<div class="ttc" id="aendgame_8h_html_a27cdeaf31054e0438593fa1bb3a94c72"><div class="ttname"><a href="endgame_8h.html#a27cdeaf31054e0438593fa1bb3a94c72">end_game</a></div><div class="ttdeci">auto end_game</div><div class="ttdoc">Global variable to hold the state of the end game.</div><div class="ttdef"><b>Definition:</b> endgame.h:44</div></div>
-<div class="ttc" id="aimage_8h_html"><div class="ttname"><a href="image_8h.html">image.h</a></div></div>
-<div class="ttc" id="aui_8h_html"><div class="ttname"><a href="ui_8h.html">ui.h</a></div></div>
-<div class="ttc" id="autil_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div></div>
+<div class="ttc" id="aendgame_8h_html_a27cdeaf31054e0438593fa1bb3a94c72"><div class="ttname"><a href="endgame_8h.html#a27cdeaf31054e0438593fa1bb3a94c72">end_game</a></div><div class="ttdeci">auto end_game</div><div class="ttdoc">Global variable to hold the state of the end game.</div><div class="ttdef"><b>Definition:</b> endgame.h:42</div></div>
+<div class="ttc" id="aimage_8h_html"><div class="ttname"><a href="image_8h.html">image.h</a></div><div class="ttdoc">Image rendering and loading.</div></div>
+<div class="ttc" id="aui_8h_html"><div class="ttname"><a href="ui_8h.html">ui.h</a></div><div class="ttdoc">User interface components and utilities.</div></div>
+<div class="ttc" id="autil_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div><div class="ttdoc">Global variables, definitions, and miscellaneous utilities.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
