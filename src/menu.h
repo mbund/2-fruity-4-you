@@ -2,6 +2,7 @@
 
 /// @file menu.h
 /// Components for the menu and the menu scene
+///Author: Mark
 
 #include <memory>
 #include <string>

@@ -2,6 +2,7 @@
 
 /// @file ui.h
 /// User interface components and utilities
+/// Author: Mark
 
 #include <functional>
 #include <memory>

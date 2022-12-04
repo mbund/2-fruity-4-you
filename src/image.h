@@ -2,11 +2,13 @@
 
 /// @file image.h
 /// Image rendering and loading
+///Author: Mark
 
 #include <memory>
 #include <string>
 #include <unordered_map>
 #include <vector>
+
 
 /// Render an image (.png, .jpeg, etc.)
 class Image {

@@ -2,9 +2,11 @@
 
 /// @file knife.h
 /// Knife logic
+/// Author: John
 
 #include <cstddef>
 #include <cstdint>
+
 
 /// Representation of the knife, moving with the mouse
 class Knife {

@@ -2,6 +2,7 @@
 
 /// @file endgame.h
 /// Scene at end of game to input name and return to main menu
+///Author: Mark
 
 #include <array>
 #include <memory>
@@ -9,6 +10,8 @@
 #include "image.h"
 #include "ui.h"
 #include "util.h"
+
+
 
 /// End game Scene
 class EndGame : public Scene {

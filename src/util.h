@@ -2,6 +2,7 @@
 
 /// @file util.h
 /// Global variables, definitions, and miscellaneous utilities
+/// Author: Mark
 
 #include <memory>
 

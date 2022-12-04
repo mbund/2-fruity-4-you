@@ -2,6 +2,7 @@
 
 /// @file game.h
 /// Main gameplay
+///Author: Mark unless stated otherwise
 
 #include <memory>
 #include <vector>
@@ -11,12 +12,15 @@
 #include "throwable.h"
 #include "util.h"
 
+
+
 /// Main Scene for playing the game
 class Game final : public Scene {
    public:
     /// Default constructor
     Game();
 
+    ///Author: John
     /// Update and render the apple
     /// @param alpha physics alpha, for interpolation between previous state and
     /// next state
@@ -60,8 +64,11 @@ class Game final : public Scene {
     float multiplier;
 
    private:
+    /// Duration of the game in seconds
     const uint32_t GAME_DURATION = 30;
+    /// value that determines rate that bombs spawn
     float bomb_probability;
+    /// start time
     double time_started;
 
     Knife knife;
