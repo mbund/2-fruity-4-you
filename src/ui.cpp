@@ -1,5 +1,6 @@
 /// @file ui.cpp
-/// Implementation for the UI
+/// @author Mark Bundschuh
+/// @brief Implementation for the UI
 
 #include <iostream>
 #include <memory>

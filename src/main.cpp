@@ -1,5 +1,6 @@
 /// @file main.cpp
-/// Contains the entrypoint for the program
+/// @author Mark Bundschuh
+/// @brief Contains the entrypoint for the program
 
 #include <FEHLCD.h>
 #include <FEHUtility.h>

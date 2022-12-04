@@ -1,8 +1,8 @@
 #pragma once
 
 /// @file game.h
-/// Main gameplay
-///Author: Mark unless stated otherwise
+/// @author Mark Bundschuh
+/// @brief Main gameplay
 
 #include <memory>
 #include <vector>
@@ -12,15 +12,12 @@
 #include "throwable.h"
 #include "util.h"
 
-
-
 /// Main Scene for playing the game
 class Game final : public Scene {
    public:
     /// Default constructor
     Game();
 
-    ///Author: John
     /// Update and render the apple
     /// @param alpha physics alpha, for interpolation between previous state and
     /// next state

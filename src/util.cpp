@@ -1,5 +1,6 @@
 /// @file util.cpp
-/// Implementation of miscellaneous utilities
+/// @authors Mark Bundschuh and John Ulm
+/// @brief Implementation of miscellaneous utilities
 
 #include <cmath>
 
@@ -13,6 +14,7 @@ Scene::~Scene() {}
 void Scene::update(double alpha) {}
 void Scene::physics_update(double t, double dt) {}
 
+/// @author John Ulm
 float rand_range(float lower, float upper) {
     float range = upper - lower;
     float randNum = (rand() % 1025) / 1024.0;
@@ -145,11 +147,13 @@ Vector2 Vector2::normalize() const {
     return copy;
 }
 
+/// @author Mark Bundschuh
 void draw_pixel_in_bounds(int x, int y) {
     if (x >= 0 && x < (int)LCD_WIDTH && y >= 0 && y < (int)LCD_HEIGHT)
         LCD.DrawPixel(x, y);
 }
 
+/// @authors Department of Engineering Education, The Ohio State University and Mark Bundschuh
 void draw_circle(int x0, int y0, int r) {
     // This alogorithm is from wikipedia
     // It's called the "midpoint circle algorithm"
@@ -187,6 +191,7 @@ void draw_circle(int x0, int y0, int r) {
     }
 }
 
+/// @authors Department of Engineering Education, The Ohio State University and John Ulm
 void draw_horizontal_line(int y, int x1, int x2) {
     if (x2 < x1) {
         int c = x2;
@@ -199,6 +204,7 @@ void draw_horizontal_line(int y, int x1, int x2) {
     }
 }
 
+/// @authors Department of Engineering Education, The Ohio State University and John Ulm
 void draw_vertical_line(int x, int y1, int y2) {
     if (y2 < y1) {
         int c = y2;
@@ -211,6 +217,7 @@ void draw_vertical_line(int x, int y1, int y2) {
     }
 }
 
+/// @authors Department of Engineering Education, The Ohio State University and John Ulm
 void fill_circle(int x0, int y0, int r) {
     // This algorithm is a variant on DrawCircle.
     // Rather than draw the points around the circle,

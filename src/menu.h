@@ -1,8 +1,8 @@
 #pragma once
 
 /// @file menu.h
-/// Components for the menu and the menu scene
-///Author: Mark
+/// @author Mark Bundschuh
+/// @brief Components for the menu and the menu scene
 
 #include <memory>
 #include <string>

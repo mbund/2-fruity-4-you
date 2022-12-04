@@ -1,5 +1,6 @@
 /// @file throwable.cpp
-/// Implementation of objects with physics
+/// @authors Mark Bundschuh or John Ulm if stated
+/// @brief Implementation of objects with physics
 
 #include <algorithm>
 #include <cmath>
@@ -21,15 +22,24 @@
 
 #define PI 3.14159265358979323846
 
+// All of the collision logic comes from this website:
 // https://www.jeffreythompson.org/collision-detection/line-circle.php
 
-// POINT/CIRCLE
+/// Check a collision between a point and a circle with a given radius
+/// @param p point to check
+/// @param c position of center of circle
+/// @param r radius of circle
+/// @return Whether the collision did happen
 bool collide_point_circle(Vector2 p, Vector2 c, float r) {
     float distance = Vector2::distance(p, c);
     return distance <= r;
 }
 
-// LINE/POINT
+/// Check a collision between a line and a point
+/// @param l1 first endpoint of line
+/// @param l2 last endpoint of line
+/// @param p the point
+/// @return Whether the collision did happen
 bool collide_line_point(Vector2 l1, Vector2 l2, Vector2 p) {
     // get distance from the point to the two ends of the line
     float d1 = Vector2::distance(p, l1);
@@ -49,7 +59,12 @@ bool collide_line_point(Vector2 l1, Vector2 l2, Vector2 p) {
     return d1 + d2 >= line_length - buffer && d1 + d2 <= line_length + buffer;
 }
 
-// LINE/CIRCLE
+/// Check a collision between a line and a circle
+/// @param l1 first endpoint of line
+/// @param l2 last endpoint of line
+/// @param p the center of the circle
+/// @param r the radius of the circle
+/// @return Whether the collision did happen
 bool collide_line_circle(Vector2 l1, Vector2 l2, Vector2 c, float r) {
     // is either end INSIDE the circle?
     // if so, return true immediately
@@ -140,6 +155,7 @@ void Fruit::physics_update(double t, double dt) {
     PhysicsObject::physics_update(t, dt);
 }
 
+/// @author John Ulm
 void Fruit::collision(Vector2 p1, Vector2 p2) {
     if (!should_be_removed && collide_line_circle(p1, p2, position, radius)) {
         should_be_removed = true;
@@ -170,7 +186,6 @@ Orange::Orange(Vector2 pos) : Fruit("orange", 13, pos, 8) {}
 Cherries::Cherries(Vector2 pos) : Fruit("cherries", 13, pos, 8) {}
 Strawberry::Strawberry(Vector2 pos) : Fruit("strawberry", 13, pos, 8) {}
 Pineapple::Pineapple(Vector2 pos) : Fruit("pineapple", 13, pos, 8) {}
-
 Bomb::Bomb(Vector2 pos) : Fruit("bomb", 13, pos, 8) {}
 
 void Bomb::update(double alpha) {
@@ -180,6 +195,7 @@ void Bomb::update(double alpha) {
     draw_circle(position.x, position.y, radius + 5);
 }
 
+/// @author John Ulm
 void Bomb::collision(Vector2 p1, Vector2 p2) {
     if (collide_line_circle(p1, p2, position, radius)) {
         LCD.SetFontColor(INDIANRED);

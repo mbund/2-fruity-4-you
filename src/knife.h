@@ -1,8 +1,8 @@
 #pragma once
 
 /// @file knife.h
-/// Knife logic
-/// Author: John
+/// @author John Ulm
+/// @brief Knife logic
 
 #include <cstddef>
 #include <cstdint>
