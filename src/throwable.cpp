@@ -141,7 +141,7 @@ void Fruit::update(double alpha) {
     }
 
     image->render(position.x, position.y,
-                  TimeNow() * PI * std::clamp(velocity.x / 10.0f, -2.0f, 2.0f));
+                  game->t * PI * std::clamp(velocity.x / 10.0f, -2.0f, 2.0f));
 }
 
 bool Fruit::get_should_be_removed() const {
@@ -244,7 +244,8 @@ void FruitShard::update(double alpha) {
         should_be_removed = true;
     }
 
-    image->render(position.x, position.y, TimeNow() * PI);
+    image->render(position.x, position.y,
+                  game->t * PI * std::clamp(velocity.x / 10.0f, -2.0f, 2.0f));
 }
 
 bool FruitShard::get_should_be_removed() const {

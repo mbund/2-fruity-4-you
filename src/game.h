@@ -57,8 +57,11 @@ class Game final : public Scene {
     /// Time that the most recent fruit was cut
     double combo_time;
 
-    /// score multiplier (should reward higher difficulties)
+    /// Score multiplier (should reward higher difficulties)
     float multiplier;
+ 
+    /// Physics time elapsed since start of the game
+    double t;
 
    private:
     /// Duration of the game in seconds

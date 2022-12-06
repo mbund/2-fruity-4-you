@@ -37,6 +37,7 @@ void Game::start(float bomb_probability, float multiplier) {
     this->multiplier = multiplier;
     points = 0;
     combo = 0;
+    t = 0;
     time_started = TimeNow();
 }
 
@@ -96,7 +97,6 @@ void remove_if_foreach(T& a) {
 
 /// @author John Ulm
 void Game::physics_update(double t, double dt) {
-    
     // random generation of fruits
     float randX = rand_range(20, LCD_WIDTH - 20);
     float randForce = rand_range(-50, 80000);
@@ -155,6 +155,8 @@ void Game::physics_update(double t, double dt) {
     physics_update_foreach(t, dt, pineapples);
     physics_update_foreach(t, dt, bombs);
     physics_update_foreach(t, dt, fruit_shards);
+    
+    this->t += dt;
 }
 
 /// @author John Ulm
